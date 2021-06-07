@@ -26,3 +26,8 @@ code {
   align-items: center;
   justify-content: center;
 }
+
+.team-member-image {
+  width: auto;
+  height: 250px;
+}
