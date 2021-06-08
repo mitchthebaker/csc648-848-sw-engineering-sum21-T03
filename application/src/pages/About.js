@@ -6,6 +6,7 @@ const About = () => {
         <div className="about-wrapper">
             <h1> About </h1>
             <NavLink to="/mbaker"> Mitchel Baker </NavLink>
+            <br></br>
             <NavLink to="/ceusebio"> Charmaine Eusebio </NavLink>
         </div>
     );

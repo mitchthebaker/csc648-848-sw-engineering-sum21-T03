@@ -1,17 +1,19 @@
 import React from 'react';
 
-const Baker = () => {
+const Eusebio = () => {
     return (
         <div className="team-member">
             <h2> Charmaine Eusebio </h2>
             <img
-                src={`/charmaine.png`}
-                className="team-member-image"
+                src={`/uploads/charmaine.jpg`}
+
                 alt="Failed to load."
             />
-            <p> Description :) </p>
+            <p> Hi there, I'm Charmaine from Guam! 
+                <br></br>
+               A former chef turned software engineer💖</p>
         </div>
     );
 };
 
-export default Baker;
+export default Eusebio;

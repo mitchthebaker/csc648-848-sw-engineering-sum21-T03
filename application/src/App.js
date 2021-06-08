@@ -1,6 +1,7 @@
 import Home from './pages/Home';
 import About from './pages/About';
 import Baker from './components/Baker';
+import Eusebio from './components/Eusebio';
 import {Switch, Route} from 'react-router-dom';
 import './App.css';
 
