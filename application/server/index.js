@@ -12,6 +12,10 @@ app.get('/api', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
+app.get('/api/trending', (req, res) => {
+    res.json({message: "The most trending here"});
+});
+
 // Any other GET requests which are not handled will return to React app 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
