@@ -18,9 +18,13 @@ const Home = () => {
 
     return (
         <div className="home-wrapper">
-            <h1> Home </h1>
-            <NavLink to="/"> Home </NavLink>
-            <NavLink to="/about"> About </NavLink>
+            <section className="navigation">
+                <h1> Home </h1>
+                <div className="navigation-links">
+                    <NavLink className="nav-link" to="/"> Home </NavLink>
+                    <NavLink className="nav-link" to="/about"> About </NavLink>
+                </div>
+            </section>
 
             <p> {!data ? "Loading..." : data} </p>
         </div>

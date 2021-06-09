@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Baker = () => {
+const Eusebio = () => {
     return (
         <div className="team-member">
             <section className="navigation">
@@ -10,15 +10,18 @@ const Baker = () => {
                     <NavLink className="nav-link" to="/about"> About </NavLink>
                 </div>
             </section>
-            <h2> Mitchel Baker </h2>
+            <h2> Charmaine Eusebio </h2>
             <img
-                src={`/uploads/mbaker.jpg`}
                 className="team-member-image"
+                src={`/uploads/charmaine.jpg`}
                 alt="Failed to load."
             />
-            <p> Hey! My name's Mitchel. When not programming, I enjoy surfing, climbing, and hiking to experience the outdoors. </p>
+            <p> Description :) </p>
+            <p> Hi there, I'm Charmaine from Guam! 
+                <br></br>
+               A former chef turned software engineer💖</p>
         </div>
     );
 };
 
-export default Baker;
+export default Eusebio; 

@@ -12,7 +12,43 @@ code {
     monospace;
 }
 
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navigation-links {
+  margin-left: auto;
+}
+
+.nav-link {
+  text-decoration: none;
+  margin: 10px;
+}
+
 .about-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-navlink {
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+}
+
+.frontend-links, .backend-links, .fullstack-links {
+  margin: 10px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -21,6 +57,13 @@ code {
 }
 
 .home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member {
   display: flex;
   flex-direction: column;
   align-items: center;
