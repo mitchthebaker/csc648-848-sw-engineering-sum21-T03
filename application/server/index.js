@@ -95,7 +95,7 @@ app.get('/api/users', (req, res, next) => {
 
 // Proxy is setup so any axios requests are sent to this Node api server
 app.get('/api', (req, res) => {
-    res.json({ message: "Hello from server!" });
+    res.json({ message: "Hello from api server!" });
 });
 
 // Any other GET requests which are not handled will return to React app 
