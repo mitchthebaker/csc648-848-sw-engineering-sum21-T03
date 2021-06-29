@@ -18,14 +18,19 @@ const Home = () => {
 
     return (
         <div className="home-wrapper">
-            <section className="navigation">
-                <h1> Home </h1>
-                <div className="navigation-links">
-                    <NavLink className="nav-link" to="/"> Home </NavLink>
-                    <NavLink className="nav-link" to="/about"> About </NavLink>
-                    <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                </div>
-            </section>
+            <header className="App-header">
+                <section className="navigation">
+                    <h1> Home </h1>
+                    <div className="navigation-links">
+                        <NavLink className="nav-link" to="/"> Home </NavLink>
+                        <NavLink className="nav-link" to="/about"> About </NavLink>
+                        <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                        <NavLink className="nav-link" to="/login"> Login </NavLink>
+                    </div>
+                </section>
+            </header>
+
+           
 
             <p> {!data ? "Loading..." : data} </p>
         </div>

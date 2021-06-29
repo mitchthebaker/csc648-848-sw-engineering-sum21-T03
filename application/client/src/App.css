@@ -24,6 +24,20 @@
   color: white;
 }
 
+.App-Header-Right {
+  float: right;
+}
+
+/* For Logo */
+.Logo {
+  float: left; 
+}
+
+
+
+
+
+
 .App-link {
   color: #3707bd;
 }
@@ -35,11 +49,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-
-.Profile-containerSide-One {
-  width: 40%; 
-
-  background-color: grey;
 }
