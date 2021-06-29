@@ -8,6 +8,7 @@ const About = () => {
                 <h1> About </h1>
                 <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
+                    <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 </div>
             </section>
             

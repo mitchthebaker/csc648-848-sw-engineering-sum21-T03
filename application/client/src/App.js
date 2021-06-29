@@ -1,5 +1,8 @@
 import Home from './pages/Home';
 import About from './pages/About';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings'; 
+import userFeed from './pages/UserFeed'; 
 import Baker from './components/Baker';
 import Chuson from './components/Chuson';
 import Eusebio from './components/Eusebio';
@@ -16,6 +19,9 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/userFeed" component={userFeed} />
         <Route path="/mbaker" component={Baker} />
         <Route path="/kenneth" component={Chuson} />
         <Route path="/ceusebio" component={Eusebio} />
