@@ -8,6 +8,17 @@ const Login = () => {
             <NavLink className="nav-link" to="/about"> About </NavLink>
             <NavLink className="nav-link" to="/profile"> Profile </NavLink>
             <h1>Login / Sign up</h1>  
+
+            <form>
+                <label>
+                    <p>UserName</p>
+                    <input type="text" name="userName-Login" required/>
+                    <p>Password</p>
+                    <input type="text" name="userName-Password" required/>
+                </label>
+                <input type="submit" value="Submit" name="Submit-Login"/>
+            </form>
+            
             <NavLink className="nav-link" to="/sign_up"> Sign Up </NavLink> 
         </div>
     );
