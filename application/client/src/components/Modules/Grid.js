@@ -20,7 +20,7 @@ const styles = makeStyles({
 })
 
 function Grid(props) {
-    const {icon, btnTitle} = props;
+    const {icon, btnTitle, link} = props;
     const classes = styles();
     return (
         <div className={classes.wrapper}>

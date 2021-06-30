@@ -12,6 +12,7 @@ import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
+import Profile from './Profile';
 
 
 const theme = createMuiTheme({
@@ -79,7 +80,7 @@ const Home = () => {
         <div className="home-wrapper">
             <header className="App-header">
                 <section className="navigation">
-                    <h1> Home </h1>
+                    {/* <h1> Home </h1> */}
                     <div className="navigation-links">
                         <NavLink className="nav-link" to="/"> Home </NavLink>
                         <NavLink className="nav-link" to="/about"> About </NavLink>
@@ -99,14 +100,14 @@ const Home = () => {
         </div>
 
       <div className={`${classes.grid} ${classes.bigSpace}`}>
-          <Grid item xs zeroMinWidth icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>}  btnTitle="Login" />
-          <Grid item xs zeroMinWidth icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>}  btnTitle="Post for Sell"/>
-          <Grid item xs zeroMinWidth icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}   btnTitle="Buy"/>
+          <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>}  btnTitle="Profile"  />
+          <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>}  btnTitle="Post for Sell"/>
+          <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}   btnTitle="Buy"/>
         </div>
         <div className={`${classes.grid} ${classes.bigSpace}`}>  
-          <Grid item xs zeroMinWidth icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>}   btnTitle="Payment"/>
-          <Grid item xs zeroMinWidth icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>}   btnTitle="Shipping"/>
-          <Grid item xs zeroMinWidth icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>}  btnTitle="Policy"/>
+          <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>}   btnTitle="Payment"/>
+          <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>}   btnTitle="Shipping"/>
+          <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>}  btnTitle="Policy"/>
         </div>
         <div className={classes.bigSpace}>
           <Footer/>

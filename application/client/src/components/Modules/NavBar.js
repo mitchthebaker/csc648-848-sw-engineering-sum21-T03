@@ -3,6 +3,7 @@ import CustomBtn from './CustomBtn';
 import logo from '../../logo.svg-20210623T140909Z-001/angels.png';
 import {Toolbar, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import { NavLink } from 'react-router-dom';
 
 const styles = makeStyles({
     bar:{
@@ -43,21 +44,21 @@ function NavBar() {
                 <img src={logo} className={classes.logo}/> 
                 {/* <img src={logoMobile} className={classes.logoMobile}/>  */}
                 <Typography variant="h6" className={classes.menuItem}>
-                   Search
+                <NavLink className="nav-link" to="/settings"> Settings </NavLink>
                 </Typography>
                 <Typography variant="h6" className={classes.menuItem}>
-                    Social Media
+                Social Media
                 </Typography>
                 <Typography variant="h6" className={classes.menuItem}>
-                    Shipping
+                Shipping
                 </Typography>
                 <Typography variant="h6" className={classes.menuItem}>
-                   About Jose's Angels
+                About Jose's Angels
                 </Typography>
                 <Typography variant="h6" className={classes.menuItem}>
-                    Contact Us 
+                Contact Us 
                 </Typography>
-                <CustomBtn txt="Product Categories"/>
+                <CustomBtn txt="Login"/>
             </Toolbar>
     )
 }
