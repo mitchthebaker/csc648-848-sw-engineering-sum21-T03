@@ -26,13 +26,15 @@ const Home = () => {
                         <NavLink className="nav-link" to="/about"> About </NavLink>
                         <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                         <NavLink className="nav-link" to="/login"> Login </NavLink>
+
+                        
                     </div>
                 </section>
             </header>
 
            
 
-            <p> {!data ? "Loading..." : data} </p>
+            {/* <p> {!data ? "Loading..." : data} </p> */}
         </div>
     );
 };
