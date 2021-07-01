@@ -46,16 +46,16 @@
 	}
 }
 
-
-.Login-Title, .SignUp-Title {
+.Login-Title,
+.SignUp-Title {
 	text-align: center;
 }
 
 .container-login {
 	background-color: rgb(173, 173, 173);
 	border-radius: 15px;
-	height: 50%; 
-	width: 50%; 
+	height: 50%;
+	width: 50%;
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -65,15 +65,16 @@
 .container-Sign_Up {
 	background-color: rgb(173, 173, 173);
 	border-radius: 15px;
-	height: 70%; 
-	width: 50%; 
+	height: 70%;
+	width: 50%;
 	position: fixed;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
 
-.label-login, .label-signUp {
+.label-login,
+.label-signUp {
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -87,10 +88,10 @@
 	transform: translate(-50%, -50%);
 }
 
-.Submit-Login, .Submit-SignUp {
+.Submit-Login,
+.Submit-SignUp {
 	position: fixed;
 	left: 50%;
 	top: 110%;
 	transform: translate(-50%, -50%);
 }
-
