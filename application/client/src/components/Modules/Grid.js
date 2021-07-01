@@ -2,6 +2,7 @@ import React from 'react';
 import {Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import CustomBtn from '../Modules/CustomBtn';
+import { NavLink } from 'react-router-dom';
 
 const styles = makeStyles({
     wrapper: {
@@ -26,7 +27,9 @@ function Grid(props) {
         <div className={classes.wrapper}>
             <div className={classes.item}>{icon}</div>
             <div className={classes.item}>
+                <NavLink to={link}> 
                 <CustomBtn txt={btnTitle} />
+                </NavLink>
             </div>
         </div>
     )

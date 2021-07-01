@@ -1,16 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logo from '../components/Modules/Logo';
 
 const About = () => {
     return (
+        
         <div className="about-wrapper">
             <section className="navigation">
-                <h1> About </h1>
-                <div className="navigation-links">
+            <Logo />
+                <h1> About Us </h1>
+                {/* <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
                     <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                     <NavLink className="nav-link" to="/login"> Login </NavLink>
-                </div>
+                </div> */}
             </section>
             
             <h2> Frontend </h2>

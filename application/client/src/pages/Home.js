@@ -77,19 +77,18 @@ const Home = () => {
     });
 
     return (
-        <div className="home-wrapper">
-            <header className="App-header">
-                <section className="navigation">
-                    {/* <h1> Home </h1> */}
-                    <div className="navigation-links">
-                        <NavLink className="nav-link" to="/"> Home </NavLink>
-                        <NavLink className="nav-link" to="/about"> About </NavLink>
-                        <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                        <NavLink className="nav-link" to="/login"> Login </NavLink>
+        // <div className="home-wrapper">
+            // <header className="App-header">
+            //     <section className="navigation">
+            //         {/* <h1> Home </h1> */}
+            //         <div className="navigation-links">
+            //             <NavLink className="nav-link" to="/"> Home </NavLink>
+            //             <NavLink className="nav-link" to="/about"> About </NavLink>
+            //             <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+            //             <NavLink className="nav-link" to="/login"> Login </NavLink>
 
-                        <ThemeProvider theme = {theme}>
+      <ThemeProvider theme = {theme}>
       <NavBar />
-
       <div className={classes.wrapper}>
           <Typography variant="h5" className={classes.bigSpace} color="primary">
              At Jose's Angels, we buy and sell products
@@ -98,16 +97,15 @@ const Home = () => {
             New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
           </Typography>
         </div>
-
       <div className={`${classes.grid} ${classes.bigSpace}`}>
-          <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>}  btnTitle="Profile"  />
-          <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>}  btnTitle="Post for Sell"/>
-          <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}   btnTitle="Buy"/>
+          <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
+          <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
+          <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}  link="/profile" btnTitle="Buy"/>
         </div>
         <div className={`${classes.grid} ${classes.bigSpace}`}>  
-          <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>}   btnTitle="Payment"/>
-          <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>}   btnTitle="Shipping"/>
-          <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>}  btnTitle="Policy"/>
+          <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Payment"/>
+          <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Shipping"/>
+          <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
         </div>
         <div className={classes.bigSpace}>
           <Footer/>
@@ -115,14 +113,14 @@ const Home = () => {
       </ThemeProvider>
 
 
-                    </div>
-                </section>
-            </header>
+            //         </div>
+            //     </section>
+            // </header>
 
            
 
-            {/* <p> {!data ? "Loading..." : data} </p> */}
-        </div>
+            /* <p> {!data ? "Loading..." : data} </p> */
+        /* </div> */
     );
 };
 

@@ -12,6 +12,7 @@ const styles = makeStyles({
         ['@media (max-width:780px)']: { 
            flexDirection: "column"
           }
+          
     },
     logo: {
         width: "5%", 
@@ -19,18 +20,15 @@ const styles = makeStyles({
            display: "none"
            }
     },
-    logoMobile:{
-        width: "100%", 
-        display: "none", 
-        ['@media (max-width:780px)']: { 
-            display: "inline-block"
-            }
-    },
+    
     menuItem: {
         cursor: "pointer", 
+        paddingLeft: "65px",
+        paddingRight: "65px",
         flexGrow: 1,
         "&:hover": {
             color:  "#4f25c8"
+
         },
         ['@media (max-width:780px)']: { 
             paddingBottom: "1rem"    }
@@ -41,24 +39,28 @@ function NavBar() {
     const classes = styles()
     return (
         <Toolbar position="sticky" color="rgba(0, 0, 0, 0.87)" className={classes.bar}>   
-                <img src={logo} className={classes.logo}/> 
-                {/* <img src={logoMobile} className={classes.logoMobile}/>  */}
+                 
+                <img src={logo} className={classes.logo}/>
+        
+                <NavLink className="nav-link" to="/settings">
                 <Typography variant="h6" className={classes.menuItem}>
-                <NavLink className="nav-link" to="/settings"> Settings </NavLink>
-                </Typography>
+                 Settings 
+                </Typography> 
+                </NavLink>
+                <NavLink className="nav-link" to="/about">
                 <Typography variant="h6" className={classes.menuItem}>
                 Social Media
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
-                Shipping
-                </Typography>
-                <Typography variant="h6" className={classes.menuItem}>
+                </Typography> </NavLink>
+
+                <NavLink className="nav-link" to="/about"> <Typography variant="h6" className={classes.menuItem}>
                 About Jose's Angels
-                </Typography>
+                </Typography> </NavLink>
+                <NavLink className="nav-link" to="/">
                 <Typography variant="h6" className={classes.menuItem}>
-                Contact Us 
-                </Typography>
-                <CustomBtn txt="Login"/>
+                Home
+                </Typography> </NavLink>
+
+                <NavLink className="nav-link" to="/login"><CustomBtn txt="Login"/> </NavLink>
             </Toolbar>
     )
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logo from './../components/Modules/Logo';
 
 const Profile = () => {
     return (
         <div className="profile-wrapper">
             <header className="App-header">
+                <Logo/>
                 <h1>Profile</h1>
                 <img className="Profile-Image" src="//:0"></img>
-                <NavLink className="nav-link" to="/"> Home </NavLink>
                 <div className="App-header-Right">
                     <NavLink className="nav-link" to="/about"> About </NavLink>
                     <NavLink className="nav-link" to="/settings"> Settings </NavLink>
