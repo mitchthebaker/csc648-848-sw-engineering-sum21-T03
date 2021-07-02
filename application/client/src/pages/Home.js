@@ -13,6 +13,7 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
 import Profile from './Profile';
+import SearchBar from '../components/Modules/Search';
 
 
 const theme = createMuiTheme({
@@ -89,6 +90,7 @@ const Home = () => {
 
       <ThemeProvider theme = {theme}>
       <NavBar />
+      <SearchBar />
       <div className={classes.wrapper}>
           <Typography variant="h5" className={classes.bigSpace} color="primary">
              At Jose's Angels, we buy and sell products
