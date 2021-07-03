@@ -1,38 +1,97 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #fafafa;
+	min-height: 30vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: rgb(15, 14, 14);
+}
+
+.App-Header-Right {
+	float: right;
+}
+
+/* For Logo */
+.Logo {
+	float: left;
 }
 
 .App-link {
-  color: #3707bd;
+	color: #3707bd;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.Login-Title,
+.SignUp-Title {
+	text-align: center;
+}
+
+.container-login {
+	background-color: rgb(173, 173, 173);
+	border-radius: 15px;
+	height: 50%;
+	width: 50%;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.container-Sign_Up {
+	background-color: rgb(173, 173, 173);
+	border-radius: 15px;
+	height: 70%;
+	width: 50%;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.label-login,
+.label-signUp {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.Sign-Up-LoginContainer {
+	position: fixed;
+	left: 50%;
+	top: 80%;
+	transform: translate(-50%, -50%);
+}
+
+.Submit-Login,
+.Submit-SignUp {
+	position: fixed;
+	left: 50%;
+	top: 110%;
+	transform: translate(-50%, -50%);
 }
