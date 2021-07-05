@@ -95,3 +95,49 @@
 	top: 110%;
 	transform: translate(-50%, -50%);
 }
+
+/*Profile Page */
+
+.content-ProfilePage {
+	display: grid; 
+	grid-template-columns: repeat(12, 1fr);
+	grid-auto-rows: minmax(100px, auto); 
+	grid-gap: 10px; 
+	max-width: 90%; 
+	height: 650px; 
+	margin: 0 auto; 
+}
+
+
+
+.FirstLastName-ProfilePage {
+	grid-column: 1 / 13; 
+	background-color: grey;
+	border-radius: 15px;
+}
+
+.Information-ProfilePage {
+	grid-column: 6 / 13; 
+	grid-row: 2 / 4; 
+	background-color: grey;
+	border-radius: 15px;
+}
+
+.Activities-ProfilePage {
+	grid-column: 1 / 6; 
+	background-color: grey;
+	border-radius: 15px;
+}
+
+.Section-ProfilePage {
+	grid-column: 1 / 13; 
+	grid-row: 4 / 6; 
+	background-color: grey;
+	border-radius: 15px;
+}
+
+.TopRecommendations-ProfilePage {
+	grid-column: 1 / 6; 
+	background-color: grey;
+	border-radius: 15px;
+}
