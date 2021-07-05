@@ -15,6 +15,24 @@ const Profile = () => {
                     <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 </div>
             </header>
+            <div className="content-ProfilePage">
+                <div className="FirstLastName-ProfilePage">
+                    <p>FirstName LastName</p>
+                </div>
+                <div className="Information-ProfilePage">
+                    <p>Infromation</p>
+                </div>
+                <div className="Section-ProfilePage">
+                    <p>Section</p>
+                </div>
+                <div className="Activities-ProfilePage">
+                    <p>Activities</p>
+                </div>
+                <div className="TopRecommendations-ProfilePage">
+                    <p>Top Recommendations</p>
+                </div>
+            </div>
+
             
         </div>
     );

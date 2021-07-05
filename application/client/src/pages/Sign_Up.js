@@ -22,7 +22,7 @@ const Sign_Up = () => {
                         <p>Buyer</p>
                         <input type="checkbox" name="Buyer-Select-SignUp"/>
                         <p>Seller</p>
-                        <input type="checkbox" name="Seller-Select-SignUp"/>
+                        <input type="checkbox" value="seller" name="Seller-Select-SignUp"/>
                         <input className="Submit-SignUp" type="submit" value="Submit" name="Submit-SignUp"/>
                     </label>
                 </form>
