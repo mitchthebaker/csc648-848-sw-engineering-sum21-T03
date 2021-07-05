@@ -10,28 +10,21 @@ export const setPassword = (password) => ({
     password
 });
 
-export const setConfirmPassword = (confirmPassword) => ({
-    type: 'USER_SET_CONFIRM_PASSWORD',
-    confirmPassword
-});
-
-export const createUser = () => {
+export const loginUser = () => {
     return (dispatch, getState) => {
         const userData = {
             username: getState().registerReducer.username,
             password: getState().registerReducer.password,
-            confirmPassword: getState().registerReducer.confirmPassword
         };
 
         console.log(userData);
 
-        axios.post('/api/register', userData)
+        axios.post('/api/login', userData)
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
-                    dispatch(redirectUser(true));
+                    dispatch(redirectUserAfterLogin(true));
                 }
-
             })
             .catch((err) => {
                 console.log(err);
@@ -39,7 +32,7 @@ export const createUser = () => {
     };
 };  
 
-export const redirectUser = (registered) => ({
-    type: "USER_IS_REGISTERED",
-    registered
+export const redirectUserAfterLogin = (loggedIn) => ({
+    type: "USER_IS_LOGGEDIN",
+    loggedIn
 });

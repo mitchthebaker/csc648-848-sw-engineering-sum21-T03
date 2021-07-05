@@ -1,5 +1,7 @@
-import config from './config';
-import mysql from 'mysql2/promise';
+const config = require('./config');
+const mysql = require('mysql2/promise');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const pool = mysql.createPool({
     host: config.database.host,
@@ -20,7 +22,7 @@ async function getAllUsers() {
 
 async function getUserById(id) {
   const result = await pool.query(
-    "SELECT id, first_name AS firstName, last_name AS lastName, age FROM users WHERE id = ?",
+    "SELECT user_id, username AS username FROM users WHERE user_id = ?",
     [id]
   );
   if (result[0].length < 1) {
@@ -29,17 +31,49 @@ async function getUserById(id) {
   return result[0][0];
 }
 
-async function createUser(firstName, lastName, age) {
+async function createUser(username, password) {
+
+  const encPassword = await bcrypt.hash(password, saltRounds);
+  console.log(encPassword);
+
+  const date = new Date();
+
   const result = await pool.query(
-    "INSERT INTO users SET first_name = ?, last_name = ?, age = ?",
-    [firstName, lastName, age]
+    "INSERT INTO users SET username = ?, password = ?, created_at = ?, is_active = ?, is_buyer = ?, is_seller = ?",
+    [username, encPassword, date, 1, 1, 0]
   );
   if (result[0].length < 1) {
     throw new Error(
-      `Failed to create a new user ${firstName}, ${lastName}, ${age}`
+      `Failed to create a new user ${username}`
     );
   }
   return getUserById(result[0].insertId);
+}
+
+async function loginUser(username, password) {
+  
+  const result = await pool.query(
+    "SELECT * FROM users WHERE username = ?",
+    [username]
+  );
+  
+  if(result[0].length === 1) {
+    const comparison = await bcrypt.compare(password, result[0][0].password);
+
+    if(comparison) {
+      return result[0][0];
+    }
+    else {
+      throw new Error(
+        `Username and password do not match`
+      );
+    }
+  }
+  else {
+    throw new Error(
+      `Username does not exist`
+    );
+  }
 }
 
 async function deleteUserById(id) {
@@ -64,7 +98,8 @@ async function updateUser(id, user) {
 module.exports = {
   getAllUsers,
   createUser,
+  loginUser,
   getUserById,
   deleteUserById,
-  updateUser
+  updateUser,
 };

@@ -1,51 +1,56 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import Logo from './../components/Modules/Logo';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import {
+    setUsername,
+    setPassword,
+    loginUser
+} from '../redux/actions/loginActions';
 
-    class Login extends React.Component{
-        state={
-            Login:'',
-            Password:''
-        }
-    
-        handleChange = (e) =>{
-            const {name,value} = e.target
-            this.setState({[name]:value})
-        }
-    
-        handleSubmit = (e) =>{
-            e.preventDefault()
-            this.props.isLogin(true)
-        }
-    render() {
-    return (
-        <div className="settings-wrapper">
-            {/* <NavLink className="nav-link" to="/"> Home </NavLink>
-            <NavLink className="nav-link" to="/about"> About </NavLink>
-            <NavLink className="nav-link" to="/profile"> Profile </NavLink> */}
-            <Logo />
-            <h2 className="Login-Title">Login / Sign up</h2>  
-            <p>
-            <div className="container-login">
-                <form>
-                    <label className="label-login">
-                        <p>UserName</p>
-                        <input type="text" name="Login" placeholder="email..." required onChange={this.handleChange} />
-                        <p>Password</p>
-                        <input type="text" name="Password" placeholder="password..." required onChange={this.handleChange}/>
-                       <p> <button onSubmit={this.handleSubmit}>Log In</button> </p>
-                    </label>
-                </form>
-                </div> </p>
+const Login = (props) => {
+
+    // dispatch state data back to redux 
+    const dispatch = useDispatch();
+    const loginUsername = useSelector((state) => state.loginReducer.username);
+    const loginPassword = useSelector((state) => state.loginReducer.password);
+
+    const loginHandler = () => {
+        dispatch(loginUser());
+    };
+
+    if(props.loggedIn) {
+        return (
+            <Redirect to={{ pathname: "/profile" }}/>
+        );
+    }
+    else {
+        return (
+            <div className="settings-wrapper">
+                <Logo />
+                <h2 className="Login-Title">Login / Sign up</h2>  
+                
+                <div className="container-login">
+                        <label className="label-login">
+                            <p>UserName</p>
+                            <input type="text" placeholder="Username" value={loginUsername} onChange={(e) => dispatch(setUsername(e.target.value))} required/>
+                            <p>Password</p>
+                            <input type="password"  placeholder="Password" value={loginPassword} onChange={(e) => dispatch(setPassword(e.target.value))} required/>
+                            <button onClick={loginHandler}>Log In</button> 
+                        </label>
+                </div> 
                 <div className="Sign-Up-LoginContainer">
                     <p>Don't Have an Account? Sign Up Now!  
-                    <NavLink className="nav-link" to="/register"> <button onSubmit={this.handleSubmit}>  Sign Up </button> </NavLink> 
+                    <NavLink className="nav-link" to="/register"> <button>  Sign Up </button> </NavLink> 
                    </p>
                 </div>
-            
-        </div>
-    );
+            </div>
+        );
     }
 }
 
-export default Login;
+function mapStateToProps(state) {
+    return { loggedIn: state.loginReducer.loggedIn };
+}
+
+export default connect(mapStateToProps)(Login);

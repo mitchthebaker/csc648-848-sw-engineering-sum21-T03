@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Profile = () => {
+const UserFeed = () => {
     return (
         <div className="userFeed-wrapper">
             <header className="App-header">
@@ -14,4 +14,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default UserFeed;

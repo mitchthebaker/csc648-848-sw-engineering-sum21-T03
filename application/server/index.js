@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const store = ('./db/store');
+const store = require('./db/store');
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
@@ -66,11 +66,11 @@ app
         }
     });
 
-app.post('/api/users', (req, res, next) => {
-    const { firstName, lastName, age } = req.body;
-    let ageInt = parseInt(age);
-
-    if (firstName && lastName && ageInt) {
+app.post('/api/register', (req, res, next) => {
+    const { username, password, confirmPassword} = req.body;
+    
+    if (username && password && confirmPassword) {
+        console.log(username + " " + password + " " + confirmPassword);
         next();
     } 
     else {
@@ -81,11 +81,41 @@ app.post('/api/users', (req, res, next) => {
 },
 (req, res) => {
     store
-        .createUser(req.body.firstName, req.body.lastName, req.body.age)
-        .then(createdUser => res.status(201).send(createdUser))
-        .catch(error =>
-          res.status(500).send({ error: "Unable to insert the user" })
-        );
+        .createUser(req.body.username, req.body.password)
+        .then((createdUser) => {
+            console.log(createdUser);
+            res.status(201).send(createdUser);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to insert the user" });
+        });
+});
+
+app.post('/api/login', (req, res, next) => {
+    const { username, password } = req.body;
+
+    if(username && password) {
+        console.log(username + " " + password);
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "The payload is wrong!"
+          });
+    }
+},
+(req, res) => {
+    store
+        .loginUser(req.body.username, req.body.password)
+        .then((loggedInUser) => {
+            console.log(loggedInUser);
+            res.status(201).send(loggedInUser);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to login user" });
+        })
 });
 
 app.get('/api/users', (req, res, next) => {

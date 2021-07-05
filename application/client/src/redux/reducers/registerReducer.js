@@ -1,13 +1,14 @@
 const INITIAL_STATE = {
     username: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    registered: false
 };
 
 const registerReducer = (state = INITIAL_STATE, action) => {
 
     console.log(action);
-    
+
     switch(action.type) {
         case 'USER_SET_USERNAME':
             return {
@@ -25,6 +26,12 @@ const registerReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 confirmPassword: action.confirmPassword,
+            };
+        
+        case 'USER_IS_REGISTERED':
+            return {
+                ...state,
+                registered: action.registered,
             };
         
         default:
