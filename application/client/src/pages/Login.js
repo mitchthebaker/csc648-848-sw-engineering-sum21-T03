@@ -39,7 +39,7 @@ import Logo from './../components/Modules/Logo';
                 </div> </p>
                 <div className="Sign-Up-LoginContainer">
                     <p>Don't Have an Account? Sign Up Now!  
-                    <NavLink className="nav-link" to="/sign_up"> <button onSubmit={this.handleSubmit}>  Sign Up </button> </NavLink> 
+                    <NavLink className="nav-link" to="/register"> <button onSubmit={this.handleSubmit}>  Sign Up </button> </NavLink> 
                    </p>
                 </div>
             

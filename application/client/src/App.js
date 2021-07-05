@@ -4,7 +4,7 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings'; 
 import UserFeed from './pages/UserFeed'; 
 import Login from './pages/Login'; 
-import Sign_Up from './pages/Sign_Up'; 
+import Register from './pages/Register'; 
 import Baker from './components/About/Baker';
 import Chuson from './components/About/Chuson';
 import Eusebio from './components/About/Eusebio';
@@ -25,7 +25,7 @@ function App() {
         <Route path="/settings" component={Settings} />
         <Route path="/userFeed" component={UserFeed} />
         <Route path="/login" component={Login} />
-        <Route path="/sign_up" component={Sign_Up} />
+        <Route path="/register" component={Register} />
         <Route path="/mbaker" component={Baker} />
         <Route path="/kenneth" component={Chuson} />
         <Route path="/ceusebio" component={Eusebio} />

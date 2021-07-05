@@ -8,7 +8,7 @@ const Profile = () => {
             <header className="App-header">
                 <Logo/>
                 <h1>Profile</h1>
-                <img className="Profile-Image" src="//:0"></img>
+                <img className="Profile-Image" src="//:0" alt="Profile"/>
                 <div className="App-header-Right">
                     <NavLink className="nav-link" to="/about"> About </NavLink>
                     <NavLink className="nav-link" to="/settings"> Settings </NavLink>
