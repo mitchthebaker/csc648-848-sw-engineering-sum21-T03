@@ -44,7 +44,7 @@ function NavBar() {
                 </Typography> </NavLink>
 
                 <NavLink className="nav-link" to="/about"> <Typography variant="h6" className={classes.menuItem}>
-                About Jose's Angels
+                About Dropsell
                 </Typography> </NavLink>
                 <NavLink className="nav-link" to="/">
                 <Typography variant="h6" className={classes.menuItem}>
