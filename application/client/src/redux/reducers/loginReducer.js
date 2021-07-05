@@ -1,12 +1,10 @@
-const INITIAL_STATE = {
+const INITIAL_LOGIN_STATE = {
     username: '',
     password: '',
     loggedIn: false
 };
 
-const loginReducer = (state = INITIAL_STATE, action) => {
-
-    console.log(action);
+const loginReducer = (state = INITIAL_LOGIN_STATE, action) => {
 
     switch(action.type) {
         case 'USER_SET_USERNAME':

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const UserFeed = () => {
+const Feed = () => {
     return (
         <div className="userFeed-wrapper">
             <header className="App-header">
@@ -14,4 +14,4 @@ const UserFeed = () => {
     );
 };
 
-export default UserFeed;
+export default Feed;

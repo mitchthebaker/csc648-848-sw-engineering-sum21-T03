@@ -31,6 +31,17 @@ async function getUserById(id) {
   return result[0][0];
 }
 
+async function getProductById(id) {
+  const result = await pool.query(
+    "SELECT product_id, title AS title FROM products WHERE product_id = ?",
+    [id]
+  );
+  if(result[0].length < 1) {
+    throw new Error(`Product with id = ${id} not found`);
+  }
+  return result[0][0];
+}
+
 async function createUser(username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
@@ -76,6 +87,21 @@ async function loginUser(username, password) {
   }
 }
 
+async function uploadProduct(aProduct) {
+
+  const result = await pool.query(
+    "INSERT INTO products SET title = ?, description = ?, price = ?, image = ?, seller_id = ?",
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.image, 2]
+  );
+  if(result[0].length < 1) {
+    throw new Error(
+      `Failed to create a new product ${aProduct.title}`
+    );
+  }
+
+  return getProductById(result[0].insertId);
+}
+
 async function deleteUserById(id) {
   const result = await pool.query("DELETE FROM users WHERE id = ?", [id]);
   if (result[0].affectedRows < 1) {
@@ -99,6 +125,7 @@ module.exports = {
   getAllUsers,
   createUser,
   loginUser,
+  uploadProduct,
   getUserById,
   deleteUserById,
   updateUser,

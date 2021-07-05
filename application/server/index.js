@@ -1,17 +1,21 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const multer = require('multer');
 const store = require('./db/store');
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
+app.use(cors());
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../client/public/', 'uploads'),
+    filename: function(req, file, cb) {
+        // null as first argument means no error
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
 
 // Allow Node to server files from built from React app 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -116,6 +120,51 @@ app.post('/api/login', (req, res, next) => {
             console.log(error);
             res.status(500).send({ error: "Unable to login user" });
         })
+});
+
+app.post('/api/upload-product', async (req, res) => {
+    try {
+        let upload = multer({ storage: storage }).single('file');
+
+        upload(req, res, function(err) {
+
+            // req.file contains information of uploaded file
+            // req.body contain information of text fields
+
+            if(!req.file) {
+                return res.send('Please select an image to upload');
+            }
+            else if(err instanceof multer.MulterError) {
+                return res.send(err);
+            }
+            else if(err) {
+                return res.send(err);
+            }
+
+            const aProduct = {
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                image: req.file.filename
+            };
+
+            console.log(aProduct);
+
+            store
+                .uploadProduct(aProduct)
+                .then((createdProduct) => {
+                    console.log(createdProduct);
+                    res.status(201).send(createdProduct);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to create a new product" });
+                });
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
 });
 
 app.get('/api/users', (req, res, next) => {

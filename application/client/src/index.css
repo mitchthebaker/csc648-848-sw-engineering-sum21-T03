@@ -74,3 +74,8 @@ code {
   width: auto;
   height: 250px;
 }
+
+.preview-img {
+  width: 150px;
+  height: 150px;
+}

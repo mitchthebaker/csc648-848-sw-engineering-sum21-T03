@@ -1,13 +1,11 @@
-const INITIAL_STATE = {
+const INITIAL_REGISTER_STATE = {
     username: '',
     password: '',
     confirmPassword: '',
     registered: false
 };
 
-const registerReducer = (state = INITIAL_STATE, action) => {
-
-    console.log(action);
+const registerReducer = (state = INITIAL_REGISTER_STATE, action) => {
 
     switch(action.type) {
         case 'USER_SET_USERNAME':
