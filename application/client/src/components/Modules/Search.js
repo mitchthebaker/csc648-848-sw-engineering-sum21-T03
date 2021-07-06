@@ -22,19 +22,12 @@ export default function Search() {
   ];
 
   const handleChange = (...args) => {
-    // searchInput.current.querySelector("input").value = "";
+  
     console.log("ARGS:", args);
 
     console.log("CHANGE:");
   };
 
-  // const options = [
-  //   { name: "Workshop Three", value: "1" },
-  //   { name: "Workshop Two", value: "2" },
-  //   { name: "Workshop Three", value: "3" },
-  //   { name: "Workshop Four", value: "4" },
-  //   { name: "Workshop Five", value: "5" }
-  // ];
 
   const handleFilter = (items) => {
     return (searchValue) => {
