@@ -5,6 +5,7 @@ const INITIAL_PRODUCT_STATE = {
     file: '',
     filePreview: null,
     isSuccess: null,
+    products: [],
 };
 
 const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
@@ -41,6 +42,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 isSuccess: action.isSuccess,
+            }
+
+        case 'GET_PRODUCTS':
+            return {
+                ...state,
+                products: action.products
             }
         
         default:

@@ -20,6 +20,13 @@ async function getAllUsers() {
   return result[0].length < 1 ? {} : result[0];
 }
 
+async function getAllProducts() {
+  const result = await pool.query(
+    "SELECT product_id, title AS title, description AS description, price AS price, image AS image FROM products"
+  );
+  return result[0].length < 1 ? {} : result[0];
+}
+
 async function getUserById(id) {
   const result = await pool.query(
     "SELECT user_id, username AS username FROM users WHERE user_id = ?",
@@ -123,6 +130,7 @@ async function updateUser(id, user) {
 
 module.exports = {
   getAllUsers,
+  getAllProducts,
   createUser,
   loginUser,
   uploadProduct,

@@ -29,31 +29,28 @@ const styles = makeStyles({
 function NavBar() {
     const classes = styles()
     return (
-        <Toolbar position="sticky" color="rgba(0, 0, 0, 0.87)" className={classes.bar}>   
-                 
-                <img src={logo} className={classes.logo} alt="Dropsell Logo"/>
-        
+        <div className="navbar">   
+            <img src={logo} className="nav-img" alt="Dropsell Logo"/>
+    
+            <div className="navigation-icons">
                 <NavLink className="nav-link" to="/settings">
-                <Typography variant="h6" className={classes.menuItem}>
-                 Settings 
-                </Typography> 
+                    <span> Settings </span>
                 </NavLink>
                 <NavLink className="nav-link" to="/about">
-                <Typography variant="h6" className={classes.menuItem}>
-                Social Media
-                </Typography> </NavLink>
-
-                <NavLink className="nav-link" to="/about"> <Typography variant="h6" className={classes.menuItem}>
-                About Jose's Angels
-                </Typography> </NavLink>
+                    <span> Social Media </span> 
+                </NavLink>
+                <NavLink className="nav-link" to="/about"> 
+                    <span> About </span>
+                </NavLink>
                 <NavLink className="nav-link" to="/">
-                <Typography variant="h6" className={classes.menuItem}>
-                Home
-                </Typography> </NavLink>
-
-                <NavLink className="nav-link" to="/login"><CustomBtn txt="Login"/> </NavLink>
-            </Toolbar>
+                    <span> Home </span>
+                </NavLink>
+                <NavLink className="nav-link" to="/login">
+                    <CustomBtn txt="Login"/> 
+                </NavLink>
+            </div>
+        </div>
     )
 }
 
-export default NavBar
+export default NavBar;

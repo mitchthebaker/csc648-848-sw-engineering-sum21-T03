@@ -167,6 +167,10 @@ app.post('/api/upload-product', async (req, res) => {
     }
 });
 
+app.get('/api/products', (req, res, next) => {
+    store.getAllProducts().then(products => res.status(200).send(products));
+});
+
 app.get('/api/users', (req, res, next) => {
     store.getAllUsers().then(users => res.status(200).send(users));
 });
