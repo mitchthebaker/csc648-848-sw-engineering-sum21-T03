@@ -6,7 +6,8 @@ const INITIAL_PRODUCT_STATE = {
     filePreview: null,
     isSuccess: null,
     products: [],
-    categories: false
+    categories: false,
+    dropdownText: "Categories"
 };
 
 const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
@@ -49,6 +50,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 categories: action.categories
+            };
+
+        case 'CHANGE_DROPDOWN_TEXT':
+            return {
+                ...state,
+                dropdownText: action.text
             };
 
         case 'GET_PRODUCTS':

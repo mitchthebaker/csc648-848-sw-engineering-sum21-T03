@@ -30,6 +30,11 @@ export const setCategories = (categories) => ({
     categories
 });
 
+export const changeDropdownText = (text) => ({
+    type: 'CHANGE_DROPDOWN_TEXT',
+    text
+});
+
 export const createProduct = () => {
     return(dispatch, getState) => {
         const productData = {

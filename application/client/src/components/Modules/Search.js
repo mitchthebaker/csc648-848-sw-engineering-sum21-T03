@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import "./styles.css";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import { useRef } from "react";
 import { useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
-    setCategories
+    setCategories,
+    changeDropdownText
   } from '../../redux/actions/productActions';
 
 const Search = (props) => {
@@ -31,22 +33,35 @@ const Search = (props) => {
 
     const history = useHistory();
     const onSubmit = (e) => {
-        console.log(e);
         history.push(`?s=${props.searchQuery}`);
         e.preventDefault();
     };  
 
     const [categoriesMenu, toggleCategoriesMenu] = useState([false]);
+    //const [dropdownText, changeDropdownText] = useState(["Categories"]);
 
     const toggleCategories = () => {
       toggleCategoriesMenu(!categoriesMenu)
+    };
+
+    const clickCategory = (text) => () => {
+      dispatch(changeDropdownText(text));
+
+      axios.get('/api/product-categories', { params: { category: text }})
+        .then((res) => {
+            //dispatch(getProducts(res.data));
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     };
 
     return(
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
                 <div>
-                    <button onClick={() => toggleCategories()}> Dropdown </button>
+                    <button onClick={() => toggleCategories()}> { props.dropdownText } </button>
                     <input
                         className="search-input"
                         value={props.searchQuery}
@@ -62,10 +77,8 @@ const Search = (props) => {
                 {categoriesMenu == false ? 
                     <ul className="categories">
                         {categoryItems.map((item, index) => (
-                    <li key={index}> 
-                        {
-                            item.name
-                        }
+                    <li key={index} onClick={clickCategory(item.name)}> 
+                        { item.name }
                     </li>
                     ))}
                     </ul> 
@@ -76,7 +89,10 @@ const Search = (props) => {
 };
 
 function mapStateToProps(state) {
-  return { categories: state.productReducer.categories };
+  return { 
+    categories: state.productReducer.categories,
+    dropdownText: state.productReducer.dropdownText
+  };
 }
 
 export default connect(mapStateToProps)(Search);

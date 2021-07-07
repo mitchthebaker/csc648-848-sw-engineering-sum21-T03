@@ -167,6 +167,19 @@ app.post('/api/upload-product', async (req, res) => {
     }
 });
 
+app.get('/api/product-categories', async (req, res, next) => {
+
+    try {
+        if(req.query) {
+            console.log(req.query);
+            res.status(200).send(req.query);
+        }
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
 app.get('/api/products', (req, res, next) => {
     store.getAllProducts().then(products => res.status(200).send(products));
 });
