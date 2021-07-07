@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
@@ -71,7 +71,7 @@ const Home = (props) => {
     const dispatch = useDispatch(); 
     const classes = styles();
 
-    React.useEffect(() => {
+    useEffect(() => {
         axios.get('/api/products')
             .then((res) => {
                 dispatch(getProducts(res.data));
@@ -99,36 +99,36 @@ const Home = (props) => {
 
     const filteredProducts = filterProducts(props.products, query);
 
-    return <Router> {
+    return (
 
       <ThemeProvider theme = {theme}>
-      <NavBar />
-      <Search />
-      
-      <div className={classes.wrapper}>
-        <Typography variant="h5" className={classes.bigSpace} color="primary">
-           At Jose's Angels, we buy and sell products
-        </Typography>
-        <Typography variant="h7" className={classes.littleSpace} color="primary">
-          New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
-        </Typography>
-      </div>
-
-      {filteredProducts.map((product) => (
-        <li key={product.product_id}> 
+        <NavBar/>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
         
-          { product.title } 
-          { product.description }
-          { product.price }
-          <img
-                src={`/uploads/${product.image}`}
-                className="team-member-image"
-                alt="Failed to load."
-            />
-        </li>
-      ))}
+        <div className={classes.wrapper}>
+          <Typography variant="h5" className={classes.bigSpace} color="primary">
+             At Jose's Angels, we buy and sell products
+          </Typography>
+          <Typography variant="h7" className={classes.littleSpace} color="primary">
+            New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
+          </Typography>
+        </div>
+      
+        {filteredProducts.map((product) => (
+          <li key={product.product_id}> 
+          
+            { product.title } 
+            { product.description }
+            { product.price }
+            <img
+                  src={`/uploads/${product.image}`}
+                  className="team-member-image"
+                  alt="Failed to load."
+              />
+          </li>
+        ))}
 
-      <div className={`${classes.grid} ${classes.bigSpace}`}>
+        <div className={`${classes.grid} ${classes.bigSpace}`}>
           <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
           <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
           <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}  link="/profile" btnTitle="Buy"/>
@@ -142,17 +142,7 @@ const Home = (props) => {
           <Footer/>
         </div>
       </ThemeProvider>
-
-
-            //         </div>
-            //     </section>
-            // </header>
-
-           
-
-            /* <p> {!data ? "Loading..." : data} </p> */
-        /* </div> */
-      } </Router>
+    );
 };
 
 function mapStateToProps(state) {
@@ -163,7 +153,5 @@ export default connect(mapStateToProps)(Home);
 
 /*
 <SearchBar 
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
       />
 */

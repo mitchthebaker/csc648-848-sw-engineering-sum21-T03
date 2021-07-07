@@ -55,6 +55,7 @@ const ProductCreationForm = (props) => {
     </div>
    );
 };
+
 function mapStateToProps(state) {
     return { 
         isSuccess: state.productReducer.isSuccess,

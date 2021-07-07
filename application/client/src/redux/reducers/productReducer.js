@@ -6,6 +6,7 @@ const INITIAL_PRODUCT_STATE = {
     filePreview: null,
     isSuccess: null,
     products: [],
+    categories: false
 };
 
 const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
@@ -42,13 +43,19 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 isSuccess: action.isSuccess,
-            }
+            };
+        
+        case 'SET_CATEGORIES':
+            return {
+                ...state,
+                categories: action.categories
+            };
 
         case 'GET_PRODUCTS':
             return {
                 ...state,
                 products: action.products
-            }
+            };
         
         default:
             return state;

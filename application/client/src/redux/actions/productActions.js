@@ -25,6 +25,11 @@ export const setSuccess = (isSuccess) => ({
     isSuccess
 });
 
+export const setCategories = (categories) => ({
+    type: 'SET_CATEGORIES',
+    categories
+});
+
 export const createProduct = () => {
     return(dispatch, getState) => {
         const productData = {
@@ -53,7 +58,7 @@ export const createProduct = () => {
         })
         .catch((err) => {
             console.log(err);
-        })
+        });
     };
 };
 

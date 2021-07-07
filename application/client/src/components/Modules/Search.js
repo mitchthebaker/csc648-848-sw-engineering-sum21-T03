@@ -1,37 +1,96 @@
+import React, {useState} from 'react';
 import "./styles.css";
-import SelectSearch from "react-select-search";
+import SelectSearch, {fuzzySearch} from "react-select-search";
 import { useRef } from "react";
+import { useHistory } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import {
+    setCategories
+  } from '../../redux/actions/productActions';
 
-export default function Search() {
-  const searchInput = useRef();
-  const options = [
-    {
-      type: "group",
-      name: "Category",
-      items: [
-        { name: "Cloths", value: "1" },
-        { name: "Home Decor", value: "2" },
-        { name: "Car", value: "3" },
-        { name: "Accessories", value: "4" },
-        { name: "Shoes", value: "5" },
-        { name: "Electronics", value: "6" },
-        { name: "Books", value: "7" },
-        { name: "Makeup", value: "8" }
-      ]
-    }
-  ];
+const Search = (props) => {
 
-  const handleChange = (...args) => {
-  
-    console.log("ARGS:", args);
+    const dispatch = useDispatch(); 
 
-    console.log("CHANGE:");
-  };
+    const items = [
+        { name: "Cloths" },
+        { name: "Home Decor" },
+        { name: "Car" },
+        { name: "Accessories" },
+        { name: "Shoes" },
+        { name: "Electronics" },
+        { name: "Books"},
+        { name: "Makeup" }
+    ];
 
+    const categoryItems = [
+        { name: "Clothes" },
+        { name: "Shoes" },
+        { name: "Electronics" },
+    ];
 
+    const history = useHistory();
+    const onSubmit = (e) => {
+        console.log(e);
+        history.push(`?s=${props.searchQuery}`);
+        e.preventDefault();
+    };  
 
+    const [categoriesMenu, toggleCategoriesMenu] = useState([false]);
+
+    const toggleCategories = () => {
+      toggleCategoriesMenu(!categoriesMenu)
+    };
+
+    return(
+        <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
+            <div className="input-button-search">
+                <div>
+                    <button onClick={() => toggleCategories()}> Dropdown </button>
+                    <input
+                        className="search-input"
+                        value={props.searchQuery}
+                        onChange={e => props.setSearchQuery(e.target.value)}
+                        type="text"
+                        id="header-search"
+                        placeholder="Search for products"
+                        autoComplete="off"
+                        name="s" 
+                    />
+                    <button type="submit">Search</button>
+                </div>
+                {categoriesMenu == false ? 
+                    <ul className="categories">
+                        {categoryItems.map((item, index) => (
+                    <li key={index}> 
+                        {
+                            item.name
+                        }
+                    </li>
+                    ))}
+                    </ul> 
+                    : null}
+            </div>
+        </form>
+    );
+};
+
+function mapStateToProps(state) {
+  return { categories: state.productReducer.categories };
+}
+
+export default connect(mapStateToProps)(Search);
 
 /*
+
+<SelectSearch
+        options={options}
+        search
+        filterOptions={fuzzySearch}
+        placeholder="Search for products"
+    />
+
+
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
     const history = useHistory();
