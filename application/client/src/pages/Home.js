@@ -13,11 +13,12 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
 import Profile from './Profile';
-import SearchBar from '../components/Modules/Search';
+import Search from '../components/Modules/Search';
 import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
 } from '../redux/actions/productActions';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -101,10 +102,9 @@ const Home = (props) => {
     return <Router> {
 
       <ThemeProvider theme = {theme}>
-      <SearchBar 
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
+      <NavBar />
+      <Search />
+      
       <div className={classes.wrapper}>
         <Typography variant="h5" className={classes.bigSpace} color="primary">
            At Jose's Angels, we buy and sell products
@@ -160,3 +160,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Home);
+
+/*
+<SearchBar 
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+*/
