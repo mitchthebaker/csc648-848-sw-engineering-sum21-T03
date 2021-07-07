@@ -20,6 +20,13 @@ async function getAllUsers() {
   return result[0].length < 1 ? {} : result[0];
 }
 
+async function getAllProducts() {
+  const result = await pool.query(
+    "SELECT product_id, title AS title, description AS description, price AS price, image AS image FROM products"
+  );
+  return result[0].length < 1 ? {} : result[0];
+}
+
 async function getUserById(id) {
   const result = await pool.query(
     "SELECT user_id, username AS username FROM users WHERE user_id = ?",
@@ -27,6 +34,17 @@ async function getUserById(id) {
   );
   if (result[0].length < 1) {
     throw new Error(`User with id = ${id} not found`);
+  }
+  return result[0][0];
+}
+
+async function getProductById(id) {
+  const result = await pool.query(
+    "SELECT product_id, title AS title FROM products WHERE product_id = ?",
+    [id]
+  );
+  if(result[0].length < 1) {
+    throw new Error(`Product with id = ${id} not found`);
   }
   return result[0][0];
 }
@@ -76,6 +94,21 @@ async function loginUser(username, password) {
   }
 }
 
+async function uploadProduct(aProduct) {
+
+  const result = await pool.query(
+    "INSERT INTO products SET title = ?, description = ?, price = ?, image = ?, seller_id = ?",
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.image, 2]
+  );
+  if(result[0].length < 1) {
+    throw new Error(
+      `Failed to create a new product ${aProduct.title}`
+    );
+  }
+
+  return getProductById(result[0].insertId);
+}
+
 async function deleteUserById(id) {
   const result = await pool.query("DELETE FROM users WHERE id = ?", [id]);
   if (result[0].affectedRows < 1) {
@@ -97,8 +130,10 @@ async function updateUser(id, user) {
 
 module.exports = {
   getAllUsers,
+  getAllProducts,
   createUser,
   loginUser,
+  uploadProduct,
   getUserById,
   deleteUserById,
   updateUser,

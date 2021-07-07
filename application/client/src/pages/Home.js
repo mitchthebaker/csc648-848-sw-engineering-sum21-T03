@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
@@ -14,6 +14,10 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
 import Profile from './Profile';
 import Search from '../components/Modules/Search';
+import { connect, useDispatch } from 'react-redux';
+import {
+  getProducts
+} from '../redux/actions/productActions';
 
 
 const theme = createMuiTheme({
@@ -62,43 +66,68 @@ const theme = createMuiTheme({
   })
 
 
-const Home = () => {
+const Home = (props) => {
 
-    const [data, setData] = React.useState(null);
+    const dispatch = useDispatch(); 
     const classes = styles();
 
     React.useEffect(() => {
-        axios.get('/api')
+        axios.get('/api/products')
             .then((res) => {
-                setData(res.data.message);
+                dispatch(getProducts(res.data));
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
             });
-    });
+    }, []);
 
-    return (
-        // <div className="home-wrapper">
-            // <header className="App-header">
-            //     <section className="navigation">
-            //         {/* <h1> Home </h1> */}
-            //         <div className="navigation-links">
-            //             <NavLink className="nav-link" to="/"> Home </NavLink>
-            //             <NavLink className="nav-link" to="/about"> About </NavLink>
-            //             <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-            //             <NavLink className="nav-link" to="/login"> Login </NavLink>
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get('s');
+    const [searchQuery, setSearchQuery] = useState(query || '');
+    
+    const filterProducts = (products, query) => {
+      if(!query) {
+        return products;
+      }
+
+      return products.filter((product) => {
+        const productTitle = product.title.toLowerCase();
+        return productTitle.includes(query);
+      });
+    };
+
+    const filteredProducts = filterProducts(props.products, query);
+
+    return <Router> {
 
       <ThemeProvider theme = {theme}>
       <NavBar />
       <Search />
+      
       <div className={classes.wrapper}>
-          <Typography variant="h5" className={classes.bigSpace} color="primary">
-             At Dropsell, we buy and sell products
-          </Typography>
-          <Typography variant="h7" className={classes.littleSpace} color="primary">
-            New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
-          </Typography>
-        </div>
+        <Typography variant="h5" className={classes.bigSpace} color="primary">
+           At Jose's Angels, we buy and sell products
+        </Typography>
+        <Typography variant="h7" className={classes.littleSpace} color="primary">
+          New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
+        </Typography>
+      </div>
+
+      {filteredProducts.map((product) => (
+        <li key={product.product_id}> 
+        
+          { product.title } 
+          { product.description }
+          { product.price }
+          <img
+                src={`/uploads/${product.image}`}
+                className="team-member-image"
+                alt="Failed to load."
+            />
+        </li>
+      ))}
+
       <div className={`${classes.grid} ${classes.bigSpace}`}>
           <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
           <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
@@ -123,7 +152,18 @@ const Home = () => {
 
             /* <p> {!data ? "Loading..." : data} </p> */
         /* </div> */
-    );
+      } </Router>
 };
 
-export default Home;
+function mapStateToProps(state) {
+  return { products: state.productReducer.products };
+}
+
+export default connect(mapStateToProps)(Home);
+
+/*
+<SearchBar 
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+*/

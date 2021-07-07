@@ -29,6 +29,41 @@ export default function Search() {
   };
 
 
+
+
+/*
+
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
+    const history = useHistory();
+    const onSubmit = (e) => {
+        history.push(`?s=${searchQuery}`);
+        e.preventDefault();
+    };
+    
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
+
+    const history = useHistory();
+    const onSubmit = e => {
+        history.push(`?s=${searchQuery}`)
+        e.preventDefault()
+    };
+
+    return(
+        <form action="/" method="get">
+            <input
+                value={searchQuery}
+                onInput={e => setSearchQuery(e.target.value)}
+                type="text"
+                id="header-search"
+                placeholder="Search for products"
+                name="s" 
+            />
+            <button type="submit" onSubmit={onSubmit}>Search</button>
+        </form>
+    );
+};
+
+export default SearchBar;
   const handleFilter = (items) => {
     return (searchValue) => {
       if (searchValue.length === 0) {
@@ -59,3 +94,4 @@ export default function Search() {
     </div>
   );
 }
+*/

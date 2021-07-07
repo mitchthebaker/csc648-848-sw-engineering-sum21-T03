@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ProductCreationForm from '../components/ProductCreationForm';
 import Logo from './../components/Modules/Logo';
 
 const Profile = () => {
+
     return (
         <div className="profile-wrapper">
             <header className="App-header">
@@ -15,6 +17,9 @@ const Profile = () => {
                     <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 </div>
             </header>
+
+            <ProductCreationForm/>
+
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
                     <p>FirstName LastName</p>
@@ -32,8 +37,6 @@ const Profile = () => {
                     <p>Top Recommendations</p>
                 </div>
             </div>
-
-            
         </div>
     );
 };

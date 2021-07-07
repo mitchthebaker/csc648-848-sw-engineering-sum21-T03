@@ -38,23 +38,24 @@ function NavBar() {
                 Social Media
                 </Typography> 
 
+        <div className="navbar">   
+            <div className="navigation-icons">
                 <NavLink className="nav-link" to="/settings">
-                <Typography variant="h6" className={classes.menuItem}>
-                 Settings 
-                </Typography> 
+                    <span> Settings </span>
                 </NavLink>
 
                 <NavLink className="nav-link" to="/about"> <Typography variant="h6" className={classes.menuItem}>
                 About Dropsell
                 </Typography> </NavLink>
                 <NavLink className="nav-link" to="/">
-                <Typography variant="h6" className={classes.menuItem}>
-                Home
-                </Typography> </NavLink>
-
-                <NavLink className="nav-link" to="/login"><CustomBtn txt="Login"/> </NavLink>
-            </Toolbar>
+                    <span> Home </span>
+                </NavLink>
+                <NavLink className="nav-link" to="/login">
+                    <CustomBtn txt="Login"/> 
+                </NavLink>
+            </div>
+        </div>
     )
 }
 
-export default NavBar
+export default NavBar;
