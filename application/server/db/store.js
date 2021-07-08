@@ -27,6 +27,14 @@ async function getAllProducts() {
   return result[0].length < 1 ? {} : result[0];
 }
 
+async function getAllProductsWith(category) {
+  const result = await pool.query(
+    "SELECT * FROM products WHERE category = ?",
+    [category]
+  );
+  return result[0].length < 1 ? {} : result[0];
+}
+
 async function getUserById(id) {
   const result = await pool.query(
     "SELECT user_id, username AS username FROM users WHERE user_id = ?",
@@ -97,8 +105,8 @@ async function loginUser(username, password) {
 async function uploadProduct(aProduct) {
 
   const result = await pool.query(
-    "INSERT INTO products SET title = ?, description = ?, price = ?, image = ?, seller_id = ?",
-    [aProduct.title, aProduct.description, aProduct.price, aProduct.image, 2]
+    "INSERT INTO products SET title = ?, description = ?, price = ?, category = ?, image = ?, seller_id = ?",
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, 6] // change 6 to user with current session 
   );
   if(result[0].length < 1) {
     throw new Error(
@@ -131,6 +139,7 @@ async function updateUser(id, user) {
 module.exports = {
   getAllUsers,
   getAllProducts,
+  getAllProductsWith,
   createUser,
   loginUser,
   uploadProduct,

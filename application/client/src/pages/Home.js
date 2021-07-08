@@ -113,20 +113,26 @@ const Home = (props) => {
             New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
           </Typography>
         </div>
-      
-        {filteredProducts.map((product) => (
-          <li key={product.product_id}> 
-          
-            { product.title } 
-            { product.description }
-            { product.price }
-            <img
-                  src={`/uploads/${product.image}`}
-                  className="team-member-image"
-                  alt="Failed to load."
-              />
-          </li>
-        ))}
+
+        <div className="searchable-product-list">
+          {filteredProducts.map((product) => (
+            <li className="product-wrapper" key={product.product_id}> 
+              <div className="product-title-price">
+                <h3> { product.title }  </h3>
+                <h5> { product.price } </h5>
+              </div>
+              <div className="product-desc-title">
+                <h5> { product.description } </h5>
+              </div>
+
+              <img  
+                    src={`/uploads/${product.image}`}
+                    className="product-image"
+                    alt="Failed to load."
+                />
+            </li>
+          ))}
+        </div>
 
         <div className={`${classes.grid} ${classes.bigSpace}`}>
           <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />

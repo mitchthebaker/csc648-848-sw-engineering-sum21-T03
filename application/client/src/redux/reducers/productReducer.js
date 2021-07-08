@@ -2,6 +2,7 @@ const INITIAL_PRODUCT_STATE = {
     title: '',
     description: '',
     price: '',
+    category: '',
     file: '',
     filePreview: null,
     isSuccess: null,
@@ -31,6 +32,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 price: action.price,
+            };
+
+        case 'PRODUCT_SET_CATEGORY':
+            return {
+                ...state,
+                category: action.category
             };
 
         case 'PRODUCT_SET_IMAGE':

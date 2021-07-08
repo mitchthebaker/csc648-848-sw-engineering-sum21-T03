@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
     setCategories,
+    getProducts,
     changeDropdownText
   } from '../../redux/actions/productActions';
 
@@ -49,7 +50,7 @@ const Search = (props) => {
 
       axios.get('/api/product-categories', { params: { category: text }})
         .then((res) => {
-            //dispatch(getProducts(res.data));
+            dispatch(getProducts(res.data));
             console.log(res);
         })
         .catch((err) => {
@@ -61,7 +62,7 @@ const Search = (props) => {
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
                 <div>
-                    <button onClick={() => toggleCategories()}> { props.dropdownText } </button>
+                    <button className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </button>
                     <input
                         className="search-input"
                         value={props.searchQuery}
@@ -72,7 +73,7 @@ const Search = (props) => {
                         autoComplete="off"
                         name="s" 
                     />
-                    <button type="submit">Search</button>
+                    <button className="search-submit" type="submit">Search</button>
                 </div>
                 {categoriesMenu == false ? 
                     <ul className="categories">

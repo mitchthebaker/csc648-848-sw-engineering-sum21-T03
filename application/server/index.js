@@ -145,6 +145,7 @@ app.post('/api/upload-product', async (req, res) => {
                 title: req.body.title,
                 description: req.body.description,
                 price: req.body.price,
+                category: req.body.category,
                 image: req.file.filename
             };
 
@@ -172,7 +173,17 @@ app.get('/api/product-categories', async (req, res, next) => {
     try {
         if(req.query) {
             console.log(req.query);
-            res.status(200).send(req.query);
+
+            store
+                .getAllProductsWith(req.query.category)
+                .then((products) => {
+                    console.log(products);
+                    res.status(201).send(products);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to create a new product" });
+                });
         }
     }
     catch(err) {
