@@ -1,17 +1,23 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const store = ('./db/store');
+const cors = require('cors');
+const multer = require('multer');
+const store = require('./db/store');
+require('dotenv').config({ path: '../.env' });
+console.log(process.env.WEB_PORT);
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
+app.use(cors());
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../client/public/', 'uploads'),
+    filename: function(req, file, cb) {
+        // null as first argument means no error
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
 
 // Allow Node to server files from built from React app 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -66,11 +72,11 @@ app
         }
     });
 
-app.post('/api/users', (req, res, next) => {
-    const { firstName, lastName, age } = req.body;
-    let ageInt = parseInt(age);
-
-    if (firstName && lastName && ageInt) {
+app.post('/api/register', (req, res, next) => {
+    const { username, password, confirmPassword} = req.body;
+    
+    if (username && password && confirmPassword) {
+        console.log(username + " " + password + " " + confirmPassword);
         next();
     } 
     else {
@@ -81,11 +87,114 @@ app.post('/api/users', (req, res, next) => {
 },
 (req, res) => {
     store
-        .createUser(req.body.firstName, req.body.lastName, req.body.age)
-        .then(createdUser => res.status(201).send(createdUser))
-        .catch(error =>
-          res.status(500).send({ error: "Unable to insert the user" })
-        );
+        .createUser(req.body.username, req.body.password)
+        .then((createdUser) => {
+            console.log(createdUser);
+            res.status(201).send(createdUser);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to insert the user" });
+        });
+});
+
+app.post('/api/login', (req, res, next) => {
+    const { username, password } = req.body;
+
+    if(username && password) {
+        console.log(username + " " + password);
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "The payload is wrong!"
+          });
+    }
+},
+(req, res) => {
+    store
+        .loginUser(req.body.username, req.body.password)
+        .then((loggedInUser) => {
+            console.log(loggedInUser);
+            res.status(201).send(loggedInUser);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to login user" });
+        })
+});
+
+app.post('/api/upload-product', async (req, res) => {
+    try {
+        let upload = multer({ storage: storage }).single('file');
+
+        upload(req, res, function(err) {
+
+            // req.file contains information of uploaded file
+            // req.body contain information of text fields
+
+            if(!req.file) {
+                return res.send('Please select an image to upload');
+            }
+            else if(err instanceof multer.MulterError) {
+                return res.send(err);
+            }
+            else if(err) {
+                return res.send(err);
+            }
+
+            const aProduct = {
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                category: req.body.category,
+                image: req.file.filename
+            };
+
+            console.log(aProduct);
+
+            store
+                .uploadProduct(aProduct)
+                .then((createdProduct) => {
+                    console.log(createdProduct);
+                    res.status(201).send(createdProduct);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to create a new product" });
+                });
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
+app.get('/api/product-categories', async (req, res, next) => {
+
+    try {
+        if(req.query) {
+            console.log(req.query);
+
+            store
+                .getAllProductsWith(req.query.category)
+                .then((products) => {
+                    console.log(products);
+                    res.status(201).send(products);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to create a new product" });
+                });
+        }
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
+app.get('/api/products', (req, res, next) => {
+    store.getAllProducts().then(products => res.status(200).send(products));
 });
 
 app.get('/api/users', (req, res, next) => {
