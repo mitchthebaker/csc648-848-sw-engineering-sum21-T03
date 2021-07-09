@@ -18,6 +18,39 @@
 7. Database name (basically the name that contains all your tables)
 8. Instructions on how to use the above information.
 
+|    Item                  | Credentials                                                           |
+|          :---:           |           :---:                                                       |
+|    Server URL and IP     | angelapp.gq, 13.52.75.197                                             |
+|    SSH URL               | ec2-13-52-75-197.us-west-1.compute.amazonaws.com                      |
+|    SSH username          | ubuntu                                                                |
+|    SSH key               | /credentials/csc648.cer                                               |
+|    Database URL and port | rds-mysql-joses-angels.cgt4l91wscet.us-west-1.rds.amazonaws.com, 3306 |
+|    Database username     | admin                                                                 |
+|    Database password     | oM9QuhdFhNMVUyMFU4ha                                                  | 
+|    Database name         | mysql_ja                                                              | 
+
+Connecting to AWS EC2 instance: 
+
+1. Before starting any of the following steps, make sure to first clone the git repository. 
+2. Next, if you'd like to connect to the AWS EC2 instance, `cd` into the freshly cloned git repository, then `cd` again into the credentials folder. 
+3. In /credentials is csc648.cer, the RSA key used to connect to the remote EC2 instance. It is recommended to use `pwd` to get the path to the current working directory since this will be needed when using SSH.
+4. To connect to the remote EC2 instance, use the following command: `sudo ssh -i /your/path/to/the/git/repo/csc648-848-sw-engineering-sum21-T03/credentials/csc648.cer ubuntu@ec2-13-52-75-197.us-west-1.compute.amazonaws.com`.
+5. If prompted to enter a password, enter your password. 
+6. After, you will be redirected to the remote EC2 instance. 
+
+Connecting to AWS RDS MySQL database:
+
+1. Before continuing, make sure you have MySQL Workbench installed. (https://dev.mysql.com/downloads/workbench/)
+2. Next, open up MySQL Workbench client. Select 'Database' in the nav bar at the top. Then click 'Connect to database...'
+3. Choose 'Standard(TCP/IP) as the connection method.
+4. Under the 'Parameters' tab, enter `rds-mysql-joses-angels.cgt4l91wscet.us-west-1.rds.amazonaws.com` as the hostname.
+5. Enter `3306` as the port.
+6. Enter `admin` as the username.
+7. Click on 'Store in Keychain...', then input `oM9QuhdFhNMVUyMFU4ha` as the password. Click, 'OK', then 'OK' again.
+8. You are now able to interact with the MySQL database. 
+9. To start, we have created a single table, titled 'users'. If you'd like to see its contents, first double click on mysql_ja under schemas to make it the default DB. Then run a SQL statement like `SELECT * FROM users;` to see the test user John Wick.
+
+
 # Most important things to Remember
 ## These values need to kept update to date throughout the semester. <br>
 ## <strong>Failure to do so will result it points be deducted from milestone submissions.</strong><br>
