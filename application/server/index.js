@@ -9,6 +9,9 @@ console.log(process.env.WEB_PORT);
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
+
 app.use(cors());
 
 const storage = multer.diskStorage({
