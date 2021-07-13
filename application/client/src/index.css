@@ -250,14 +250,14 @@ code {
   height: 35px;
 }
 
-.seller-settings-wrapper {
+.seller-settings-wrapper, .buyers-settings-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.seller-selections {
+.seller-selections, .buyers-selections {
   width: 30%;
   height: 500px;
   display: flex;
@@ -267,7 +267,7 @@ code {
   border: 1px solid black;
 }
 
-.seller-selection-area {
+.seller-selection-area, .buyers-selection-area {
   width: 70%;
   height: 500px;
   border: 1px solid black;

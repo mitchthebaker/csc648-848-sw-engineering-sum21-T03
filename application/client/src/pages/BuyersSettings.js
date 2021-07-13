@@ -4,23 +4,23 @@ import NavBar from '../components/Modules/NavBar';
 import ProductCreationForm from '../components/ProductCreationForm';
 import { connect, useDispatch } from 'react-redux';
 
-const SellerSettings = (props) => {
+const BuyerSettings = (props) => {
 
     // test comment for showing multiple commits in a pull request 
 
     return (
         <div>
             <NavBar/>  
-            <h1>Seller Settings</h1>
-            <div className="seller-settings-wrapper">
-              <ul className="seller-selections">
+            <h1>Buyer Settings</h1>
+            <div className="buyers-settings-wrapper">
+              <ul className="buyers-selections">
                 <li>Profile</li>
                 <li>Products</li>
                 <li>Account</li>
                 <li> Work Schedule </li>
                 <li>Activities</li>
               </ul>
-              <div className="seller-selection-area">
+              <div className="buyers-selection-area">
               { props.displayProducts }
               <ProductCreationForm/>
               </div>
@@ -36,4 +36,4 @@ function mapStateToProps(state) {
     };
   }
 
-export default connect(mapStateToProps)(SellerSettings);
+export default connect(mapStateToProps)(BuyerSettings);
