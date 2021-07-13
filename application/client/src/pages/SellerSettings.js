@@ -6,7 +6,8 @@ import { connect, useDispatch } from 'react-redux';
 
 const SellerSettings = (props) => {
 
-    
+    // test comment for showing multiple commits in a pull request 
+
     return (
         <div>
             <NavBar/>  
