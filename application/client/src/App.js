@@ -2,6 +2,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings'; 
+import SellerSettings from './pages/SellerSettings';
 import Feed from './pages/Feed'; 
 import Login from './pages/Login'; 
 import Register from './pages/Register'; 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
         <Route path="/settings" component={Settings} />
+        <Route path="/seller-settings" component={SellerSettings} />
         <Route path="/feed" component={Feed} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
