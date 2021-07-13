@@ -17,7 +17,7 @@ const BuyerSettings = (props) => {
                 <li>Profile</li>
                 <li>Products</li>
                 <li>Account</li>
-                <li> Work Schedule </li>
+                <li>Shipping</li>
                 <li>Activities</li>
               </ul>
               <div className="buyers-selection-area">
@@ -30,6 +30,7 @@ const BuyerSettings = (props) => {
     );
 };
 
+//issue getting a buyerSettingsReducer
 function mapStateToProps(state) {
     return { 
       displayProducts: state.sellerSettingsReducer.displayProducts
