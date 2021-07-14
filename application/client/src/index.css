@@ -258,12 +258,19 @@ code {
 }
 
 .seller-selections, .buyers-selections {
+  list-style-type: none;
   width: 30%;
   height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
+}
+
+.seller-selections li, .buyers-selections li {
+  margin: 5px;
+  padding: 10px;
   border: 1px solid black;
 }
 
