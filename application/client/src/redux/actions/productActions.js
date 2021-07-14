@@ -25,22 +25,34 @@ export const setSuccess = (isSuccess) => ({
     isSuccess
 });
 
+// Used to update state of 'category' in the ProductCreationForm 
+export const setCategory = (category) => ({
+    type: 'PRODUCT_SET_CATEGORY',
+    category
+});
+
+// For displaying the categories dropdown menu
+export const setCategories = (categories) => ({
+    type: 'SET_CATEGORIES',
+    categories
+});
+
+export const changeDropdownText = (text) => ({
+    type: 'CHANGE_DROPDOWN_TEXT',
+    text
+});
+
 export const createProduct = () => {
     return(dispatch, getState) => {
-        const productData = {
-            title: getState().productReducer.title,
-            description: getState().productReducer.description,
-            price: getState().productReducer.price,
-            file: getState().productReducer.file,
-        };
-
-        console.log(productData);
 
         const formData = new FormData();
-        formData.append('title', productData.title);
-        formData.append('description', productData.description);
-        formData.append('price', productData.price);
-        formData.append('file', productData.file);
+        formData.append('title', getState().productReducer.title);
+        formData.append('description', getState().productReducer.description);
+        formData.append('price', getState().productReducer.price);
+        formData.append('category', getState().productReducer.category);
+        formData.append('file', getState().productReducer.file);
+
+        console.log(formData);
 
         axios.post('/api/upload-product', formData, {
             headers: { "Content-Type": "multipart/form-data"}
@@ -53,7 +65,7 @@ export const createProduct = () => {
         })
         .catch((err) => {
             console.log(err);
-        })
+        });
     };
 };
 

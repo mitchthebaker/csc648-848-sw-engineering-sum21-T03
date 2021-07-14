@@ -5,6 +5,7 @@ import {
     setTitle,
     setDescription,
     setPrice,
+    setCategory,
     setImage,
     createProduct
 } from '../redux/actions/productActions';
@@ -20,6 +21,7 @@ const ProductCreationForm = (props) => {
     const productTitle = useSelector((state) => state.productReducer.title);
     const productDescription = useSelector((state) => state.productReducer.description);
     const productPrice = useSelector((state) => state.productReducer.price);
+    const productCategory = useSelector((state) => state.productReducer.category);
 
    return (
     <div className="product-upload">
@@ -40,6 +42,14 @@ const ProductCreationForm = (props) => {
                 <input type="text" value={productPrice} placeholder="Price" onChange={(e) => dispatch(setPrice(e.target.value))}/>
             </div>
             <div>
+                <label> Category </label>
+                <select value={productCategory} onChange={(e) => dispatch(setCategory(e.target.value))}>
+                    <option value="Clothes"> Clothes </option>
+                    <option value="Shoes"> Shoes </option>
+                    <option value="Electronics"> Electronics </option>
+                </select>
+            </div>
+            <div>
                 <label> Image(s) </label>
                 <input type="file" name="product_image" onChange={(e) => dispatch(setImage(e.target.files[0]))}/>
             </div>
@@ -55,6 +65,7 @@ const ProductCreationForm = (props) => {
     </div>
    );
 };
+
 function mapStateToProps(state) {
     return { 
         isSuccess: state.productReducer.isSuccess,

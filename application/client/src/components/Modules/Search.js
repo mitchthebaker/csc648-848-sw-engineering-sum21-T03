@@ -1,37 +1,113 @@
+import React, {useState} from 'react';
+import axios from 'axios';
 import "./styles.css";
-import SelectSearch from "react-select-search";
+import SelectSearch, {fuzzySearch} from "react-select-search";
 import { useRef } from "react";
+import { useHistory } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import {
+    setCategories,
+    getProducts,
+    changeDropdownText
+  } from '../../redux/actions/productActions';
 
-export default function Search() {
-  const searchInput = useRef();
-  const options = [
-    {
-      type: "group",
-      name: "Category",
-      items: [
-        { name: "Cloths", value: "1" },
-        { name: "Home Decor", value: "2" },
-        { name: "Car", value: "3" },
-        { name: "Accessories", value: "4" },
-        { name: "Shoes", value: "5" },
-        { name: "Electronics", value: "6" },
-        { name: "Books", value: "7" },
-        { name: "Makeup", value: "8" }
-      ]
-    }
-  ];
+const Search = (props) => {
 
-  const handleChange = (...args) => {
-  
-    console.log("ARGS:", args);
+    const dispatch = useDispatch(); 
 
-    console.log("CHANGE:");
+    const items = [
+        { name: "Cloths" },
+        { name: "Home Decor" },
+        { name: "Car" },
+        { name: "Accessories" },
+        { name: "Shoes" },
+        { name: "Electronics" },
+        { name: "Books"},
+        { name: "Makeup" }
+    ];
+
+    const categoryItems = [
+        { name: "Clothes" },
+        { name: "Shoes" },
+        { name: "Electronics" },
+    ];
+
+    const history = useHistory();
+    const onSubmit = (e) => {
+        history.push(`?s=${props.searchQuery}`);
+        e.preventDefault();
+    };  
+
+    const [categoriesMenu, toggleCategoriesMenu] = useState([false]);
+    //const [dropdownText, changeDropdownText] = useState(["Categories"]);
+
+    const toggleCategories = () => {
+      toggleCategoriesMenu(!categoriesMenu)
+    };
+
+    const clickCategory = (text) => () => {
+      dispatch(changeDropdownText(text));
+
+      axios.get('/api/product-categories', { params: { category: text }})
+        .then((res) => {
+            dispatch(getProducts(res.data));
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
+    return(
+        <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
+            <div className="input-button-search">
+                <div>
+                    <button className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </button>
+                    <input
+                        className="search-input"
+                        value={props.searchQuery}
+                        onChange={e => props.setSearchQuery(e.target.value)}
+                        type="text"
+                        id="header-search"
+                        placeholder="Search for products"
+                        autoComplete="off"
+                        name="s" 
+                    />
+                    <button className="search-submit" type="submit">Search</button>
+                </div>
+                {categoriesMenu == false ? 
+                    <ul className="categories">
+                        {categoryItems.map((item, index) => (
+                    <li key={index} onClick={clickCategory(item.name)}> 
+                        { item.name }
+                    </li>
+                    ))}
+                    </ul> 
+                    : null}
+            </div>
+        </form>
+    );
+};
+
+function mapStateToProps(state) {
+  return { 
+    categories: state.productReducer.categories,
+    dropdownText: state.productReducer.dropdownText
   };
+}
 
-
-
+export default connect(mapStateToProps)(Search);
 
 /*
+
+<SelectSearch
+        options={options}
+        search
+        filterOptions={fuzzySearch}
+        placeholder="Search for products"
+    />
+
+
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
     const history = useHistory();

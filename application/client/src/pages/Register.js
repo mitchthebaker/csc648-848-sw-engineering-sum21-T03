@@ -15,6 +15,7 @@ const Register = (props) => {
     const registerUsername = useSelector((state) => state.registerReducer.username);
     const registerPassword = useSelector((state) => state.registerReducer.password);
     const registerConfirmPassword = useSelector((state) => state.registerReducer.confirmPassword);
+    const termsOfServices = useSelector((state) => state.registerReducer.termsOfServices);
 
     const submitHandler = () => {
         dispatch(createUser());
@@ -42,7 +43,10 @@ const Register = (props) => {
                     
                     <p>Confirm Password</p>
                     <input type="password" autoComplete="new-password" placeholder="Confirm Password" value={registerConfirmPassword} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required/>
-                    
+
+                    <p> Terms of Services and Privacy Agreement</p>
+                    <input type="checkbox" id="Terms of Services" name="terms" value={termsOfServices} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required />
+
                     <button className="Submit-SignUp" onClick={submitHandler}> Register </button>
                 </div>
             </div>

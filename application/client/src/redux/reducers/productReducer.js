@@ -2,10 +2,13 @@ const INITIAL_PRODUCT_STATE = {
     title: '',
     description: '',
     price: '',
+    category: '',
     file: '',
     filePreview: null,
     isSuccess: null,
     products: [],
+    categories: false,
+    dropdownText: "Categories"
 };
 
 const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
@@ -31,6 +34,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
                 price: action.price,
             };
 
+        case 'PRODUCT_SET_CATEGORY':
+            return {
+                ...state,
+                category: action.category
+            };
+
         case 'PRODUCT_SET_IMAGE':
             return {
                 ...state,
@@ -42,13 +51,25 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 isSuccess: action.isSuccess,
-            }
+            };
+        
+        case 'SET_CATEGORIES':
+            return {
+                ...state,
+                categories: action.categories
+            };
+
+        case 'CHANGE_DROPDOWN_TEXT':
+            return {
+                ...state,
+                dropdownText: action.text
+            };
 
         case 'GET_PRODUCTS':
             return {
                 ...state,
                 products: action.products
-            }
+            };
         
         default:
             return state;

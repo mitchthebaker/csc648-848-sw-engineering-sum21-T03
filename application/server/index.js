@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
 const store = require('./db/store');
+require('dotenv').config({ path: '../.env' });
+console.log(process.env.WEB_PORT);
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
@@ -145,6 +147,7 @@ app.post('/api/upload-product', async (req, res) => {
                 title: req.body.title,
                 description: req.body.description,
                 price: req.body.price,
+                category: req.body.category,
                 image: req.file.filename
             };
 
@@ -161,6 +164,29 @@ app.post('/api/upload-product', async (req, res) => {
                     res.status(500).send({ error: "Unable to create a new product" });
                 });
         });
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
+app.get('/api/product-categories', async (req, res, next) => {
+
+    try {
+        if(req.query) {
+            console.log(req.query);
+
+            store
+                .getAllProductsWith(req.query.category)
+                .then((products) => {
+                    console.log(products);
+                    res.status(201).send(products);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to create a new product" });
+                });
+        }
     }
     catch(err) {
         console.log(err);
