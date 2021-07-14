@@ -15,6 +15,9 @@ const Profile = () => {
                     <NavLink className="nav-link" to="/about"> About </NavLink>
                     <NavLink className="nav-link" to="/settings"> Settings </NavLink>
                     <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                    <NavLink className="nav-link" to="/seller-settings">Seller Settings</NavLink>
+                    <NavLink className="nav-link" to="/buyer-settings">Buyer Settings</NavLink>
+
                 </div>
             </header>
 
