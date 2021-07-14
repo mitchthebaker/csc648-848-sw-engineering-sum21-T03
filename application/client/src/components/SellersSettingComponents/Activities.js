@@ -7,13 +7,20 @@ const sellerActivitiesSettings = () => {
 
    return (
     <div className="sellerActivitiesSettings-wrapper">
+        <h3># of Activities</h3>
         <div className="sellerActivitiesSettings-firstContainer">
             <Bar data={{
-                labels: ['Sells', 'Posts', 'Active', 'Inactive'], 
+                labels: ['Sells', 'Posts', 'Refunds', 'Returns', 'Reports'], 
                 datasets: [ 
                         {
-                            label: '# of activities', 
-                            data: [12,20,5,8,18,11,21]
+                            data: [12,20,5,8,18], 
+                            backgroundColor: [
+                                'green', 
+                                'blue', 
+                                'orange', 
+                                'yellow', 
+                                'red'
+                            ]
                         },
                     ],
                 }}
