@@ -17,7 +17,6 @@ const BuyerSettings = (props) => {
 
     const [toggleAccount, set_toggleAccount] = useState(false); 
     const [toggleProfile, set_toggleProfile] = useState(false); 
-    const [toggleProducts, set_toggleProducts] = useState(false); 
     const [toggleShipping, set_toggleShipping] = useState(false); 
     const [toggleActivities, set_toggleActivities] = useState(false); 
 
@@ -26,17 +25,12 @@ const BuyerSettings = (props) => {
 
       console.log(toggleAccount);
       console.log(toggleProfile);
-      console.log(toggleProducts);
       console.log(toggleShipping);
       console.log(toggleActivities);
 
       if (toggleProfile) {
         console.log('profile: ' + toggleProfile);
         set_toggleProfile(!toggleProfile); 
-      }
-      if (toggleProducts) {
-        console.log('products: ' + toggleProducts);
-        set_toggleProducts(!toggleProducts); 
       }
       if (toggleShipping) {
         console.log('shipping: ' + toggleShipping);
@@ -54,9 +48,6 @@ const BuyerSettings = (props) => {
       if (toggleAccount) {
         set_toggleAccount(!toggleAccount); 
       }
-      if (toggleProducts) {
-        set_toggleProducts(!toggleProducts); 
-      }
       if (toggleShipping) {
         set_toggleShipping(!toggleShipping); 
       }
@@ -65,22 +56,6 @@ const BuyerSettings = (props) => {
       }
     }
 
-    const toggleProducts_func = () => {
-      set_toggleProducts(!toggleProducts); 
-
-      if (toggleAccount) {
-        set_toggleAccount(!toggleAccount); 
-      }
-      if (toggleProfile) {
-        set_toggleProfile(!toggleProfile); 
-      }
-      if (toggleShipping) {
-        set_toggleShipping(!toggleShipping); 
-      }
-      if (toggleActivities) {
-        set_toggleActivities(!toggleActivities); 
-      }
-    }
 
     const toggleShipping_func = () => {
       set_toggleShipping(!toggleShipping); 
@@ -89,9 +64,6 @@ const BuyerSettings = (props) => {
       }
       if (toggleProfile) {
         set_toggleProfile(!toggleProfile); 
-      }
-      if (toggleProducts) {
-        set_toggleProducts(!toggleProducts); 
       }
       if (toggleActivities) {
         set_toggleActivities(!toggleActivities); 
@@ -105,9 +77,6 @@ const BuyerSettings = (props) => {
       }
       if (toggleProfile) {
         set_toggleProfile(!toggleProfile); 
-      }
-      if (toggleProducts) {
-        set_toggleProducts(!toggleProducts); 
       }
       if (toggleShipping) {
         set_toggleShipping(!toggleShipping); 
@@ -123,14 +92,12 @@ const BuyerSettings = (props) => {
               <ul className="buyers-selections">
                 <li onClick={toggleAccount_func}>Account</li>
                 <li onClick={toggleProfile_func}>Profile</li>
-                <li onClick={toggleProducts_func}>Products</li>
                 <li onClick={toggleShipping_func}>Shipping</li>
                 <li onClick={toggleActivities_func}>Activities</li>
               </ul>
               <div className="buyers-selection-area">
                 {toggleAccount !== false ? <Account/> : null}
                 {toggleProfile !== false ? <Profile/> : null}
-                {toggleProducts !== false ? <ProductCreationForm/> : null}
                 {toggleShipping !== false ? <Shipping/> : null}
                 {toggleActivities !== false ? <Activities/> : null}
               </div>
@@ -140,11 +107,5 @@ const BuyerSettings = (props) => {
     );
 };
 
-//issue getting a buyerSettingsReducer
-function mapStateToProps(state) {
-    return { 
-      displayProducts: state.sellerSettingsReducer.displayProducts
-    };
-  }
 
-export default connect(mapStateToProps)(BuyerSettings);
+export default BuyerSettings;
