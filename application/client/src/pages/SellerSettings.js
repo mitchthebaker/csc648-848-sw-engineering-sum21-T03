@@ -12,6 +12,7 @@ const SellerSettings = (props) => {
 
     // test comment for showing multiple commits in a pull request 
 
+    
     const [toggleAccount, set_toggleAccount] = useState(false); 
     const [toggleProfile, set_toggleProfile] = useState(false); 
     const [toggleProducts, set_toggleProducts] = useState(false); 
@@ -19,24 +20,98 @@ const SellerSettings = (props) => {
     const [toggleActivities, set_toggleActivities] = useState(false); 
 
     const toggleAccount_func = () => {
-      toggleAccount? set_toggleAccount(false) : set_toggleAccount(true); 
+      set_toggleAccount(!toggleAccount); 
+
+      console.log(toggleAccount);
+      console.log(toggleProfile);
+      console.log(toggleProducts);
+      console.log(toggleWorkSchedule);
+      console.log(toggleActivities);
+
+      if (toggleProfile) {
+        console.log('profile: ' + toggleProfile);
+        set_toggleProfile(!toggleProfile); 
+      }
+      if (toggleProducts) {
+        console.log('products: ' + toggleProducts);
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleWorkSchedule) {
+        console.log('shipping: ' + toggleWorkSchedule);
+        set_toggleWorkSchedule(!toggleWorkSchedule); 
+      }
+      if (toggleActivities) {
+        console.log('activities: ' + toggleActivities);
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleProfile_func = () => {
-      toggleProfile? set_toggleProfile(false) : set_toggleProfile(true); 
+      set_toggleProfile(!toggleProfile); 
+
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleWorkSchedule) {
+        set_toggleWorkSchedule(!toggleWorkSchedule); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleProducts_func = () => {
-      toggleProducts? set_toggleProducts(false) : set_toggleProducts(true); 
+      set_toggleProducts(!toggleProducts); 
+
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProfile) {
+        set_toggleProfile(!toggleProfile); 
+      }
+      if (toggleWorkSchedule) {
+        set_toggleWorkSchedule(!toggleWorkSchedule); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleWorkSchedule_func = () => {
-      toggleWorkSchedule? set_toggleWorkSchedule(false) : set_toggleWorkSchedule(true); 
+      set_toggleWorkSchedule(!toggleWorkSchedule); 
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProfile) {
+        set_toggleProfile(!toggleProfile); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleActivities_func = () => {
-      toggleActivities? set_toggleActivities(false) : set_toggleActivities(true); 
+      set_toggleActivities(!toggleActivities); 
+      if (toggleAccount) {
+        set_toggleProfile(!toggleAccount); 
+      }
+      if (toggleProfile) {
+        set_toggleProfile(!toggleProfile); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleWorkSchedule) {
+        set_toggleWorkSchedule(!toggleWorkSchedule); 
+      }
     }
+
 
     return (
         <div>
@@ -51,11 +126,11 @@ const SellerSettings = (props) => {
                 <li onClick={toggleActivities_func}>Activities</li>
               </ul>
               <div className="seller-selection-area">
-                {toggleAccount? <AccountSellers/> : null}
-                {toggleProfile? <ProfileSellers/> : null}
-                {toggleProducts? <ProductCreationForm/> : null}
-                {toggleWorkSchedule? <WorkScheduleSellers/> : null}
-                {toggleActivities? <ActivitiesSellers/> : null}
+                {toggleAccount !== false? <AccountSellers/> : null}
+                {toggleProfile !== false? <ProfileSellers/> : null}
+                {toggleProducts !== false? <ProductCreationForm/> : null}
+                {toggleWorkSchedule !== false? <WorkScheduleSellers/> : null}
+                {toggleActivities !== false? <ActivitiesSellers/> : null}
 
                 { props.displayProducts }
               </div>
