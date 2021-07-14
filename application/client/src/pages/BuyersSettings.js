@@ -15,30 +15,90 @@ const BuyerSettings = (props) => {
 
     // test comment for showing multiple commits in a pull request 
 
-    const [toggleAccount, set_toggleAccount] = useState(false); 
-    const [toggleProfile, set_toggleProfile] = useState(false); 
-    const [toggleProducts, set_toggleProducts] = useState(false); 
-    const [toggleShipping, set_toggleShipping] = useState(false); 
-    const [toggleActivities, set_toggleActivities] = useState(false); 
+    const [toggleAccount, set_toggleAccount] = useState([false]); 
+    const [toggleProfile, set_toggleProfile] = useState([false]); 
+    const [toggleProducts, set_toggleProducts] = useState([false]); 
+    const [toggleShipping, set_toggleShipping] = useState([false]); 
+    const [toggleActivities, set_toggleActivities] = useState([false]); 
 
     const toggleAccount_func = () => {
-      toggleAccount? set_toggleAccount(false) : set_toggleAccount(true); 
+      set_toggleAccount(!toggleAccount); 
+      if (toggleProfile) {
+        set_toggleProfile(!toggleProfile); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleShipping) {
+        set_toggleShipping(!toggleShipping); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleProfile_func = () => {
-      toggleProfile? set_toggleProfile(false) : set_toggleProfile(true); 
+      set_toggleProfile(!toggleProfile); 
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleShipping) {
+        set_toggleShipping(!toggleShipping); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleProducts_func = () => {
-      toggleProducts? set_toggleProducts(false) : set_toggleProducts(true); 
+      set_toggleProducts(!toggleProducts); 
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleShipping) {
+        set_toggleShipping(!toggleShipping); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleShipping_func = () => {
-      toggleShipping? set_toggleShipping(false) : set_toggleShipping(true); 
+      set_toggleShipping(!toggleShipping); 
+      if (toggleAccount) {
+        set_toggleAccount(!toggleAccount); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleShipping) {
+        set_toggleShipping(!toggleShipping); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
     const toggleActivities_func = () => {
-      toggleActivities? set_toggleActivities(false) : set_toggleActivities(true); 
+      set_toggleActivities(!toggleActivities); 
+      if (toggleAccount) {
+        set_toggleProfile(!toggleAccount); 
+      }
+      if (toggleProducts) {
+        set_toggleProducts(!toggleProducts); 
+      }
+      if (toggleShipping) {
+        set_toggleShipping(!toggleShipping); 
+      }
+      if (toggleActivities) {
+        set_toggleActivities(!toggleActivities); 
+      }
     }
 
 
@@ -55,11 +115,11 @@ const BuyerSettings = (props) => {
                 <li onClick={toggleActivities_func}>Activities</li>
               </ul>
               <div className="buyers-selection-area">
-                {toggleAccount? <AccountBuyers/> : null}
-                {toggleProfile? <ProfileBuyers/> : null}
-                {toggleProducts? <ProductCreationForm/> : null}
-                {toggleShipping? <ShippingBuyers/> : null}
-                {toggleActivities? <ActivitiesBuyers/> : null}
+                {toggleAccount == false? <AccountBuyers/> : null}
+                {toggleProfile == false? <ProfileBuyers/> : null}
+                {toggleProducts == false? <ProductCreationForm/> : null}
+                {toggleShipping == false? <ShippingBuyers/> : null}
+                {toggleActivities == false? <ActivitiesBuyers/> : null}
               </div>
             </div>
             

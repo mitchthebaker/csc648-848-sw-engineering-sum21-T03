@@ -13,7 +13,7 @@ const buyerAccountSettings = () => {
             <p>LastName</p>
             <input type="text"/>
             <p>Birthday</p>
-            <input type="text"/>
+            <input type="date"/>
             <p>Email</p>
             <input type="text"/>
             <p>Phone</p>
@@ -24,7 +24,8 @@ const buyerAccountSettings = () => {
             <input type="text"/>
         </div>
         <div className="buyerAccountSettings-secondContainer">
-            <p>Credit Debit Card</p>
+            <h3>Credit Debit Card</h3>
+            <p>Card Number</p>
             <input type="text"/>
             <p>Expiration Date</p>
             <input type="text"/>
