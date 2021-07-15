@@ -13,13 +13,17 @@ export const setPassword = (password) => ({
 export const loginUser = () => {
     return (dispatch, getState) => {
         const userData = {
-            username: getState().registerReducer.username,
-            password: getState().registerReducer.password,
+            "username": getState().registerReducer.username,
+            "password": getState().registerReducer.password,
         };
 
         console.log(userData);
 
-        axios.post('/api/login', userData)
+        axios.post('/api/login', userData, {
+            "headers": {
+                "content-type":"application/json",
+            },
+        })
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {

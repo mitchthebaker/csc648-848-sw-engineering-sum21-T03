@@ -13,8 +13,10 @@ const Profile = () => {
                 <img className="Profile-Image" src="//:0" alt="Profile"/>
                 <div className="App-header-Right">
                     <NavLink className="nav-link" to="/about"> About </NavLink>
-                    <NavLink className="nav-link" to="/settings"> Settings </NavLink>
                     <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                    <NavLink className="nav-link" to="/seller-settings">Seller Settings</NavLink>
+                    <NavLink className="nav-link" to="/buyer-settings">Buyer Settings</NavLink>
+
                 </div>
             </header>
 
@@ -22,10 +24,10 @@ const Profile = () => {
 
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>FirstName LastName</p>
+                    <p>Firstname Lastname</p>
                 </div>
                 <div className="Information-ProfilePage">
-                    <p>Infromation</p>
+                    <p>Information</p>
                 </div>
                 <div className="Section-ProfilePage">
                     <p>Section</p>

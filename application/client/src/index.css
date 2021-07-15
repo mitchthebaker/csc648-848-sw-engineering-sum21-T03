@@ -249,3 +249,63 @@ code {
   cursor: pointer;
   height: 35px;
 }
+
+.seller-settings-wrapper, .buyers-settings-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.seller-selections, .buyers-selections {
+  list-style-type: none;
+  width: 30%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.seller-selections li, .buyers-selections li {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.seller-selection-area, .buyers-selection-area {
+  width: 70%;
+  height: 500px;
+  border: 1px solid black;
+  grid-template-rows: minmax(150px, auto); 
+}
+
+.buyerAccountSettings-wrapper, .sellerAccountSettings-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 5fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 5px;
+  grid-auto-rows: 50px;
+}
+
+.TOS {
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: auto;
+  height: 400px;
+  width: 90%;
+}
+
+.bottom-tos {
+  margin-top: 5em;
+  font-size: 0.7em;
+}
+
+.settings-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
