@@ -24,10 +24,10 @@ const Profile = () => {
 
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>FirstName LastName</p>
+                    <p>Firstname Lastname</p>
                 </div>
                 <div className="Information-ProfilePage">
-                    <p>Infromation</p>
+                    <p>Information</p>
                 </div>
                 <div className="Section-ProfilePage">
                     <p>Section</p>
