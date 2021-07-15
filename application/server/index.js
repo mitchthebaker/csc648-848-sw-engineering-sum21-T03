@@ -130,7 +130,8 @@ app.post('/api/login', (req, res, next) => {
         .loginUser(req.body.username, req.body.password)
         .then((loggedInUser) => {
             console.log(loggedInUser);
-
+            req.session.username = loggedInUser.username;
+            console.log(req.session);
             res.status(201).send(loggedInUser);
         })
         .catch(error => {
