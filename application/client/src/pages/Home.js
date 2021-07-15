@@ -15,6 +15,7 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 import Search from '../components/Modules/Search';
 import { connect, useDispatch } from 'react-redux';
 import {
@@ -85,9 +86,9 @@ const Home = (props) => {
     }, []);
 
     //hamburger menu open and close
-    const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    const closeIcon = <GrClose className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    const [open, setOpen] = useState(false); 
+    // const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
+    // const closeIcon = <GrClose className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
+    // const [open, setOpen] = useState(false); 
 
     //searchbar
     const { search } = window.location;
@@ -109,8 +110,10 @@ const Home = (props) => {
 
     return (
     <ThemeProvider theme = {theme}>
-    {open ? closeIcon : hamburgerIcon}
-    {open && <NavBar/>}
+    {/* {open ? closeIcon : hamburgerIcon}
+    {open && <NavBar/>} */}
+
+    <HamburgerMenu />
        
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
