@@ -1,5 +1,20 @@
 import axios from 'axios';
 
+export const setFirstname = (firstname) => ({
+    type: 'USER_SET_FIRSTNAME',
+    firstname
+});
+
+export const setLastname = (lastname) => ({
+    type: 'USER_SET_LASTNAME',
+    lastname
+});
+
+export const setEmail = (email) => ({
+    type: 'USER_SET_EMAIL',
+    email
+})
+
 export const setUsername = (username) => ({
     type: 'USER_SET_USERNAME',
     username
@@ -15,17 +30,21 @@ export const setConfirmPassword = (confirmPassword) => ({
     confirmPassword
 });
 
-export const setTOS = (TOS) => ({
-    type: 'USER_SET_TOS',
-    TOS
+export const setDriversLicense = (driversLicense) => ({
+    type: 'USER_SET_DRIVERS_LICENSE',
+    driversLicense
 });
 
 export const createUser = () => {
     return (dispatch, getState) => {
         const userData = {
+            firstname: getState().registerReducer.firstname,
+            lastname: getState().registerReducer.lastname,
+            email: getState().registerReducer.email,
             username: getState().registerReducer.username,
             password: getState().registerReducer.password,
-            confirmPassword: getState().registerReducer.confirmPassword
+            confirmPassword: getState().registerReducer.confirmPassword,
+            driversLicense: getState().registerReducer.driversLicense
         };
 
         console.log(userData);
