@@ -1,10 +1,14 @@
 const path = require('path');
+require('dotenv').config({ path: '../.env' });
+
 const express = require('express');
+const session = require('express-session');
+const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
 const store = require('./db/store');
-require('dotenv').config({ path: '../.env' });
+
 console.log(process.env.WEB_PORT);
 const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
@@ -13,6 +17,15 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 app.use(cors());
+app.use(session({
+    genid: function(req) {
+        return uuidv4();
+    },
+    secret: 'zN9be284FzycJNvgtM5LWLoda9dauCDznqFQR6hY',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
+}));
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../client/public/', 'uploads'),
@@ -119,6 +132,7 @@ app.post('/api/login', (req, res, next) => {
         .loginUser(req.body.username, req.body.password)
         .then((loggedInUser) => {
             console.log(loggedInUser);
+
             res.status(201).send(loggedInUser);
         })
         .catch(error => {
@@ -215,6 +229,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 })
 
-app.listen(WEB_PORT, () => {
-    console.log(`Server listening on ${WEB_PORT}`);
+app.listen(process.env.WEB_PORT, () => {
+    console.log(`Server listening on ${process.env.WEB_PORT}`);
 });
