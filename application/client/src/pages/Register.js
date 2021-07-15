@@ -5,6 +5,7 @@ import {
     setUsername,
     setPassword,
     setConfirmPassword,
+    setTOS,
     createUser
 } from '../redux/actions/registerActions';
 
@@ -45,7 +46,7 @@ const Register = (props) => {
                     <input type="password" autoComplete="new-password" placeholder="Confirm Password" value={registerConfirmPassword} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required/>
 
                     <p> Terms of Services and Privacy Agreement</p>
-                    <input type="checkbox" id="Terms of Services" name="terms" value={termsOfServices} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required />
+                    <input type="checkbox" id="Terms of Services" name="terms" value={termsOfServices} onChange={(e) => dispatch(setTOS(e.target.value))} required />
 
                     <button className="Submit-SignUp" onClick={submitHandler}> Register </button>
                 </div>
