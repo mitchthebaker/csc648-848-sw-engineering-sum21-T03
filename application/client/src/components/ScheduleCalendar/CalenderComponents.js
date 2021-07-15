@@ -64,7 +64,16 @@ import {
                 </Paper>
             </div>
             <div className="setUp_Schedule-containerTwo">
-              
+              <h3>Todo Form</h3>
+              <p>Title </p>
+              <input type="text"/>
+              <p>Start Date</p>
+              <input type="text"/>
+              <p>End Date</p>
+              <input type="text"/>
+              <p>Location</p>
+              <input type="text"/>
+              <button>Submit</button>
             </div>
         </div>
       );
