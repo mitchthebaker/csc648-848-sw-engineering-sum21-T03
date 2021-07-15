@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Logo from '../components/Modules/Logo';
 import NavBar from '../components/Modules/NavBar';
 import ProductCreationForm from '../components/ProductCreationForm';
 import Account from '../components/BuyersSettingComponents/Account'; 
@@ -9,6 +8,7 @@ import Shipping from '../components/BuyersSettingComponents/Shipping';
 
 
 import { connect, useDispatch } from 'react-redux';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 
 
 const BuyerSettings = (props) => {
@@ -86,7 +86,7 @@ const BuyerSettings = (props) => {
 
     return (
         <div>
-            <NavBar/>  
+            <HamburgerMenu />  
             <h1>Buyer Settings</h1>
             <div className="buyers-settings-wrapper">
               <ul className="buyers-selections">
