@@ -17,26 +17,64 @@ import {
 
 
  export default class CalenderComponents extends React.PureComponent {
+
+
+
+
+
     constructor(props) {
       super(props);
   
       this.state = {
         data: [
-              {
-                title: 'Meeting with Mitch',
-                startDate: new Date(2021, 6, 15, 9, 35),
-                endDate: new Date(2021, 6, 15, 12, 30),
-                id: 0,
-                location: 'San Francisco',
-              }
+             
         ],
+            title: ' ',
+            startDate: new Date(),
+            endDate: new Date(),
+            location: ' ',
+
         currentDate: '2021-06-14',
       };
+      /*
+      startDate: new Date(2021, 6, 15, 9, 35),
+      endDate: new Date(2021, 6, 15, 12, 30),
+      */
       this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+
+      console.log(event.target.name); 
+    }
+
+    handleSubmit(event) {
+     const {title, startDate, endDate, location} = this.state;
+     //let scheduleData = { title: this.state.title, startDate: this.state.startDate, endDate: this.state.endDate, location: this.state.location };
+     event.preventDefault();
+
+      let scheduleData = { title: title, startDate: startDate, endDate: endDate, location: location };
+
+
+      this.setState({
+        data: [ scheduleData ] 
+      });
+
+
+
+
+      
     }
   
     render() {
       const { data, currentDate } = this.state;
+
   
       return (
         <div className="setUp-Schedule-wrapper">
@@ -66,14 +104,14 @@ import {
             <div className="setUp_Schedule-containerTwo">
               <h3>Todo Form</h3>
               <p>Title </p>
-              <input type="text"/>
+              <input name="title" value={this.state.title} onChange={this.handleChange} type="text"/>
               <p>Start Date</p>
-              <input type="text"/>
+              <input name="startDate" value={this.state.startDate} onChange={this.handleChange} type="datetime-local"/>
               <p>End Date</p>
-              <input type="text"/>
+              <input name="endDate" value={this.state.endDate} onChange={this.handleChange} type="datetime-local"/>
               <p>Location</p>
-              <input type="text"/>
-              <button>Submit</button>
+              <input name="location" value={this.state.location} onChange={this.handleChange} type="text"/>
+              <button onClick={this.handleSubmit}>Submit</button>
             </div>
         </div>
       );
