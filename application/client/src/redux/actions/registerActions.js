@@ -30,6 +30,11 @@ export const setConfirmPassword = (confirmPassword) => ({
     confirmPassword
 });
 
+export const setTOS = (TOS) => ({
+    type: 'USER_SET_TOS',
+    TOS
+});
+
 export const setDriversLicense = (driversLicense) => ({
     type: 'USER_SET_DRIVERS_LICENSE',
     driversLicense
