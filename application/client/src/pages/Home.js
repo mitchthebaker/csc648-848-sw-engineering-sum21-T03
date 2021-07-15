@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import {Typography} from '@material-ui/core';
+import {Menu, Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
 import Grid from '../components/Modules/Grid';
 import Footer from '../components/Modules/Footer'
@@ -14,10 +15,13 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import GavelIcon from '@material-ui/icons/Gavel';
 import Profile from './Profile';
 import Search from '../components/Modules/Search';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
+// import Menu from '../components/Modules/Menu';
 import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
 } from '../redux/actions/productActions';
+import { Component } from 'react';
 
 
 const theme = createMuiTheme({
@@ -67,6 +71,9 @@ const theme = createMuiTheme({
 
 
 const Home = (props) => {
+    
+    const [isOpen, setOpen] = useState(false);
+
 
     const dispatch = useDispatch(); 
     const classes = styles();
@@ -102,12 +109,79 @@ const Home = (props) => {
     return (
 
       <ThemeProvider theme = {theme}>
+        
         <NavBar/>
+
+        
+
+{/* 
+<div className='menu-row'>
+				<HamburgerMenu
+					isOpen={this.state.open[3]}
+					menuClicked={this.handleClick.bind(this, 3)}
+					width={18}
+					height={15}
+					strokeWidth={1}
+					rotate={0}
+					color='black'
+					borderRadius={0}
+					animationDuration={0.5}
+				/>
+			  <HamburgerMenu
+		      isOpen={this.state.open[0]}
+		      menuClicked={this.handleClick.bind(this, 0)}
+		      width={36}
+					height={30}
+					strokeWidth={2}
+					rotate={0}
+		      color='black'
+					borderRadius={5}
+		      animationDuration={0.3}
+		    />
+				<HamburgerMenu
+					isOpen={this.state.open[1]}
+					menuClicked={this.handleClick.bind(this, 1)}
+					width={54}
+					height={45}
+					strokeWidth={3}
+					rotate={0}
+					color='black'
+					borderRadius={5}
+					animationDuration={0.4}
+				/>
+				<HamburgerMenu
+					isOpen={this.state.open[2]}
+					menuClicked={this.handleClick.bind(this, 2)}
+					width={72}
+					height={60}
+					strokeWidth={3}
+					rotate={0}
+					color='black'
+					borderRadius={5}
+					animationDuration={0.75}
+				/>
+			</div> */}
+    
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
         
         <div className={classes.wrapper}>
           <Typography variant="h5" className={classes.bigSpace} color="primary">
-             At Jose's Angels, we buy and sell products
+             At Dropsell, we buy and sell products
           </Typography>
           <Typography variant="h7" className={classes.littleSpace} color="primary">
             New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
