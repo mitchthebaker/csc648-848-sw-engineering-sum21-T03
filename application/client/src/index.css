@@ -289,3 +289,23 @@ code {
   grid-auto-rows: 50px;
 }
 
+.TOS {
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: auto;
+  height: 400px;
+  width: 90%;
+}
+
+.bottom-tos {
+  margin-top: 5em;
+  font-size: 0.7em;
+}
+
+.settings-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

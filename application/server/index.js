@@ -7,10 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const store = require('./db/store');
 
-console.log(process.env.WEB_PORT);
-const WEB_PORT = process.env.WEB_PORT || 3001;
+const store = require('./db/store');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false}));
