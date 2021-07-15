@@ -15,6 +15,11 @@ export const setConfirmPassword = (confirmPassword) => ({
     confirmPassword
 });
 
+export const setTOS = (TOS) => ({
+    type: 'USER_SET_TOS',
+    TOS
+});
+
 export const createUser = () => {
     return (dispatch, getState) => {
         const userData = {
