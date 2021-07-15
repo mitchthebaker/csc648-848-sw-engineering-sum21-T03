@@ -141,9 +141,25 @@
 }
 
 .menu-row {
-	height: 80vh;
+	height: 10vh;
 	display: flex;
+	position: absolute;
+	right: 5%;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	cursor: pointer;
+}
+
+.navigation-icons {
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	border: 2px solid;
+}
+
+.navbar {
+	position: absolute;
+	right: 10%;
+	cursor: pointer;
 }
