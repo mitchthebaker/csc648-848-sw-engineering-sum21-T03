@@ -22,15 +22,15 @@ import {
   
       this.state = {
         data: [
-            {
+              {
                 title: 'Meeting with Mitch',
-                startDate: new Date(2021, 5, 25, 9, 35),
-                endDate: new Date(2021, 5, 25, 11, 30),
+                startDate: new Date(2021, 6, 15, 9, 35),
+                endDate: new Date(2021, 6, 15, 12, 30),
                 id: 0,
                 location: 'San Francisco',
               }
         ],
-        currentDate: '2021-07-15',
+        currentDate: '2021-06-14',
       };
       this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
     }
@@ -41,6 +41,7 @@ import {
       return (
         <div className="setUp-Schedule-wrapper">
             <NavBar/>
+            <h1>Set Up Schedule</h1>
             <div className="setUp_Schedule-containerOne">
                 <Paper>
                 <Scheduler
@@ -61,6 +62,9 @@ import {
                     <Appointments />
                 </Scheduler>
                 </Paper>
+            </div>
+            <div className="setUp_Schedule-containerTwo">
+              
             </div>
         </div>
       );

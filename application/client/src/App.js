@@ -1,7 +1,6 @@
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
-import Settings from './pages/Settings'; 
 import SellerSettings from './pages/SellerSettings';
 import BuyerSettings from './pages/BuyersSettings'; 
 import SetWorkSchedule from './components/ScheduleCalendar/CalenderComponents'; 
@@ -25,7 +24,6 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
         <Route path="/profile" component={Profile} />
-        <Route path="/settings" component={Settings} />
         <Route path="/seller-settings" component={SellerSettings} />
         <Route path="/buyer-settings" component={BuyerSettings} />
         <Route path="/set-workSchedule" component={SetWorkSchedule} />

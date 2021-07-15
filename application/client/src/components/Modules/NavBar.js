@@ -33,7 +33,6 @@ const NavBar = () => {
     return (
         <div className="navbar">   
             <div className="navigation-icons">
-                <NavLink className="nav-link" to="/settings"> Settings </NavLink>
                 <NavLink className="nav-link" to="/about"> About </NavLink>
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/login">

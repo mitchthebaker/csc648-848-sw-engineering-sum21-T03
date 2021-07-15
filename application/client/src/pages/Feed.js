@@ -7,7 +7,6 @@ const Feed = () => {
             <header className="App-header">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/about"> About </NavLink>
-                <NavLink className="nav-link" to="/settings"> Settings </NavLink>
                 <h1>User Feed</h1>
             </header>
         </div>
