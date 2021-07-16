@@ -121,7 +121,7 @@ const Home = (props) => {
                 <h3> { product.title }  </h3>
                 <h5> { product.price } </h5>
               </div>
-              <div className="product-desc-title">
+              <div className="product-desc">
                 <h5> { product.description } </h5>
               </div>
 

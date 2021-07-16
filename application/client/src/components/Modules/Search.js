@@ -61,7 +61,7 @@ const Search = (props) => {
     return(
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
-                <div>
+                <div className="searchbar-wrapper">
                     <button className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </button>
                     <input
                         className="search-input"

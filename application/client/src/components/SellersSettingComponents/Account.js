@@ -1,18 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
+import {
+    updateFirstName,
+    updateLastName,
+    updateAccount,
+} from '../../redux/actions/sellerSettingsActions';
 
 
-const sellerAccountSettings = () => {
+const Account = () => {
+
+    // dispatch state data back to redux
+    const dispatch = useDispatch();
+   
+    const updateFirst = useSelector((state) => state.sellerSettingsReducer.firstName);
+    const updateLast = useSelector((state) => state.sellerSettingsReducer.lastName);
+
+    const updateAccountHandler = () => {
+        dispatch(updateAccount());
+    };
 
    return (
     <div className="sellerAccountSettings-wrapper">
         <div className="sellerAccountSettings-firstContainer">
             <div className="sellerAccountSettings-firstContainer_oneSide">
                 <p>FirstName</p>
-                <input type="text"/>
+                <input value={updateFirst} onChange={(e) => dispatch(updateFirstName(e.target.value))} type="text"/>
                 <p>LastName</p>
-                <input type="text"/>
+                <input value={updateLast} onChange={(e) => dispatch(updateLastName(e.target.value))} type="text"/>
                 <p>Birthday</p>
                 <input type="date"/>
                 <p>Email</p>
@@ -25,6 +40,9 @@ const sellerAccountSettings = () => {
                 <input type="text"/>
                 <p>Password</p>
                 <input type="text"/>
+            </div>
+            <div>
+                <button onClick={updateAccountHandler}> Update Account </button>
             </div>
         </div>
         <div className="sellerAccountSettings-secondContainer">
@@ -48,4 +66,4 @@ const sellerAccountSettings = () => {
 
 
 
-export default sellerAccountSettings;
+export default Account;

@@ -58,32 +58,38 @@ app
             .then(user => res.status(200).send(user))
             .catch(error => res.status(404).send({ error: error.message }));
     })
-    .delete((req, res) => {
+    .delete('/api/users/:id', (req, res) => {
         store
             .deleteUserById(req.params.id)
             .then(result => res.status(204).send())
             .catch(error => res.status(400).send({ error: error.message }));
     })
-    .put((req, res) => {
-        let userId = parseInt(req.params.id);
-        const { firstName, lastName, age } = req.body;
-        const ageInt = parseInt(age);
+    .put('/api/users/:id', (req, res, next) => {
+        const { firstName, lastName} = req.body;
+        console.log(req.params.id);
         
-        if (firstName && lastName && ageInt) {
-            store
-                .updateUser(userId, {
-                  firstName: firstName,
-                  lastName: lastName,
-                  age: ageInt
-                })
-                .then(result => res.status(200).send(result))
-                .catch(error => res.status(404).send({ error: error.message }));
-        } 
+        
+        if(firstName && lastName) {
+            console.log('first: ' + firstName + ' last: ' + lastName);
+            next();
+        }
         else {
             res.status(400).send({
-              error: "The payload is wrong!"
-            });
+                error: "Incorrect data sent for updating user credentials"
+            })
         }
+    },
+    (req, res) => {
+        store
+            .updateUser(req.body.firstName, req.body.lastName, req.params.id)
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.status(201).send(updatedUser);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to update user credentials" });
+            });
     });
 
 app.post('/api/register', (req, res, next) => {
@@ -131,7 +137,8 @@ app.post('/api/login', (req, res, next) => {
         .then((loggedInUser) => {
             console.log(loggedInUser);
             req.session.username = loggedInUser.username;
-            console.log(req.session);
+            req.session.user_id = loggedInUser.user_id;
+            console.log(req.session);   
             res.status(201).send(loggedInUser);
         })
         .catch(error => {

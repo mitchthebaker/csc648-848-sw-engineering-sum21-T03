@@ -1,6 +1,7 @@
 const INITIAL_LOGIN_STATE = {
     username: '',
     password: '',
+    user_id: '',
     loggedIn: false
 };
 
@@ -23,6 +24,12 @@ const loginReducer = (state = INITIAL_LOGIN_STATE, action) => {
             return {
                 ...state,
                 loggedIn: action.loggedIn,
+            };
+
+        case 'USER_SET_ID':
+            return {
+                ...state,
+                user_id: action.user_id,
             };
         
         default:
