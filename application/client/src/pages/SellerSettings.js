@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Logo from '../components/Modules/Logo';
 import NavBar from '../components/Modules/NavBar';
 import ProductCreationForm from '../components/ProductCreationForm';
 import { connect, useDispatch } from 'react-redux';
@@ -7,6 +6,7 @@ import AccountSellers from '../components/SellersSettingComponents/Account';
 import ActivitiesSellers from '../components/SellersSettingComponents/Activities';
 import ProfileSellers from '../components/SellersSettingComponents/Profile';
 import WorkScheduleSellers from '../components/SellersSettingComponents/WorkSchedule';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 
 const SellerSettings = (props) => {
 
@@ -105,7 +105,7 @@ const SellerSettings = (props) => {
 
     return (
         <div>
-            <NavBar/>  
+            <HamburgerMenu/> 
             <h1>Seller Settings</h1>
             <div className="seller-settings-wrapper">
               <ul className="seller-selections">

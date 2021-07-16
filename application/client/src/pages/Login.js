@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
-import Logo from './../components/Modules/Logo';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {
     setUsername,
     setPassword,
     loginUser
 } from '../redux/actions/loginActions';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 
 const Login = (props) => {
 
@@ -27,7 +27,7 @@ const Login = (props) => {
     else {
         return (
             <div className="settings-wrapper">
-                <Logo />
+                <HamburgerMenu />
                 <h2 className="Login-Title">Login / Sign up</h2>  
                 
                 <div className="container-login">

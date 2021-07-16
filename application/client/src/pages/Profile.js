@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 import ProductCreationForm from '../components/ProductCreationForm';
-import Logo from './../components/Modules/Logo';
 
 const Profile = () => {
 
     return (
         <div className="profile-wrapper">
             <header className="App-header">
-                <Logo/>
+                <HamburgerMenu />
                 <h1>Profile</h1>
                 <img className="Profile-Image" src="//:0" alt="Profile"/>
                 <div className="App-header-Right">

@@ -26,13 +26,13 @@ import {
       super(props);
   
       this.state = {
-        data: [
-             
+        data: [ {
+          title: ' ',
+          startDate: new Date().toLocaleString(),
+          endDate: new Date().toLocaleString(),
+          location: ' ',
+          }
         ],
-            title: ' ',
-            startDate: new Date(),
-            endDate: new Date(),
-            location: ' ',
 
         currentDate: '2021-06-14',
       };
@@ -56,10 +56,12 @@ import {
 
     handleSubmit(event) {
      const {title, startDate, endDate, location} = this.state;
-     //let scheduleData = { title: this.state.title, startDate: this.state.startDate, endDate: this.state.endDate, location: this.state.location };
+     //const {title, location} = this.state;
+     let scheduleData = { title: this.state.title, startDate: this.state.startDate, endDate: this.state.endDate, location: this.state.location };
      event.preventDefault();
 
-      let scheduleData = { title: title, startDate: startDate, endDate: endDate, location: location };
+     // let scheduleData = { title: title, startDate: startDate, endDate: endDate, location: location };
+      //let scheduleData = { title: title, location: location };
 
 
       this.setState({

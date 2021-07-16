@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect, NavLink} from 'react-router-dom';
-import Logo from './../components/Modules/Logo';
 import TOS from '../components/TOS';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,6 +13,7 @@ import {
     createUser,
     setDriversLicense
 } from '../redux/actions/registerActions';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 
 
 const Register = (props) => {
@@ -45,9 +45,10 @@ const Register = (props) => {
         return (
            
             <div className="settings-wrapper">
-                <NavLink className="nav-link" to="/"> Home </NavLink>
+                {/* <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/about"> About </NavLink>
-                <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                <NavLink className="nav-link" to="/profile"> Profile </NavLink> */}
+                <HamburgerMenu />
                 <h1 className="SignUp-Title">Register</h1>  
    
                 <div className="container-Sign_Up">
