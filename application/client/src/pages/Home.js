@@ -130,19 +130,24 @@ const Home = (props) => {
     <div className="searchable-product-list">
     {filteredProducts.map((product) => (
     <li className="product-wrapper" key={product.product_id}> 
-    <div className="product-title-price">
-    <h3> { product.title }  </h3>
-    <h5> { product.price } </h5>
-    </div>
-    <div className="product-desc-title">
-    <h5> { product.description } </h5>
-    </div>
-
     <img  
     src={`/uploads/${product.image}`}
     className="product-image"
     alt="Failed to load."
     />
+    <div className="product-title-creator">
+    <h3 className="product-title"> { product.title }  </h3>
+    <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
+    </div>
+    <div className="product-price-rating-purchases">
+      <div className="price-rating-purchases">
+        <h5 className="product-price"> { product.price } </h5>
+        <h5> Purchases: <span> 5 </span> </h5>
+      </div>
+      <div className="purchase-product-wrapper">
+        <button className="purchase-product-button"> Purchase </button>
+      </div>
+    </div>
     </li>
     ))}
     </div>

@@ -217,7 +217,40 @@ app.get('/api/product-categories', async (req, res, next) => {
 });
 
 app.get('/api/products', (req, res, next) => {
-    store.getAllProducts().then(products => res.status(200).send(products));
+
+    let expandedProducts = [];
+    let count = 0;
+
+    store.getAllProducts().then((products) => {
+        console.log(products.length);
+        products.forEach((product) => {
+
+            store.getUserById(product.seller_id).then((user) => {
+                let newProduct = {};
+                newProduct.product_id = product.product_id;
+                newProduct.seller_id = product.seller_id;
+                newProduct.title = product.title;
+                newProduct.description = product.description;
+                newProduct.price = product.price;
+                newProduct.image = product.image;
+                newProduct.creator = user.username;
+                expandedProducts.push(newProduct);
+                count++;
+                console.log(count);
+
+                if(count === products.length)
+                    res.status(200).send(expandedProducts);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to get user by id when loading all products"});
+            });
+        });
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({ error: "Unable to load products successfully"});
+    });
 });
 
 app.get('/api/users', (req, res, next) => {

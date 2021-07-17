@@ -22,7 +22,7 @@ async function getAllUsers() {
 
 async function getAllProducts() {
   const result = await pool.query(
-    "SELECT product_id, title AS title, description AS description, price AS price, image AS image FROM products"
+    "SELECT product_id, seller_id AS seller_id, title AS title, description AS description, price AS price, image AS image FROM products"
   );
   return result[0].length < 1 ? {} : result[0];
 }
