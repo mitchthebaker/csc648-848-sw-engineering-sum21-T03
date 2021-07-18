@@ -28,6 +28,24 @@ code {
   text-decoration: none;
   margin: 10px;
   color: white;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.nav-link:hover {
+  transition: 200ms ease-in-out;
+  color: lightgray;
+}
+
+.footer-nav-link {
+  text-decoration: none;
+  margin: 10px;
+  color: darkslategrey;
+}
+
+.footer-nav-link:hover {
+  transition: 200ms ease-in-out;
+  color: lightgray;
 }
 
 #login-link {
@@ -35,6 +53,13 @@ code {
   border-radius: 3px;
   color: white;
   padding: 8px 15px 8px 15px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+#login-link:hover {
+  transition: 200ms ease-in-out;
+  color: lightgray;
 }
 
 .about-wrapper {
@@ -101,6 +126,7 @@ code {
   background: #4f25f7;
   border-bottom: 1px solid black;
   z-index: 1000;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .nav-img {
@@ -114,7 +140,7 @@ code {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: 100px;
+  margin-right: 70px;
 }
 
 .hamburger-menu {
@@ -269,13 +295,14 @@ code {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  height: 100%;
 }
 
 .search-input {
   width: 300px;
-    height: 31px;
-    /* border-radius: 5px; */
-    border: 1px solid #2e1667;
+  padding: 9px 0px 9px 0px;
+  border: 0;
 }
 
 .search-input::placeholder {
@@ -286,22 +313,20 @@ code {
   background: #4f25f7;
   color: white;
   padding: 9px 12px 9px 12px;
-  border: 1px solid #2e1667;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
-  height: 35px;
+  height: 100%;
 }
 
 .dropdown-text {
   background: #4f25f7;
   color: white;
   padding: 9px 12px 9px 12px;
-  border: 1px solid #2e1667;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   cursor: pointer;
-  height: 35px;
+  height: 100%;
 }
 
 .seller-settings-wrapper, .buyers-settings-wrapper {
@@ -362,4 +387,44 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.profile-wrapper {
+  height: 100vh;
+  position: relative;
+}
+
+.footer-nav {
+  width: 100%;
+  height: 75px !important;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start !important;
+  align-items: center;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.footer-navlinks {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.footer-social {
+  margin-left: auto;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-react {
+  position: absolute !important;
+  right: 10px !important;
+  top: 5px !important;
+  color: white !important;
 }

@@ -1,21 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
-import Grid from '../components/Modules/Grid';
 import Footer from '../components/Modules/Footer'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import GavelIcon from '@material-ui/icons/Gavel';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrClose } from 'react-icons/gr';
-import HamburgerMenu from '../components/Modules/HamburgerMenu';
 import Search from '../components/Modules/Search';
 import { connect, useDispatch } from 'react-redux';
 import {
@@ -85,11 +73,6 @@ const Home = (props) => {
             });
     }, []);
 
-    //hamburger menu open and close
-    // const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    // const closeIcon = <GrClose className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    // const [open, setOpen] = useState(false); 
-
     //searchbar
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
@@ -113,7 +96,7 @@ const Home = (props) => {
     {/* {open ? closeIcon : hamburgerIcon}
     {open && <NavBar/>} */}
 
-    <NavBar />
+    <NavBar page={"homePage"}/>
        
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
@@ -152,7 +135,7 @@ const Home = (props) => {
     ))}
     </div>
 
-    {/* homepage grid layout     */}
+    {/* homepage grid layout     
     <div className={`${classes.grid} ${classes.bigSpace}`}>
     <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
     <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
@@ -164,8 +147,8 @@ const Home = (props) => {
     <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
     </div>
     <div className={classes.bigSpace}>
+    </div>*/}
     <Footer/>
-    </div>
     </ThemeProvider>
     );
 };

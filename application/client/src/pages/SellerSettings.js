@@ -105,7 +105,8 @@ const SellerSettings = (props) => {
 
     return (
         <div>
-            <HamburgerMenu/> 
+            <NavBar page={"sellerSettings"}/>
+
             <h1>Seller Settings</h1>
             <div className="seller-settings-wrapper">
               <ul className="seller-selections">
