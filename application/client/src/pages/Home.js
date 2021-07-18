@@ -113,7 +113,7 @@ const Home = (props) => {
     {/* {open ? closeIcon : hamburgerIcon}
     {open && <NavBar/>} */}
 
-    <HamburgerMenu />
+    <NavBar />
        
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
@@ -141,7 +141,7 @@ const Home = (props) => {
     </div>
     <div className="product-price-rating-purchases">
       <div className="price-rating-purchases">
-        <h5 className="product-price"> { product.price } </h5>
+        <h5 className="product-price"> $ <span> { product.price } </span> </h5>
         <h5> Purchases: <span> 5 </span> </h5>
       </div>
       <div className="purchase-product-wrapper">
