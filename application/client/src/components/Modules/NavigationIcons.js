@@ -8,7 +8,7 @@ const NavigationIcons = () => {
             <NavLink className="nav-link" to="/"> Home </NavLink>
             <NavLink className="nav-link" to="/profile">Profile</NavLink>
             <NavLink className="nav-link" to="/profile">Cart</NavLink>
-            <NavLink className="nav-link" to="/login"><CustomBtn txt="Login"/></NavLink> 
+            <NavLink className="nav-link" id="login-link" to="/login">Login</NavLink> 
         </div>
     );
 };

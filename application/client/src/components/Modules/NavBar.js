@@ -8,8 +8,8 @@ const NavBar = () => {
 
     //hamburger menu open and close
     const [open, setOpen] = useState(false);
-    const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    const closeIcon = <GrClose className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
+    const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='white' onClick={() => setOpen(!open)} />
+    const closeIcon = <GrClose className = 'menu-row' size='40px' color='white' onClick={() => setOpen(!open)} />
 
     return (
         <div className="navbar">   
