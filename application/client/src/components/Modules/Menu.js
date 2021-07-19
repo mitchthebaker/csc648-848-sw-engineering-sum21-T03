@@ -12,9 +12,7 @@ const Menu = (props) => {
     return (
         <div id="sidenav-menu" onClick={() => props.handleMouseClick()}>
             <NavLink to="/receipt-info">
-                <div className="checkout-button"> 
-                    <span> $10 </span> Checkout 
-                </div>
+                <div className="checkout-button"> $ <span> </span> Checkout </div>
             </NavLink>
         </div>
     );
