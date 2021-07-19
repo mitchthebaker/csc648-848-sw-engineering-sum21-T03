@@ -9,9 +9,9 @@ const buyerShippingSettings = () => {
     <div className="buyerShippingSettings-wrapper">
         <div className="buyerShippingSettings-firstContainer">
             <p>Mailing address</p>
-            <input type="text"/>
+            <input className="buyerInput-Settings" type="text"/>
             <p>Zip Code</p>
-            <input type="text"/>
+            <input className="buyerInput-Settings" type="text"/>
         </div>
     </div>
    );
