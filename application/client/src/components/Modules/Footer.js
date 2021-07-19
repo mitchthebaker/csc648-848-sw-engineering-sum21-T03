@@ -8,14 +8,19 @@ import { NavLink } from 'react-router-dom';
 
 function Footer() {
     return (
-        <BottomNavigation >
-          <NavLink className="nav-link" to="/about"> About </NavLink>
-          <BottomNavigationAction color="red" label="Facebook" value="recents" icon={<FacebookIcon  style={{fill: "#3b5998"}}/>} />
-          <BottomNavigationAction label="Twitter" value="favorites" icon={<TwitterIcon  style={{fill: "#1DA1F2"}}/>} />
-          <BottomNavigationAction label="Instagram" value="nearby" icon={<InstagramIcon  style={{fill: " #C13584"}}/>} />
-          <BottomNavigationAction label="YouTube" value="folder" icon={<YouTubeIcon  style={{fill: "#c4302b"}}/>} />
+        <BottomNavigation className="footer-nav">
+          <div className="footer-navlinks">
+            <NavLink className="footer-nav-link" to="/about"> About </NavLink>
+            <NavLink className="footer-nav-link" to="/about"> Contact </NavLink>
+          </div>
+          <div className="footer-social">
+            <BottomNavigationAction color="red" label="Facebook" value="recents" icon={<FacebookIcon  style={{fill: "#3b5998"}}/>} />
+            <BottomNavigationAction label="Twitter" value="favorites" icon={<TwitterIcon  style={{fill: "#1DA1F2"}}/>} />
+            <BottomNavigationAction label="Instagram" value="nearby" icon={<InstagramIcon  style={{fill: " #C13584"}}/>} />
+            <BottomNavigationAction label="YouTube" value="folder" icon={<YouTubeIcon  style={{fill: "#c4302b"}}/>} />
+          </div>
         </BottomNavigation>
     )
 }
 
-export default Footer
+export default Footer;

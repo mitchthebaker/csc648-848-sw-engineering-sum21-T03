@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import Hamburger from 'hamburger-react';
 import NavigationIcons from './NavigationIcons';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
 
-const NavBar = () => {
+const NavBar = (props) => {
 
     //hamburger menu open and close
     const [open, setOpen] = useState(false);
-    const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='white' onClick={() => setOpen(!open)} />
-    const closeIcon = <GrClose className = 'menu-row' size='40px' color='white' onClick={() => setOpen(!open)} />
 
     return (
         <div className="navbar">   
-            {open ? closeIcon : hamburgerIcon}
-            {open && <NavigationIcons/>}
+            <Hamburger className="hamburger-react" toggled={open} toggle={setOpen}/>
+            {open && <NavigationIcons page={props.page} />}
         </div>
     );
 };

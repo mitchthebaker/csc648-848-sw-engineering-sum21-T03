@@ -86,7 +86,8 @@ const BuyerSettings = (props) => {
 
     return (
         <div>
-            <HamburgerMenu />  
+            <NavBar page={"buyerSettings"}/>
+            
             <h1>Buyer Settings</h1>
             <div className="buyers-settings-wrapper">
               <ul className="buyers-selections">

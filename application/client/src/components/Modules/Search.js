@@ -62,7 +62,7 @@ const Search = (props) => {
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
                 <div className="searchbar-wrapper">
-                    <button className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </button>
+                    <span className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </span>
                     <input
                         className="search-input"
                         value={props.searchQuery}
@@ -73,7 +73,7 @@ const Search = (props) => {
                         autoComplete="off"
                         name="s" 
                     />
-                    <button className="search-submit" type="submit">Search</button>
+                    <span className="search-submit" type="submit"> Search </span>
                 </div>
                 {categoriesMenu == false ? 
                     <ul className="categories">

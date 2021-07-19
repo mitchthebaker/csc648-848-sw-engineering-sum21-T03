@@ -103,40 +103,44 @@
 	grid-auto-rows: minmax(100px, auto);
 	grid-gap: 10px;
 	max-width: 90%;
-	height: 650px;
-	margin: 0 auto;
+	margin: 100px auto 10px auto;
 }
 
 .FirstLastName-ProfilePage {
 	grid-column: 1 / 13;
-	background-color: grey;
+	background-color: #fff;
 	border-radius: 15px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .Information-ProfilePage {
 	grid-column: 6 / 13;
 	grid-row: 2 / 4;
-	background-color: grey;
+	background-color: #fff;
 	border-radius: 15px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .Activities-ProfilePage {
 	grid-column: 1 / 6;
-	background-color: grey;
+	background-color: #fff;
 	border-radius: 15px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .Section-ProfilePage {
 	grid-column: 1 / 13;
 	grid-row: 4 / 6;
-	background-color: grey;
+	background-color: #fff;
 	border-radius: 15px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .TopRecommendations-ProfilePage {
 	grid-column: 1 / 6;
-	background-color: grey;
+	background-color: #fff;
 	border-radius: 15px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .menu-row {
