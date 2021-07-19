@@ -92,7 +92,7 @@ const Home = (props) => {
     const filteredProducts = filterProducts(props.products, query);
 
     return (
-    <ThemeProvider theme = {theme}>
+    <ThemeProvider className="home-wrapper" theme = {theme}>
     {/* {open ? closeIcon : hamburgerIcon}
     {open && <NavBar/>} */}
 

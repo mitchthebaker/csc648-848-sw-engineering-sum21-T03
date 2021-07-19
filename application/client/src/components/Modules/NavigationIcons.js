@@ -56,7 +56,7 @@ const NavigationIcons = (props) => {
         );
     }
 
-    if(props.page === 'receiptInfo' || props.page === 'Summary') {
+    if(props.page === 'receiptInfo' || props.page === 'Summary' || props.page === 'Checkout' || props.page === 'finalInvoice') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>

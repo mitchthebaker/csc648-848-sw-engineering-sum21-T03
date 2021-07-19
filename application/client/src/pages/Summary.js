@@ -6,19 +6,19 @@ import Footer from '../components/Modules/Footer';
 const Summary = (props) => {
 
     return (
-        <div>
+        <div className="checkout-experience">
             <NavBar page={"Summary"}/>
             <div className="summary-wrapper">
                 <div className="summary-content">
                     <div className="user-summary">
                         <div className="product-details">
-                            <span> Quantity </span>
-                            <span> Product </span>
-                            <span> Name </span>
-                            <span> Price </span>
+                            <span className="product-detail-span"> Quantity </span>
+                            <span className="product-detail-span"> Product </span>
+                            <span className="product-detail-span"> Name </span>
+                            <span className="product-detail-span"> Price </span>
                         </div>
                         <div className="cancel-continue-buttons">
-                            <NavLink className="nav-link" to="/receipt-info"> <span className="modify-order"> Modify Order </span> </NavLink>
+                            <NavLink className="nav-link" to="/receipt-info"> <span className="modify-order"> Back </span> </NavLink>
                             <NavLink className="nav-link" to="/checkout"> <span className="continue-order"> Continue </span> </NavLink>
                         </div>
                     </div>

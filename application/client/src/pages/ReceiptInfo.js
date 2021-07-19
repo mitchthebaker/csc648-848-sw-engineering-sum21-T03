@@ -6,7 +6,7 @@ import Footer from '../components/Modules/Footer';
 const ReceiptInfo = (props) => {
 
     return (
-        <div>
+        <div className="checkout-experience">
             <NavBar page={"receiptInfo"}/>
             <div className="receipt-wrapper">
                 <div className="receipt-content">
