@@ -1,5 +1,10 @@
 const path = require('path');
-require('dotenv').config({ path: '../.env' });
+
+// For some reason this only works when in /server directory
+//require('dotenv').config({ path: '../.env' });
+
+// Works while in /application; keep this for deployment
+require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
@@ -8,6 +13,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
 
+const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
 const app = express();
 
@@ -266,8 +272,8 @@ app.get('/api', (req, res) => {
 // Any other GET requests which are not handled will return to React app 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-})
+});
 
-app.listen(process.env.WEB_PORT, () => {
-    console.log(`Server listening on ${process.env.WEB_PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
 });
