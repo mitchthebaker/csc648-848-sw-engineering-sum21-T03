@@ -1328,3 +1328,19 @@ input {
 .sellerAccountSettings-Inputs-field_eleven .sellerAccountSettings-Inputs + .sellerAccount-Inputs_placeholder_eleven {
   padding: 0 5px; 
 }
+
+.buyerInput-Settings {
+  -webkit-appearance: none;
+  width: 140px;
+  margin: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  border-bottom: 1px solid #cecece;
+  color: #565656;
+  outline: none;
+}
