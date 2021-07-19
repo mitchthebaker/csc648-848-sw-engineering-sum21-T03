@@ -12,7 +12,7 @@ const NavigationIcons = (props) => {
         console.log(visibility);
     };
 
-    if(props.page === 'homePage') {
+    if(props.page === 'Home') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
@@ -23,7 +23,7 @@ const NavigationIcons = (props) => {
         );
     }
 
-    if(props.page === 'profilePage') {
+    if(props.page === 'Profile') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
@@ -52,6 +52,15 @@ const NavigationIcons = (props) => {
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
+            </div>
+        );
+    }
+
+    if(props.page === 'receiptInfo' || props.page === 'Summary') {
+        return (
+            <div className="navigation-icons">
+                <NavLink className="nav-link" to="/"> Home </NavLink>
+                <NavLink className="nav-link" to="/profile"> Profile </NavLink>
             </div>
         );
     }

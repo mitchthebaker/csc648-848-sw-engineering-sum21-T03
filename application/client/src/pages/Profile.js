@@ -7,7 +7,7 @@ const Profile = () => {
 
     return (
         <div className="profile-wrapper">
-            <NavBar page={"profilePage"}/>
+            <NavBar page={"Profile"}/>  
             {
                 /*
                 <header className="App-header">

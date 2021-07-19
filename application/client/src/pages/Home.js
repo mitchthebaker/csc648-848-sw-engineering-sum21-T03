@@ -96,7 +96,7 @@ const Home = (props) => {
     {/* {open ? closeIcon : hamburgerIcon}
     {open && <NavBar/>} */}
 
-    <NavBar page={"homePage"}/>
+    <NavBar page={"Home"}/>
        
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
