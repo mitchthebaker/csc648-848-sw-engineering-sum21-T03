@@ -64,6 +64,17 @@ const NavigationIcons = (props) => {
             </div>
         );
     }
+
+    if(props.page === 'Product') {
+        return (
+            <div className="navigation-icons">
+                <NavLink className="nav-link" to="/"> Home </NavLink>
+                <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                <Menu handleMouseClick={handleMouseClick} visibility={visibility}/>
+            </div>
+        );
+    }
 };
 
 export default NavigationIcons;

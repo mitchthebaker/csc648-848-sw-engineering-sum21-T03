@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
@@ -112,25 +113,24 @@ const Home = (props) => {
 
     <div className="searchable-product-list">
     {filteredProducts.map((product) => (
-    <li className="product-wrapper" key={product.product_id}> 
-    <img  
-    src={`/uploads/${product.image}`}
-    className="product-image"
-    alt="Failed to load."
-    />
-    <div className="product-title-creator">
-    <h3 className="product-title"> { product.title }  </h3>
-    <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
-    </div>
-    <div className="product-price-rating-purchases">
-      <div className="price-rating-purchases">
-        <h5 className="product-price"> $ <span> { product.price } </span> </h5>
-        <h5> Purchases: <span> 5 </span> </h5>
-      </div>
-      <div className="purchase-product-wrapper">
-        <button className="purchase-product-button"> Purchase </button>
-      </div>
-    </div>
+    <li className="product-li" key={product.product_id}> 
+      <Link style={{ textDecoration: 'none' }} className="product-wrapper" to={`/product/${product.product_id}`}>
+        <img  
+          src={`/uploads/${product.image}`}
+          className="product-image"
+          alt="Failed to load."
+        />
+        <div className="product-title-creator">
+          <h3 className="product-title"> { product.title }  </h3>
+          <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
+        </div>
+        <div className="product-price-rating-purchases">
+          <div className="price-rating-purchases">
+            <h5 className="product-price"> $ <span> { product.price } </span> </h5>
+            <h5> Purchases: <span> 5 </span> </h5>
+          </div>
+        </div>
+      </Link>
     </li>
     ))}
     </div>
@@ -154,7 +154,7 @@ const Home = (props) => {
 };
 
 function mapStateToProps(state) {
-return { products: state.productReducer.products };
+  return { products: state.productReducer.products };
 }
 
 export default connect(mapStateToProps)(Home);
