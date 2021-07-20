@@ -10,12 +10,67 @@ export const updateLastName = (lastName) => ({
     lastName
 });
 
+
+export const updateBirthday_Action = (birthday) => ({
+    type: 'USER_UPDATE_BIRTHDAY', 
+    birthday
+}); 
+
+export const updateEmail_Action = (email) => ({
+    type: 'USER_UPDATE_EMAIL', 
+    email
+}); 
+
+export const updatePhone_Action = (phone) => ({
+    type: 'USER_UPDATE_PHONE', 
+    phone
+}); 
+
+export const updateUserName_Action = (username) => ({
+    type: 'USER_UPDATE_USERNAME', 
+    username
+}); 
+
+
+export const updatePassword_Action = (password) => ({
+    type: 'USER_UPDATE_PASSWORD', 
+    password
+}); 
+
+export const updateCardNumber_Action = (cardNumber) => ({
+    type: 'USER_UPDATE_CARDNUMBER',
+    cardNumber
+});
+
+export const updateExpirationDate_Action = (cardExpirationDate) => ({
+    type: 'USER_UPDATE_CARDEXPIRATIONDATE', 
+    cardExpirationDate 
+}); 
+
+export const updateCVV_Action = (cardCVV) => ({
+    type: 'USER_UPDATE_CARDCVV', 
+    cardCVV
+}); 
+
+export const updatePostalCode_Action = (cardPostalCode) => ({
+    type: 'USER_UPDATE_CARDPOSTALCODE', 
+    cardPostalCode
+}); 
+
 export const updateAccount = () => {
     return (dispatch, getState) => {
 
         const sellerData = {
             firstName: getState().sellerSettingsReducer.firstName,
             lastName: getState().sellerSettingsReducer.lastName,
+            birthday: getState().sellerSettingsReducer.birthday, 
+            email: getState().sellerSettingsReducer.email, 
+            phone: getState().sellerSettingsReducer.phone, 
+            username: getState().sellerSettingsReducer.username, 
+            password: getState().sellerSettingsReducer.password, 
+            cardNumber: getState().sellerSettingsReducer.cardNumber, 
+            cardExpirationDate: getState().sellerSettingsReducer.cardCVV, 
+            cardPostalCode: getState().sellerSettingsReducer.cardPostalCode
         };
 
         console.log(sellerData);
