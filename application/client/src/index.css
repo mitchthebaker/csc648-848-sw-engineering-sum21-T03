@@ -805,3 +805,10 @@ main {
   cursor: pointer;
   font-size: 14px;
 }
+
+.sellerWorkScheduleSettings-firstContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;  
+}
