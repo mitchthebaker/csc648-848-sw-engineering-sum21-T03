@@ -160,15 +160,11 @@ import { GiConsoleController } from 'react-icons/gi';
             </div>
             <div className="setUp_Schedule-containerTwo">
               <h3>Todo Form</h3>
-              <p>Title </p>
-              <input name="title" value={this.state.title} onChange={this.handleChange} type="text"/>
-              <p>Start Date</p>
-              <input name="startDate" value={this.state.startDate} onChange={this.handleChange} type="text"/>
-              <p>End Date</p>
-              <input name="endDate" value={this.state.endDate} onChange={this.handleChange} type="text"/>
-              <p>Location</p>
-              <input name="location" value={this.state.location} onChange={this.handleChange} type="text"/>
-              <button onClick={this.handleSubmit}>Submit</button>
+              <input placeholder="Title" className="buyerInput-Settings" name="title" value={this.state.title} onChange={this.handleChange} type="text"/>
+              <input placeholder="Start Date" className="buyerInput-Settings" name="startDate" value={this.state.startDate} onChange={this.handleChange} type="text"/>
+              <input placeholder="End Date" className="buyerInput-Settings" name="endDate" value={this.state.endDate} onChange={this.handleChange} type="text"/>
+              <input placeholder="Location" className="buyerInput-Settings" name="location" value={this.state.location} onChange={this.handleChange} type="text"/>
+              <button className="sellerSettingsButtons" onClick={this.handleSubmit}>Submit</button>
             </div>
         </div>
       );
