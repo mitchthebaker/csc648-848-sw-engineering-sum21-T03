@@ -23,74 +23,31 @@ const Account = () => {
    return (
     <div className="sellerAccountSettings-wrapper">
         <div className="sellerAccountSettings-firstContainer">
+            <h3>Information</h3>
             <div className="sellerAccountSettings-firstContainer_oneSide">
-                <p>FirstName</p>
-                <label className="sellerAccountSettings-Inputs-field_one">
-                    <input className="sellerAccountSettings-Inputs" value={updateFirst} onChange={(e) => dispatch(updateFirstName(e.target.value))} type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_one">Enter First Name </span>
-                </label>
-                <p>LastName</p>
-                <label className="sellerAccountSettings-Inputs-field_two">
-                    <input className="sellerAccountSettings-Inputs" value={updateLast} onChange={(e) => dispatch(updateLastName(e.target.value))} type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_two">Enter Last Name </span>
-                </label>
-                <p>Birthday</p>
-                <label className="sellerAccountSettings-Inputs-field_three">
-                    <input className="sellerAccountSettings-Inputs" type="date"/>
-                    <span className="sellerAccount-Inputs_placeholder_two">Enter Birthday </span>
-                </label>
+                <input placeholder="First Name" className="sellerSettingsInputs" value={updateFirst} onChange={(e) => dispatch(updateFirstName(e.target.value))} type="text"/>
+                <input placeholder="Last Name" className="sellerSettingsInputs" value={updateLast} onChange={(e) => dispatch(updateLastName(e.target.value))} type="text"/>
+                <input placeholder="Birthday Name" className="sellerSettingsInputs" type="date"/>
             </div>
             <div className="sellerAccountSettings-firstContainer_twoSide">
-                <p>Email</p>
-                <label className="sellerAccountSettings-Inputs-field_four">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_four">Enter Email </span>
-                </label>
-                <p>Phone</p>
-                <label className="sellerAccountSettings-Inputs-field_five">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_five">Enter Phone </span>
-                </label>
-                <p>UserName</p>
-                <label className="sellerAccountSettings-Inputs-field_six">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_six">Enter UserName </span>
-                </label>
-                <p>Password</p>
-                <label className="sellerAccountSettings-Inputs-field_seven">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_seven">Enter Password </span>
-                </label>
+                <input placeholder="Email" className="sellerSettingsInputs" type="text"/>
+                <input placeholder="Phone" className="sellerSettingsInputs" type="text"/>    
+                <input placeholder="UserName" className="sellerSettingsInputs" type="text"/>
+                <input placeholder="Password" className="sellerSettingsInputs" type="text"/>
             </div>
             <div>
-                <button onClick={updateAccountHandler}> Update Account </button>
+                <button className="sellerSettingsButtons" onClick={updateAccountHandler}> Update Account </button>
             </div>
         </div>
         <div className="sellerAccountSettings-secondContainer">
             <h3>Credit Debit Card</h3>
             <div className="sellerAccountSettings-secondContainer_oneSide">
-                <p>Card Number</p>
-                <label className="sellerAccountSettings-Inputs-field_eight">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_eight">Enter Card Number</span>
-                </label>
-                <p>Expiration Date</p>
-                <label className="sellerAccountSettings-Inputs-field_nine">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_nine">Enter Expiration Date</span>
-                </label>
+                <input placeholder="Card Number" className="sellerSettingsInputs" type="text"/>
+                <input placeholder="Expiration Date" className="sellerSettingsInputs" type="text"/>
             </div>
             <div className="sellerAccountSettings-secondContainer">
-                <p>CVV</p>
-                <label className="sellerAccountSettings-Inputs-field_ten">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_ten">Enter CVV</span>
-                </label>
-                <p>Postal Code</p>
-                <label className="sellerAccountSettings-Inputs-field_eleven">
-                    <input className="sellerAccountSettings-Inputs" type="text"/>
-                    <span className="sellerAccount-Inputs_placeholder_eleven">Enter Postal Code</span>
-                </label>
+                <input placeholder="CVV" className="sellerSettingsInputs" type="text"/>
+                <input placeholder="Postal Code" className="sellerSettingsInputs" type="text"/>
             </div>
         </div>
     </div>

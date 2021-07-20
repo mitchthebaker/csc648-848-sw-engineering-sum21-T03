@@ -7,22 +7,11 @@ const sellerProfileSettings = () => {
 
    return (
     <div className="sellerProfileSettings-wrapper">
+        <h3>Profile</h3>
         <div className="sellerProfileSettings-firstContainer">
-            <p>Bio Description</p>
-            <label className="sellerProfileSettings-Inputs-field_one">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_one">Enter Description </span>
-            </label>
-            <p>Location</p>
-            <label className="sellerProfileSettings-Inputs-field_two">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_two">Enter Location </span>
-            </label>
-            <p>Social Media Connect</p>
-            <label className="sellerProfileSettings-Inputs-field_three">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_three">Enter Social Media </span>
-            </label>
+            <input placeholder="Bio Description" className="sellerSettingsInputs" type="text"/>
+            <input placeholder="Location" className="sellerSettingsInputs" type="text"/>
+            <input placeholder="Social Media" className="sellerSettingsInputs" type="text"/>
         </div>
     </div>
    );

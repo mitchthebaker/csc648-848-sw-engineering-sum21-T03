@@ -7,11 +7,10 @@ const buyerShippingSettings = () => {
 
    return (
     <div className="buyerShippingSettings-wrapper">
+        <h3>Shipping</h3>
         <div className="buyerShippingSettings-firstContainer">
-            <p>Mailing address</p>
-            <input className="buyerInput-Settings" type="text"/>
-            <p>Zip Code</p>
-            <input className="buyerInput-Settings" type="text"/>
+            <input placeholder="Mailing address" className="buyerInput-Settings" type="text"/>
+            <input placeholder="Zip Code" className="buyerInput-Settings" type="text"/>
         </div>
     </div>
    );
