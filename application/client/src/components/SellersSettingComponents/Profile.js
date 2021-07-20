@@ -13,6 +13,9 @@ const sellerProfileSettings = () => {
             <input placeholder="Location" className="sellerSettingsInputs" type="text"/>
             <input placeholder="Social Media" className="sellerSettingsInputs" type="text"/>
         </div>
+        <div>
+            <button className="sellerSettingsButtons"> Update Profile </button>
+        </div>
     </div>
    );
 };

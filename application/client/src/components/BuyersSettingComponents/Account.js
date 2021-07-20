@@ -20,6 +20,9 @@ const buyerAccountSettings = () => {
                 <input placeholder="UserName" className="buyerInput-Settings" type="text"/>
                 <input placeholder="Password" className="buyerInput-Settings" type="text"/>
             </div>
+            <div>
+                <button className="buyerSettingsButtons"> Update Account </button>
+            </div>
         </div>
         <div className="buyerAccountSettings-secondContainer">
             <h3>Credit Debit Card</h3>

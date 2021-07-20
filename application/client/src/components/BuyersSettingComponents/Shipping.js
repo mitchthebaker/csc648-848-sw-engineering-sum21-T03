@@ -12,6 +12,9 @@ const buyerShippingSettings = () => {
             <input placeholder="Mailing address" className="buyerInput-Settings" type="text"/>
             <input placeholder="Zip Code" className="buyerInput-Settings" type="text"/>
         </div>
+        <div>
+            <button className="buyerSettingsButtons"> Update Shipping </button>
+        </div>
     </div>
    );
 };

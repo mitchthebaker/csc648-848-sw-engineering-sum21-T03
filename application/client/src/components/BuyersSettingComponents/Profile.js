@@ -16,6 +16,9 @@ const buyerProfileSettings = () => {
             <input placeholder="Show buys" className="buyerInput-Settings" type="text"/>
             <input placeholder="Show buys Reviews" className="buyerInput-Settings" type="text"/>
         </div>
+        <div>
+            <button className="buyerSettingsButtons"> Update Profile </button>
+        </div>
     </div>
    );
 };
