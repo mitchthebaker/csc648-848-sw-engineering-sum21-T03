@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../components/Modules/Logo';
+import HamburgerMenu from '../components/Modules/HamburgerMenu';
 
 const About = () => {
     return (
         
         <div className="about-wrapper">
             <section className="navigation">
-            <Logo />
+            <HamburgerMenu />
                 <h1> About Us </h1>
                 {/* <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
