@@ -6,6 +6,7 @@ const INITIAL_PRODUCT_STATE = {
     file: '',
     filePreview: null,
     isSuccess: null,
+    product: [],
     products: [],
     categories: false,
     dropdownText: "Categories"
@@ -63,6 +64,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 dropdownText: action.text
+            };
+
+        case 'SET_PRODUCT':
+            return {
+                ...state,
+                product: action.product
             };
 
         case 'GET_PRODUCTS':
