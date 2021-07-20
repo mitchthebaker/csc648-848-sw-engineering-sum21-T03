@@ -1,21 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
-import Grid from '../components/Modules/Grid';
 import Footer from '../components/Modules/Footer'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import GavelIcon from '@material-ui/icons/Gavel';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrClose } from 'react-icons/gr';
-import HamburgerMenu from '../components/Modules/HamburgerMenu';
 import Search from '../components/Modules/Search';
 import { connect, useDispatch } from 'react-redux';
 import {
@@ -85,11 +74,6 @@ const Home = (props) => {
             });
     }, []);
 
-    //hamburger menu open and close
-    // const hamburgerIcon = <GiHamburgerMenu className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    // const closeIcon = <GrClose className = 'menu-row' size='40px' color='black' onClick={() => setOpen(!open)} />
-    // const [open, setOpen] = useState(false); 
-
     //searchbar
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
@@ -109,11 +93,11 @@ const Home = (props) => {
     const filteredProducts = filterProducts(props.products, query);
 
     return (
-    <ThemeProvider theme = {theme}>
+    <ThemeProvider className="home-wrapper" theme = {theme}>
     {/* {open ? closeIcon : hamburgerIcon}
     {open && <NavBar/>} */}
 
-    <HamburgerMenu />
+    <NavBar page={"Home"}/>
        
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
@@ -129,25 +113,29 @@ const Home = (props) => {
 
     <div className="searchable-product-list">
     {filteredProducts.map((product) => (
-    <li className="product-wrapper" key={product.product_id}> 
-    <div className="product-title-price">
-    <h3> { product.title }  </h3>
-    <h5> { product.price } </h5>
-    </div>
-    <div className="product-desc-title">
-    <h5> { product.description } </h5>
-    </div>
-
-    <img  
-    src={`/uploads/${product.image}`}
-    className="product-image"
-    alt="Failed to load."
-    />
+    <li className="product-li" key={product.product_id}> 
+      <Link style={{ textDecoration: 'none' }} className="product-wrapper" to={`/product/${product.product_id}`}>
+        <img  
+          src={`/uploads/${product.image}`}
+          className="product-image"
+          alt="Failed to load."
+        />
+        <div className="product-title-creator">
+          <h3 className="product-title"> { product.title }  </h3>
+          <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
+        </div>
+        <div className="product-price-rating-purchases">
+          <div className="price-rating-purchases">
+            <h5 className="product-price"> $ <span> { product.price } </span> </h5>
+            <h5> Purchases: <span> 5 </span> </h5>
+          </div>
+        </div>
+      </Link>
     </li>
     ))}
     </div>
 
-    {/* homepage grid layout     */}
+    {/* homepage grid layout     
     <div className={`${classes.grid} ${classes.bigSpace}`}>
     <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
     <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
@@ -159,14 +147,14 @@ const Home = (props) => {
     <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
     </div>
     <div className={classes.bigSpace}>
+    </div>*/}
     <Footer/>
-    </div>
     </ThemeProvider>
     );
 };
 
 function mapStateToProps(state) {
-return { products: state.productReducer.products };
+  return { products: state.productReducer.products };
 }
 
 export default connect(mapStateToProps)(Home);

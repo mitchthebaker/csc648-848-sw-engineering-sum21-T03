@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import CustomBtn from './CustomBtn';
-import { NavLink } from 'react-router-dom';
+import Hamburger from 'hamburger-react';
+import NavigationIcons from './NavigationIcons';
+import { GrClose } from 'react-icons/gr';
 
-const NavBar = () => {
+const NavBar = (props) => {
+
+    //hamburger menu open and close
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="navbar">   
-            <div className="navigation-icons">    
-                <NavLink className="nav-link" to="/"> Home </NavLink>
-                <NavLink className="nav-link" to="/profile">Profile</NavLink>
-                <NavLink className="nav-link" to="/profile">Cart</NavLink>
-                <NavLink className="nav-link" to="/about"> About </NavLink>
-                <NavLink className="nav-link" to="/login"><CustomBtn txt="Login"/></NavLink> 
-            </div>
+            <Hamburger className="hamburger-react" toggled={open} toggle={setOpen}/>
+            {open && <NavigationIcons page={props.page} />}
         </div>
     );
 };

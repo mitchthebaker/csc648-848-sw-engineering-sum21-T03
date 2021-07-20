@@ -22,26 +22,16 @@ const SellerSettings = (props) => {
     const toggleAccount_func = () => {
       set_toggleAccount(!toggleAccount); 
 
-      console.log(toggleAccount);
-      console.log(toggleProfile);
-      console.log(toggleProducts);
-      console.log(toggleWorkSchedule);
-      console.log(toggleActivities);
-
       if (toggleProfile) {
-        console.log('profile: ' + toggleProfile);
         set_toggleProfile(!toggleProfile); 
       }
       if (toggleProducts) {
-        console.log('products: ' + toggleProducts);
         set_toggleProducts(!toggleProducts); 
       }
       if (toggleWorkSchedule) {
-        console.log('shipping: ' + toggleWorkSchedule);
         set_toggleWorkSchedule(!toggleWorkSchedule); 
       }
       if (toggleActivities) {
-        console.log('activities: ' + toggleActivities);
         set_toggleActivities(!toggleActivities); 
       }
     }
@@ -115,7 +105,8 @@ const SellerSettings = (props) => {
 
     return (
         <div>
-            <HamburgerMenu/> 
+            <NavBar page={"sellerSettings"}/>
+
             <h1>Seller Settings</h1>
             <div className="seller-settings-wrapper">
               <ul className="seller-selections">
@@ -131,8 +122,6 @@ const SellerSettings = (props) => {
                 {toggleProducts !== false? <ProductCreationForm/> : null}
                 {toggleWorkSchedule !== false? <WorkScheduleSellers/> : null}
                 {toggleActivities !== false? <ActivitiesSellers/> : null}
-
-                { props.displayProducts }
               </div>
             </div>
             

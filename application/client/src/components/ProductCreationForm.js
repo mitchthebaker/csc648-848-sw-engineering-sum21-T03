@@ -30,16 +30,13 @@ const ProductCreationForm = (props) => {
         <div className="product-submission">
             {props.isSuccess !== null ? <h4> {props.isSuccess} </h4> : null}
             <div>
-                <label> Title </label>
-                <input type="text" value={productTitle} placeholder="Title" onChange={(e) => dispatch(setTitle(e.target.value))}/>
+                <input placeholder="Title" className="sellerSettingsInputs" ype="text" value={productTitle} placeholder="Title" onChange={(e) => dispatch(setTitle(e.target.value))}/>
             </div>
             <div>
-                <label> Description </label>
-                <input type="text" value={productDescription} placeholder="Description" onChange={(e) => dispatch(setDescription(e.target.value))}/>
+                <input  placeholder="Description" className="sellerSettingsInputs" type="text" value={productDescription} placeholder="Description" onChange={(e) => dispatch(setDescription(e.target.value))}/>
             </div>
             <div>
-                <label> Price </label>
-                <input type="text" value={productPrice} placeholder="Price" onChange={(e) => dispatch(setPrice(e.target.value))}/>
+                <input  placeholder="Price" className="sellerSettingsInputs" type="text" value={productPrice} placeholder="Price" onChange={(e) => dispatch(setPrice(e.target.value))}/>
             </div>
             <div>
                 <label> Category </label>
@@ -51,10 +48,10 @@ const ProductCreationForm = (props) => {
             </div>
             <div>
                 <label> Image(s) </label>
-                <input type="file" name="product_image" onChange={(e) => dispatch(setImage(e.target.files[0]))}/>
+                <input  placeholder="Image(s)" className="sellerSettingsInputs" type="file" name="product_image" onChange={(e) => dispatch(setImage(e.target.files[0]))}/>
             </div>
             <div>
-                <button onClick={createProductHandler}>
+                <button className="sellerSettingsButtons" onClick={createProductHandler}>
                     Create New Product
                 </button>
             </div>
