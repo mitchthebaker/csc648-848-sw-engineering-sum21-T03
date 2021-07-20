@@ -69,6 +69,11 @@ export const createProduct = () => {
     };
 };
 
+export const setProduct = (product) => ({
+    type: 'SET_PRODUCT',
+    product
+});
+
 export const getProducts = (products) => ({
     type: 'GET_PRODUCTS',
     products

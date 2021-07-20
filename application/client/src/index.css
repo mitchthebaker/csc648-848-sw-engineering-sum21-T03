@@ -226,18 +226,23 @@ input {
   align-items: center;
 }
 
+.product-li {
+  list-style-type: none;
+  text-decoration: none;
+}
+
 .product-wrapper {
   display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    color: white;
-    border: 1px solid black;
-    border-radius: 2px;
-    background: #4f25f7;
-    width: 350px;
-    height: 450px;
-    margin: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: #4f25f7;
+  width: 350px;
+  height: 450px;
+  margin: 10px;
 }
 
 .product-title-creator {
@@ -251,6 +256,7 @@ input {
 .product-title {
   margin: 15px 15px 2px 15px;
   font-size: 18px;
+  text-decoration: none;
 }
 
 .product-creator {
@@ -292,6 +298,43 @@ input {
   width: 100%;
   object-fit: fill;
   border-radius: 2px;
+}
+
+.individual-product-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  width: 100%;
+}
+
+.individual-product-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin: 100px 25px 150px 25px;
+}
+
+.individual-product-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual-product-image {
+  width: 500px;
+  height: 500px;
+}
+
+.individual-product-additional-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchbar-wrapper {
@@ -531,9 +574,18 @@ input {
   align-items: center;
 }
 
-.user-receipt-info h4, .user-delivery-details h4, .checkout-details h4, .confirmation-details h4 {
+.user-receipt-info h4, 
+.user-delivery-details h4, 
+.checkout-details h4, 
+.confirmation-details h4,
+.individual-product-title {
   text-align: center;
   font-size: 16px;
+}
+
+.individual-product-description {
+  text-align: center;
+  font-size: 14px;
 }
 
 .user-first-last-wrapper {
