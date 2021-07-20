@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import {Typography} from '@material-ui/core';
+import {Checkbox, Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer'
 import Search from '../components/Modules/Search';
@@ -10,6 +10,8 @@ import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
 } from '../redux/actions/productActions';
+import LandingPage from '../components/LandingPage/LandingPage';
+
 
 
 const theme = createMuiTheme({
@@ -98,8 +100,9 @@ const Home = (props) => {
     {open && <NavBar/>} */}
 
     <NavBar page={"Home"}/>
-       
+    <LandingPage />
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+    
 
     {/* homepage header     */}
     <div className={classes.wrapper}>
