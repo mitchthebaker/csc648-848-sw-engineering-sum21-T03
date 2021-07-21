@@ -19,6 +19,7 @@ import Walker from './components/About/Walker';
 import Echevarria from './components/About/RowenaEchevarria';
 import Krina from './components/About/Krina';
 import Schroeder from './components/About/Schroeder';
+import Message from './pages/Chat';
 import {Switch, Route} from 'react-router-dom';
 import './App.css';
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/rechevarria" component={Echevarria} />
         <Route path="/krinap" component={Krina} />
         <Route path="/michael" component={Schroeder} />
+        <Route path="/messages" component={Message} />
       </Switch>
     </main>
   );

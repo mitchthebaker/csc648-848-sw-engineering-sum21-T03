@@ -49,6 +49,9 @@ const Product = (props) => {
                             <div className="purchase-product-wrapper">
                               <button className="purchase-product-button"> Purchase </button>
                             </div>
+                            <div className="message-seller-wrapper">
+                                 <NavLink className="message-seller-button" to="/"> <span className="message-seller"> Message Seller </span> </NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>

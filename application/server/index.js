@@ -12,10 +12,19 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const WebSocket = require('ws')
+const server = new WebSocket.Server({port: '8080'}) //testing for socket.io
 
 const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
 const app = express();
+
+//socket.io message integration
+server.on('connection', socket =>{
+    socket.on('message', message => {
+        socket.send(`Roger that! ${message}`);
+    });
+});
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -306,6 +315,8 @@ app.get('/api/products/:id', (req, res, next) => {
             res.status(500).send({ error: "Unable to get product from database" });
         });
 });
+
+
 
 app.get('/api/users', (req, res, next) => {
     store.getAllUsers().then(users => res.status(200).send(users));
