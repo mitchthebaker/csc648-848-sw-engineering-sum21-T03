@@ -2,6 +2,15 @@ const INITIAL_SELLER_SETTINGS_STATE = {
    displayProducts: 'test',
    firstName: '',
    lastName: '',
+   birthday: '', 
+   email: '', 
+   phone: '', 
+   username: '', 
+   password: '', 
+   cardNumber: '', 
+   cardExpirationDate: '', 
+   cardCVV: '', 
+   cardPostalCode: '', 
 };
 
 const sellerSettingsReducer = (state = INITIAL_SELLER_SETTINGS_STATE, action) => {
