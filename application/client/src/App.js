@@ -11,6 +11,7 @@ import ReceiptInfo from './pages/ReceiptInfo';
 import Summary from './pages/Summary';
 import Checkout from './pages/Checkout';
 import FinalInvoice from './pages/FinalInvoice';
+import Product from './pages/Product';
 import Baker from './components/About/Baker';
 import Chuson from './components/About/Chuson';
 import Eusebio from './components/About/Eusebio';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/summary" component={Summary} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/final-invoice" component={FinalInvoice} />
+        <Route path="/product/:id?" component={Product}/>
         <Route path="/mbaker" component={Baker} />
         <Route path="/kenneth" component={Chuson} />
         <Route path="/ceusebio" component={Eusebio} />

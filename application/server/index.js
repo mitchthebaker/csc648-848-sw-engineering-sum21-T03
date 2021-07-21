@@ -259,6 +259,54 @@ app.get('/api/products', (req, res, next) => {
     });
 });
 
+app.get('/api/products/:id', (req, res, next) => {
+
+    console.log(req.params.id);
+        
+    if(req.params.id) {
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "No product ID specified"
+        })
+    }
+},
+(req, res) => {
+
+    let newProduct = {};
+
+    store
+        .getProductById(req.params.id)
+        .then((product) => {
+            console.log(product);
+            
+            store
+                .getUserById(product.seller_id).then((user) => {
+                    
+                    newProduct.product_id = product.product_id;
+                    newProduct.seller_id = product.seller_id;
+                    newProduct.title = product.title;
+                    newProduct.description = product.description;
+                    newProduct.price = product.price;
+                    newProduct.image = product.image;
+                    newProduct.creator = user.username;
+
+                    console.log(newProduct);
+                    
+                    res.status(200).send(newProduct);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to get user by id when getting a product"});
+                });
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to get product from database" });
+        });
+});
+
 app.get('/api/users', (req, res, next) => {
     store.getAllUsers().then(users => res.status(200).send(users));
 });

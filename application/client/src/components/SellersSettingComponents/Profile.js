@@ -1,28 +1,37 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
+import {
+    updateBioDescription_Action, 
+    updateLocation_Action, 
+    updateSocialMedia_Action,
+    updateProfile,
+} from '../../redux/actions/sellerSettingsActions';
 
 
-const sellerProfileSettings = () => {
+const Profile = () => {
+
+    const dispatch = useDispatch();
+   
+    const updateBioDescription = useSelector((state) => state.sellerSettingsReducer.bioDescription);
+    const updateLocation = useSelector((state) => state.sellerSettingsReducer.updateLocation);
+    const updateSocialMedia = useSelector((state) => state.sellerSettingsReducer.updateSocialMedia);
+
+
+    const updateProfileHandler = () => {
+        dispatch(updateProfile());
+    };
 
    return (
     <div className="sellerProfileSettings-wrapper">
+        <h3>Profile</h3>
         <div className="sellerProfileSettings-firstContainer">
-            <p>Bio Description</p>
-            <label className="sellerProfileSettings-Inputs-field_one">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_one">Enter Description </span>
-            </label>
-            <p>Location</p>
-            <label className="sellerProfileSettings-Inputs-field_two">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_two">Enter Location </span>
-            </label>
-            <p>Social Media Connect</p>
-            <label className="sellerProfileSettings-Inputs-field_three">
-                <input className="sellerProfileSettings-Inputs" type="text"/>
-                <span className="sellerProfileSettings-Inputs_placeholder_three">Enter Social Media </span>
-            </label>
+            <input placeholder="Bio Description" className="sellerSettingsInputs" value={updateBioDescription} onChange={(e) => dispatch(updateBioDescription_Action(e.target.value))} type="text"/>
+            <input placeholder="Location" className="sellerSettingsInputs" value={updateLocation} onChange={(e) => dispatch(updateLocation_Action(e.target.value))} type="text"/>
+            <input placeholder="Social Media" className="sellerSettingsInputs" value={updateSocialMedia} onChange={(e) => dispatch(updateSocialMedia_Action(e.target.value))} type="text"/>
+        </div>
+        <div>
+            <button className="sellerSettingsButtons" onClick={updateProfileHandler}> Update Profile </button>
         </div>
     </div>
    );
@@ -30,4 +39,4 @@ const sellerProfileSettings = () => {
 
 
 
-export default sellerProfileSettings;
+export default Profile;

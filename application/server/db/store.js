@@ -48,7 +48,7 @@ async function getUserById(id) {
 
 async function getProductById(id) {
   const result = await pool.query(
-    "SELECT product_id, title AS title FROM products WHERE product_id = ?",
+    "SELECT product_id, seller_id AS seller_id, title AS title, description AS description, price AS price, image AS image FROM products WHERE product_id = ?",
     [id]
   );
   if(result[0].length < 1) {
@@ -146,6 +146,7 @@ module.exports = {
   loginUser,
   uploadProduct,
   getUserById,
+  getProductById,
   deleteUserById,
   updateUser,
 };
