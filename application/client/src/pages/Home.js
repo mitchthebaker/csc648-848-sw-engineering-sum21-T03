@@ -17,25 +17,16 @@ import LandingPage from '../components/LandingPage/LandingPage';
 const theme = createMuiTheme({
     palette: {
       primary: {
-        main:"#2e1667",
+        main:"#000000",
       },
       secondary: {
-        main:"#c7d8ed",
+        main:"#000000",
       },
     },
     typography: {
       fontFamily: [
         'Roboto'
       ],
-      h4: {
-        fontWeight: 600,
-        fontSize: 28,
-        lineHeight: '2rem',
-        },
-      h5: {
-        fontWeight: 100,
-        lineHeight: '2rem',
-      },
     },
   });
   
@@ -96,16 +87,15 @@ const Home = (props) => {
 
     return (
     <ThemeProvider className="home-wrapper" theme = {theme}>
-    {/* {open ? closeIcon : hamburgerIcon}
-    {open && <NavBar/>} */}
 
     <NavBar page={"Home"}/>
-    <LandingPage />
-    <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
     
+    <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+  
 
     {/* homepage header     */}
     <div className={classes.wrapper}>
+    
     <Typography variant="h5" className={classes.bigSpace} color="primary">
     At Dropsell, we buy and sell products
     </Typography>
@@ -113,6 +103,11 @@ const Home = (props) => {
     New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
     </Typography>
     </div>
+
+    
+    <LandingPage />
+
+    {/* <div>  </div> */}
 
     <div className="searchable-product-list">
     {filteredProducts.map((product) => (
@@ -138,19 +133,6 @@ const Home = (props) => {
     ))}
     </div>
 
-    {/* homepage grid layout     
-    <div className={`${classes.grid} ${classes.bigSpace}`}>
-    <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
-    <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
-    <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}  link="/profile" btnTitle="Buy"/>
-    </div>
-    <div className={`${classes.grid} ${classes.bigSpace}`}>  
-    <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Payment"/>
-    <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Shipping"/>
-    <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
-    </div>
-    <div className={classes.bigSpace}>
-    </div>*/}
     <Footer/>
     </ThemeProvider>
     );

@@ -19,7 +19,9 @@ function RadioBox1(props) {
     }
 
     return (
-        <div>
+        <div style={{
+            display: 'block', width: 175, padding: 0
+          }}>
             <Collapse defaultActiveKey={['0']}>
                 <Panel header="Price" key="1">
                     <Radio.Group onChange={handleChange} value={Value}>
