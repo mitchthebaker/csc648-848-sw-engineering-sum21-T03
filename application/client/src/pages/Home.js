@@ -41,7 +41,9 @@ const theme = createMuiTheme({
     wrapper: {
       width: "50%",
       margin: "auto",
-      textAlign: "center"
+      textAlign: "center",
+      marginTop: "50px",
+      marginBottom: "50px"
     },
     bigSpace: {
       marginTop: "2.0rem"

@@ -45,6 +45,17 @@ const Search = (props) => {
       toggleCategoriesMenu(!categoriesMenu)
     };
 
+    const viewAllProducts = () => {
+      axios.get('/api/products')
+        .then((res) => {
+            dispatch(getProducts(res.data));
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
     const clickCategory = (text) => () => {
       dispatch(changeDropdownText(text));
 
@@ -76,14 +87,15 @@ const Search = (props) => {
                     <span className="search-submit" type="submit"> Search </span>
                 </div>
                 {categoriesMenu == false ? 
-                    <ul className="categories">
-                        {categoryItems.map((item, index) => (
-                    <li key={index} onClick={clickCategory(item.name)}> 
+                  <ul className="categories">
+                      <li onClick={viewAllProducts}> View all products </li>
+                    {categoryItems.map((item, index) => (
+                      <li key={index} onClick={clickCategory(item.name)}> 
                         { item.name }
-                    </li>
+                      </li>
                     ))}
-                    </ul> 
-                    : null}
+                  </ul> 
+                : null}
             </div>
         </form>
     );

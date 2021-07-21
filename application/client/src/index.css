@@ -165,24 +165,23 @@ code {
 }
 
 .input-button-search {
-	position: relative;
-	z-index: 900;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  border-radius: 5px;
 }
 
 input {
-	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+	/*box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);*/
 }
 
 .categories {
-	position: absolute;
-	top: 35px;
-	z-index: 1;
 	padding: 0;
 	margin: 0;
-	border: 1px solid black;
-	border-radius: 2px;
+	border-radius: 5px;
 	width: 100%;
 	list-style-type: none;
 	background: white;
@@ -191,6 +190,9 @@ input {
 .categories li {
 	padding: 10px;
 	cursor: pointer;
+  color: darkslategrey;
+  font-size: 14px;
+  font-weight: lighter;
 }
 
 .categories li:hover {
@@ -243,6 +245,7 @@ input {
 	width: 350px;
 	height: 450px;
 	margin: 10px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .product-title-creator {
@@ -349,13 +352,18 @@ input {
 }
 
 .search-input {
-	width: 300px;
+	width: 350px;
 	padding: 9px 0px 9px 0px;
 	border: 0;
+  outline: none;
 }
 
-.search-input::placeholder {
-	padding-left: 10px;
+input[type="text"] {
+  padding-left: 10px;
+}
+
+input[type="text"]:focus {
+  outline: none;
 }
 
 .search-submit {
@@ -366,6 +374,12 @@ input {
 	border-bottom-right-radius: 5px;
 	cursor: pointer;
 	height: 100%;
+  font-size: 14px;
+}
+
+.search-submit:hover {
+  transition: 200ms ease-in-out;
+	color: lightgray;
 }
 
 .dropdown-text {
@@ -376,6 +390,12 @@ input {
 	border-bottom-left-radius: 5px;
 	cursor: pointer;
 	height: 100%;
+  font-size: 14px;
+}
+
+.dropdown-text:hover {
+  transition: 200ms ease-in-out;
+	color: lightgray;
 }
 
 .seller-settings-wrapper,
