@@ -57,6 +57,22 @@ export const updatePostalCode_Action = (cardPostalCode) => ({
     cardPostalCode
 }); 
 
+
+export const updateBioDescription_Action = (bioDescription) => ({
+    type: 'USER_UPDATE_BIODESCRIPTION', 
+    bioDescription
+}); 
+
+export const updateLocation_Action = (location) => ({
+    type: 'USER_UPDATE_LOCATION', 
+    location
+}); 
+
+export const updateSocialMedia_Action = (socialMedia) => ({
+    type: 'USER_UPDATE_SOCIALMEDIA', 
+    socialMedia
+}); 
+
 export const updateAccount = () => {
     return (dispatch, getState) => {
 
@@ -87,4 +103,18 @@ export const updateAccount = () => {
                 console.log(err);
             });
     };
+}
+
+export const updateProfile = () => {
+    return (dispatch, getState) => {
+        const sellerData2 = {
+            bioDescription: getState().sellerSettingsReducer.bioDescription, 
+            location: getState().sellerSettingsReducer.location, 
+            socialMedia: getState().sellerSettingsReducer.socialMedia
+        }; 
+        console.log(sellerData2); 
+
+    };
+
+
 }

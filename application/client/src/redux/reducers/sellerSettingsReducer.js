@@ -11,6 +11,9 @@ const INITIAL_SELLER_SETTINGS_STATE = {
    cardExpirationDate: '', 
    cardCVV: '', 
    cardPostalCode: '', 
+   bioDescription: '', 
+   location: '', 
+   socialMedia: '', 
 };
 
 const sellerSettingsReducer = (state = INITIAL_SELLER_SETTINGS_STATE, action) => {
@@ -87,6 +90,24 @@ const sellerSettingsReducer = (state = INITIAL_SELLER_SETTINGS_STATE, action) =>
             return {
                 ...state,
                 cardPostalCode: action.cardPostalCode
+            };
+        
+        case 'USER_UPDATE_BIODESCRIPTION':
+            return {
+                ...state,
+                bioDescription: action.bioDescription
+            };
+        
+        case 'USER_UPDATE_LOCATION':
+            return {
+                ...state,
+                location: action.location
+            };
+        
+        case 'USER_UPDATE_SOCIALMEDIA':
+            return {
+                ...state,
+                socialMedia: action.socialMedia
             };
             
         
