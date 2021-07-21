@@ -1,7 +1,7 @@
 const path = require('path');
 
 // For some reason this only works when in /server directory
-//require('dotenv').config({ path: '../.env' });
+// require('dotenv').config({ path: '../.env' });
 
 // Works while in /application; keep this for deployment
 require('dotenv').config();
@@ -12,12 +12,11 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const WebSocket = require('ws')
-const server = new WebSocket.Server({port: '8080'}) //testing for socket.io
 
 const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
 const app = express();
+const SocketManager = require('./SocketManager')
 
 //socket.io message integration
 server.on('connection', socket =>{
@@ -47,6 +46,12 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '-' + file.originalname)
     }
 });
+// This is for socket.io manager to listen for messages
+io.on('connection', SocketManager)
+
+app.listen(PORT, ()=>{
+	console.log("Connected to port:" + PORT);
+})
 
 // Allow Node to server files from built from React app 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
