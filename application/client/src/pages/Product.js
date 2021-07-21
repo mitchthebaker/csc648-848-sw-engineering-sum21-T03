@@ -3,7 +3,9 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer';
+import { FaShoppingCart } from 'react-icons/fa';
 import { connect, useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import {
   setProduct
 } from '../redux/actions/productActions';
@@ -47,7 +49,8 @@ const Product = (props) => {
                             <h5> Price: $<span> {props.product.price} </span> </h5>
                             <h5> Seller: <span> {props.product.creator} </span> </h5>
                             <div className="purchase-product-wrapper">
-                              <button className="purchase-product-button"> Purchase </button>
+                              {/* <button className="purchase-product-button"> Purchase </button> */}
+                              <Button variant="contained" color="primary">Purchase &nbsp; <FaShoppingCart /></Button>
                             </div>
                         </div>
                     </div>
