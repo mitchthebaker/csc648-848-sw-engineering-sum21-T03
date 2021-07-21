@@ -6,6 +6,7 @@ import {Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer'
 import Search from '../components/Modules/Search';
+import LandingPage from '../components/LandingPage/LandingPage';
 import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
@@ -39,21 +40,15 @@ const theme = createMuiTheme({
   
   const styles = makeStyles({
     wrapper: {
-      width: "50%",
-      margin: "auto",
+      width: "70%",
+      margin: "0px 20px 10px 170px",
       textAlign: "center"
     },
     bigSpace: {
-      marginTop: "2.0rem"
+      marginTop: "0.0rem"
     },
     littleSpace:{
       marginTop: "2.0rem",
-    },
-    grid:{
-      display: "flex", 
-      justifyContent: "center",
-      alignItems: "center",
-      flexWrap: "wrap", 
     },
   })
 
@@ -111,7 +106,13 @@ const Home = (props) => {
     </Typography>
     </div>
 
-    <div className="searchable-product-list">
+    <div className="mainpage-wrapper">
+      <ul style={{listStyleType: 'none'}} >
+      <li> <LandingPage /> </li>
+      
+      <li>
+      <div className="searchable-product-list">
+   
     {filteredProducts.map((product) => (
     <li className="product-li" key={product.product_id}> 
       <Link style={{ textDecoration: 'none' }} className="product-wrapper" to={`/product/${product.product_id}`}>
@@ -134,20 +135,37 @@ const Home = (props) => {
     </li>
     ))}
     </div>
+    </li>
+    </ul>
+    </div>
+    
 
-    {/* homepage grid layout     
-    <div className={`${classes.grid} ${classes.bigSpace}`}>
-    <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
-    <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
-    <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}  link="/profile" btnTitle="Buy"/>
-    </div>
-    <div className={`${classes.grid} ${classes.bigSpace}`}>  
-    <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Payment"/>
-    <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Shipping"/>
-    <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
-    </div>
-    <div className={classes.bigSpace}>
-    </div>*/}
+
+     {/* <div className="searchable-product-list">
+   
+    {filteredProducts.map((product) => (
+    <li className="product-li" key={product.product_id}> 
+      <Link style={{ textDecoration: 'none' }} className="product-wrapper" to={`/product/${product.product_id}`}>
+        <img  
+          src={`/uploads/${product.image}`}
+          className="product-image"
+          alt="Failed to load."
+        />
+        <div className="product-title-creator">
+          <h3 className="product-title"> { product.title }  </h3>
+          <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
+        </div>
+        <div className="product-price-rating-purchases">
+          <div className="price-rating-purchases">
+            <h5 className="product-price"> $ <span> { product.price } </span> </h5>
+            <h5> Purchases: <span> 5 </span> </h5>
+          </div>
+        </div>
+      </Link>
+    </li>
+    ))}
+    </div> */}
+
     <Footer/>
     </ThemeProvider>
     );
