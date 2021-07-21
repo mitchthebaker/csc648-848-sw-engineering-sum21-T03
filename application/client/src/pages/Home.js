@@ -109,11 +109,11 @@ const Home = (props) => {
     </div>
 
     <div className="mainpage-wrapper">
-      <ul style={{listStyleType: 'none'}} >
-      <li> <LandingPage /> </li>
+
+    <LandingPage /> 
       
-      <li>
-      <div className="searchable-product-list">
+
+    <div className="searchable-product-list">
    
     {filteredProducts.map((product) => (
     <li className="product-li" key={product.product_id}> 
@@ -137,8 +137,6 @@ const Home = (props) => {
     </li>
     ))}
     </div>
-    </li>
-    </ul>
     </div>
     
 
