@@ -27,6 +27,7 @@ const NavigationIcons = (props) => {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
+                <NavLink className="nav-link" to="/messages"> Messages </NavLink>
                 <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
@@ -39,6 +40,7 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                <NavLink className="nav-link" to="/messages"> Messages </NavLink>
                 <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
             </div>
@@ -50,6 +52,7 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                <NavLink className="nav-link" to="/messages"> Messages </NavLink>
                 <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
             </div>
