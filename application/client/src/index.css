@@ -864,3 +864,19 @@ main {
   align-items: center;
   height:100vh;  
 }
+
+/* Message Popup Styles */
+.message-popup {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--tile-size) * 10);
+  height: calc(var(--tile-size) * 10);
+  background-color: rgba(255, 255, 255, 0.445);
+  text-align: center;
+}
+
+.message-popup.hidden {
+  display: none;
+}

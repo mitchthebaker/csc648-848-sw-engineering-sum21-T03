@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer'
+import MessagePopup from '../components/MessagePopup'
 
 const Profile = () => {
 
@@ -24,7 +25,7 @@ const Profile = () => {
                 </header>
                 */
             }
-
+            <MessagePopup />
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
                     <p>Firstname Lastname</p>
