@@ -43,7 +43,7 @@ export default class LoginForm extends Component {
 				<form onSubmit={this.handleSubmit} className="login-form" >
 
 					<label htmlFor="nickname">
-						<h2>Use an Alias?</h2>
+						<h2>What is your username?</h2>
 					</label>
 					<input
 						ref={(input)=>{ this.textInput = input }} 
