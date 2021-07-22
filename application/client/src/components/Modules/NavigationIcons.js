@@ -12,13 +12,22 @@ const NavigationIcons = (props) => {
         console.log(visibility);
     };
 
-    if(props.page === 'Home') {
+    if(props.page === 'Home' || props.page === 'Login' || props.page === 'Register' || props.page === 'About' || props.page === 'Contact') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
-                <Menu handleMouseClick={handleMouseClick} visibility={visibility}/>
+            </div>
+        );
+    }
+
+    if(props.page === 'Baker' || props.page === 'Chuson' || props.page === 'Eusebio' || props.page === 'Krina' || props.page === 'Rowena' || props.page === 'Schroeder' || props.page === 'Walker') {
+        return (
+            <div className="navigation-icons">
+                <NavLink className="nav-link" to="/"> Home </NavLink>
+                <NavLink className="nav-link" to="/about"> About </NavLink>
+                <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
             </div>
         );
     }
@@ -27,7 +36,7 @@ const NavigationIcons = (props) => {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
-                <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
             </div>
@@ -39,7 +48,7 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
             </div>
         );
@@ -50,7 +59,7 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
             </div>
         );

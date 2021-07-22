@@ -11,7 +11,7 @@ function Footer() {
         <BottomNavigation className="footer-nav">
           <div className="footer-navlinks">
             <NavLink className="footer-nav-link" to="/about"> About </NavLink>
-            <NavLink className="footer-nav-link" to="/about"> Contact </NavLink>
+            <NavLink className="footer-nav-link" to="/contact"> Contact </NavLink>
           </div>
           <div className="footer-social">
             <BottomNavigationAction color="red" label="Facebook" value="recents" icon={<FacebookIcon  style={{fill: "#3b5998"}}/>} />

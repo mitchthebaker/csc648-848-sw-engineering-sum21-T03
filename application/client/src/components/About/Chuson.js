@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import NavBar from '../Modules/NavBar';
+import Footer from '../Modules/Footer';
 
 const Chuson = () => {
     return (
         <div className="team-member">
+            <NavBar page={"Chuson"}/>
             <section className="navigation">
                 <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
@@ -17,6 +20,7 @@ const Chuson = () => {
                 alt="Failed to load."
             />
             <p> Hi my name is Kenneth, I am interested in competitive programming and doing graphics design such as animation and abstract art.</p>
+            <Footer/>
         </div>
     );
 };

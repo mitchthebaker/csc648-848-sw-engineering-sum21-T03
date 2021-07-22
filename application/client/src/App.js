@@ -1,5 +1,6 @@
 import Home from './pages/Home';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import Profile from './pages/Profile';
 import SellerSettings from './pages/SellerSettings';
 import BuyerSettings from './pages/BuyersSettings'; 
@@ -28,6 +29,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
         <Route path="/profile" component={Profile} />
         <Route path="/seller-settings" component={SellerSettings} />
         <Route path="/buyer-settings" component={BuyerSettings} />

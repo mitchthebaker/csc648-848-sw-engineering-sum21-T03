@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Icon from '@ant-design/icons';
 import { Card } from 'antd';
 import CheckBox from './Sections/CheckBox';
 import RadioBox1 from './Sections/RadioBox1';
@@ -75,7 +74,7 @@ function LandingPage() {
     }
 
     return (
-        <div class = "landingpage">
+        <div className = "landingpage">
         <ul style={{listStyleType: 'none'}}>         
                    <li> <CheckBox list={location}
                         handleFilters={filters => handleFilters(filters, "location")} /> <br></br> </li>

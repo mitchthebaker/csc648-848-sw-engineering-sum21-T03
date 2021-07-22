@@ -13,7 +13,8 @@ import {
     createUser,
     setDriversLicense
 } from '../redux/actions/registerActions';
-import HamburgerMenu from '../components/Modules/HamburgerMenu';
+import NavBar from '../components/Modules/NavBar';
+import Footer from '../components/Modules/Footer';
 
 
 const Register = (props) => {
@@ -44,44 +45,73 @@ const Register = (props) => {
        
         return (
            
-            <div className="settings-wrapper">
-                {/* <NavLink className="nav-link" to="/"> Home </NavLink>
-                <NavLink className="nav-link" to="/about"> About </NavLink>
-                <NavLink className="nav-link" to="/profile"> Profile </NavLink> */}
-                <HamburgerMenu />
-                <h1 className="SignUp-Title">Register</h1>  
+            <div className="register-wrapper">
+                <NavBar page={"Register"} />
+                
    
-                <div className="container-Sign_Up">
-                    <p>First Name</p>
-                    <input tyep="text" placeholder="First name" autoComplete="First Name" value={registerFirstname} onChange={(e) => dispatch(setFirstname(e.target.value))} required/>
-
-                    <p>Last Name</p>
-                    <input tyep="text" placeholder="Last name" autoComplete="Last Name" value={registerLastname} onChange={(e) => dispatch(setLastname(e.target.value))} required/>
-
-                    <p>Email</p>
-                    <input tyep="text" placeholder="Email Address" autoComplete="Email" value={registerEmail} onChange={(e) => dispatch(setEmail(e.target.value))} required/>
-
-                    <p>Username</p>
-                    <input type="text" placeholder="Username" autoComplete="username" value={registerUsername} onChange={(e) => dispatch(setUsername(e.target.value))} required/>
-                   
-                    <p>Password</p>
-                    <input type="password" autoComplete="new-password" placeholder="Password" value={registerPassword} onChange={(e) => dispatch(setPassword(e.target.value))} required/>
-                   
-                    <p>Confirm Password</p>
-                    <input type="password" autoComplete="new-password" placeholder="Confirm Password" value={registerConfirmPassword} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required/>
-
+                <div className="container-signup">
+                    <h1 className="SignUp-Title">Register</h1>  
+                    <label className="label-register">
+                        <div className="register-buyer-seller">
+                            <label>
+                                <input type="radio" id="buyer-input"/>
+                                <span id="checkmark-buyer" className="checkmark"></span>
+                                <span className="radio-description"> Buyer </span>
+                            </label>
+                            <label>
+                                <input type="radio" id="seller-input"/>
+                                <span id="checkmark-seller" className="checkmark"></span>
+                                <span className="radio-description"> Seller </span>
+                            </label>
+                            <label>
+                                <input type="radio" id="both-input"/>
+                                <span id="checkmark-both" className="checkmark"></span>
+                                <span className="radio-description"> Both </span>
+                            </label>
+                        </div>
+                        <div className="register-wrapper-first-last">
+                            <div>
+                                <p>First Name</p>
+                                <input className="register-firstname" tyep="text" placeholder="First name" autoComplete="First Name" value={registerFirstname} onChange={(e) => dispatch(setFirstname(e.target.value))} required/>
+                            </div>
+                            <div>
+                                <p>Last Name</p>
+                                <input className="register-lastname" tyep="text" placeholder="Last name" autoComplete="Last Name" value={registerLastname} onChange={(e) => dispatch(setLastname(e.target.value))} required/>
+                            </div>
+                        </div>
+                        <div className="register-wrapper-email">
+                            <p>Email</p>
+                            <input className="register-email" tyep="text" placeholder="Email Address" autoComplete="Email" value={registerEmail} onChange={(e) => dispatch(setEmail(e.target.value))} required/>
+                        </div>
+                        <div className="register-wrapper-username">
+                            <p>Username</p>
+                            <input className="register-username" type="text" placeholder="Username" autoComplete="username" value={registerUsername} onChange={(e) => dispatch(setUsername(e.target.value))} required/>
+                        </div>
+                        <div className="register-wrapper-password">
+                            <p>Password</p>
+                            <input className="register-password" type="password" autoComplete="new-password" placeholder="Password" value={registerPassword} onChange={(e) => dispatch(setPassword(e.target.value))} required/>
+                        </div>
+                        <div className="register-wrapper-confPassword">
+                            <p>Confirm Password</p>
+                            <input className="register-confPassword" type="password" autoComplete="new-password" placeholder="Confirm Password" value={registerConfirmPassword} onChange={(e) => dispatch(setConfirmPassword(e.target.value))} required/>
+                        </div>
+                        <div className="dl-wrapper">
+                            <p>Only enter if signing up as a Seller</p>
+                            <input className="register-dl" type="text" autoComplete="DL#" placeholder="Driver's License ID" value={registerDriversLicense} onChange={(e) => dispatch(setDriversLicense(e.target.value))}/>
+                        </div>
+                    </label>
 
                     <p> <b>Terms of Services and Privacy Agreement</b></p>
                     <TOS/>
-                    <input type="checkbox" id="Terms of Services" name="terms" value={termsOfServices} onChange={(e) => dispatch(setTOS(e.target.value))} required />
 
-                    <p>Only enter if signing up as a Seller</p>
-
-                    <p>Drivers License</p>
-                    <input type="text" autoComplete="DL#" placeholder="Drivers License" value={registerDriversLicense} onChange={(e) => dispatch(setDriversLicense(e.target.value))} required/>
+                    <div className="tos-checkbox">
+                        <span className="tos-checkbox-text"> By checking the box, you agree to Dropsell's Terms of Services and Privacy Agreement. </span> <input type="checkbox" id="Terms of Services" value={termsOfServices} onChange={(e) => dispatch(setTOS(e.target.value))} required />
+                    </div>
                    
-                    <button className="Submit-SignUp" onClick={submitHandler}> Register </button>
+                    <button className="submit-signup" onClick={submitHandler}> Register </button>
                 </div>
+
+                <Footer/>
             </div>
         );
     }

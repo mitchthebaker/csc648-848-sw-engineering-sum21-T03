@@ -34,6 +34,7 @@ const Search = (props) => {
 
     const history = useHistory();
     const onSubmit = (e) => {
+        console.log(e);
         history.push(`?s=${props.searchQuery}`);
         e.preventDefault();
     };  
@@ -84,7 +85,7 @@ const Search = (props) => {
                         autoComplete="off"
                         name="s" 
                     />
-                    <span className="search-submit" type="submit"> Search </span>
+                    <button className="search-submit" type="submit"> Search </button>
                 </div>
                 {categoriesMenu == false ? 
                   <ul className="categories">
