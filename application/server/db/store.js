@@ -22,7 +22,7 @@ async function getAllUsers() {
 
 async function getAllProducts() {
   const result = await pool.query(
-    "SELECT product_id, title AS title, description AS description, price AS price, image AS image FROM products"
+    "SELECT product_id, seller_id AS seller_id, title AS title, description AS description, price AS price, image AS image FROM products"
   );
   return result[0].length < 1 ? {} : result[0];
 }
@@ -48,7 +48,7 @@ async function getUserById(id) {
 
 async function getProductById(id) {
   const result = await pool.query(
-    "SELECT product_id, title AS title FROM products WHERE product_id = ?",
+    "SELECT product_id, seller_id AS seller_id, title AS title, description AS description, price AS price, image AS image FROM products WHERE product_id = ?",
     [id]
   );
   if(result[0].length < 1) {
@@ -125,13 +125,15 @@ async function deleteUserById(id) {
   return "";
 }
 
-async function updateUser(id, user) {
+async function updateUser(firstName, lastName, id) {
+
   const result = await pool.query(
-    "UPDATE users SET first_name = ?, last_name = ?, age = ? WHERE id = ?",
-    [user.firstName, user.lastName, user.age, id]
+    "UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?",
+    [firstName, lastName, id]
   );
+
   if (result[0].affectedRows < 1) {
-    throw new Error(`User with id ${id} does not exist`);
+    throw new Error(`Was not able to update user with first name: ${firstName} and last name: ${lastName}`);
   }
   return getUserById(id);
 }
@@ -144,6 +146,7 @@ module.exports = {
   loginUser,
   uploadProduct,
   getUserById,
+  getProductById,
   deleteUserById,
   updateUser,
 };

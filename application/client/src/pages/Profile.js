@@ -1,31 +1,36 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ProductCreationForm from '../components/ProductCreationForm';
-import Logo from './../components/Modules/Logo';
+import NavBar from '../components/Modules/NavBar';
+import Footer from '../components/Modules/Footer'
 
 const Profile = () => {
 
     return (
         <div className="profile-wrapper">
-            <header className="App-header">
-                <Logo/>
-                <h1>Profile</h1>
-                <img className="Profile-Image" src="//:0" alt="Profile"/>
-                <div className="App-header-Right">
-                    <NavLink className="nav-link" to="/about"> About </NavLink>
-                    <NavLink className="nav-link" to="/settings"> Settings </NavLink>
-                    <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
-                </div>
-            </header>
+            <NavBar page={"Profile"}/>  
+            {
+                /*
+                <header className="App-header">
+                    <HamburgerMenu />
+                    <h1>Profile</h1>
+                    <img className="Profile-Image" src="//:0" alt="Profile"/>
+                    <div className="App-header-Right">
+                        <NavLink className="nav-link" to="/about"> About </NavLink>
+                        <NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>
+                        <NavLink className="nav-link" to="/seller-settings">Seller Settings</NavLink>
+                        <NavLink className="nav-link" to="/buyer-settings">Buyer Settings</NavLink>
 
-            <ProductCreationForm/>
+                    </div>
+                </header>
+                */
+            }
 
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>FirstName LastName</p>
+                    <p>Firstname Lastname</p>
                 </div>
                 <div className="Information-ProfilePage">
-                    <p>Infromation</p>
+                    <p>Information</p>
                 </div>
                 <div className="Section-ProfilePage">
                     <p>Section</p>
@@ -37,6 +42,7 @@ const Profile = () => {
                     <p>Top Recommendations</p>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import NavBar from '../Modules/NavBar';
+import Footer from '../Modules/Footer';
 
 const Walker = () => {
     return (
         <div className="team-member">
+            <NavBar page={"Walker"}/>
             <section className="navigation">
                 <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
@@ -22,7 +25,7 @@ const Walker = () => {
             <br></br> When I am not working on school work I love spending time with my family, 
             <br></br> playing video games, or painting models. 
              </p>
-
+            <Footer/>
         </div>
     );
 };

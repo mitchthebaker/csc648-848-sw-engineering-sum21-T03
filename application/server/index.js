@@ -1,18 +1,35 @@
 const path = require('path');
+
+// For some reason this only works when in /server directory
+//require('dotenv').config({ path: '../.env' });
+
+// Works while in /application; keep this for deployment
+require('dotenv').config();
+
 const express = require('express');
+const session = require('express-session');
+const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+
+const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
-require('dotenv').config({ path: '../.env' });
-console.log(process.env.WEB_PORT);
-const WEB_PORT = process.env.WEB_PORT || 3001;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 app.use(cors());
+app.use(session({
+    genid: function(req) {
+        return uuidv4();
+    },
+    secret: 'zN9be284FzycJNvgtM5LWLoda9dauCDznqFQR6hY',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
+}));
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../client/public/', 'uploads'),
@@ -47,32 +64,38 @@ app
             .then(user => res.status(200).send(user))
             .catch(error => res.status(404).send({ error: error.message }));
     })
-    .delete((req, res) => {
+    .delete('/api/users/:id', (req, res) => {
         store
             .deleteUserById(req.params.id)
             .then(result => res.status(204).send())
             .catch(error => res.status(400).send({ error: error.message }));
     })
-    .put((req, res) => {
-        let userId = parseInt(req.params.id);
-        const { firstName, lastName, age } = req.body;
-        const ageInt = parseInt(age);
+    .put('/api/users/:id', (req, res, next) => {
+        const { firstName, lastName} = req.body;
+        console.log(req.params.id);
         
-        if (firstName && lastName && ageInt) {
-            store
-                .updateUser(userId, {
-                  firstName: firstName,
-                  lastName: lastName,
-                  age: ageInt
-                })
-                .then(result => res.status(200).send(result))
-                .catch(error => res.status(404).send({ error: error.message }));
-        } 
+        
+        if(firstName && lastName) {
+            console.log('first: ' + firstName + ' last: ' + lastName);
+            next();
+        }
         else {
             res.status(400).send({
-              error: "The payload is wrong!"
-            });
+                error: "Incorrect data sent for updating user credentials"
+            })
         }
+    },
+    (req, res) => {
+        store
+            .updateUser(req.body.firstName, req.body.lastName, req.params.id)
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.status(201).send(updatedUser);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to update user credentials" });
+            });
     });
 
 app.post('/api/register', (req, res, next) => {
@@ -119,6 +142,9 @@ app.post('/api/login', (req, res, next) => {
         .loginUser(req.body.username, req.body.password)
         .then((loggedInUser) => {
             console.log(loggedInUser);
+            req.session.username = loggedInUser.username;
+            req.session.user_id = loggedInUser.user_id;
+            console.log(req.session);   
             res.status(201).send(loggedInUser);
         })
         .catch(error => {
@@ -197,7 +223,88 @@ app.get('/api/product-categories', async (req, res, next) => {
 });
 
 app.get('/api/products', (req, res, next) => {
-    store.getAllProducts().then(products => res.status(200).send(products));
+
+    let expandedProducts = [];
+    let count = 0;
+
+    store.getAllProducts().then((products) => {
+        console.log(products.length);
+        products.forEach((product) => {
+
+            store.getUserById(product.seller_id).then((user) => {
+                let newProduct = {};
+                newProduct.product_id = product.product_id;
+                newProduct.seller_id = product.seller_id;
+                newProduct.title = product.title;
+                newProduct.description = product.description;
+                newProduct.price = product.price;
+                newProduct.image = product.image;
+                newProduct.creator = user.username;
+                expandedProducts.push(newProduct);
+                count++;
+                console.log(count);
+
+                if(count === products.length)
+                    res.status(200).send(expandedProducts);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to get user by id when loading all products"});
+            });
+        });
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({ error: "Unable to load products successfully"});
+    });
+});
+
+app.get('/api/products/:id', (req, res, next) => {
+
+    console.log(req.params.id);
+        
+    if(req.params.id) {
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "No product ID specified"
+        })
+    }
+},
+(req, res) => {
+
+    let newProduct = {};
+
+    store
+        .getProductById(req.params.id)
+        .then((product) => {
+            console.log(product);
+            
+            store
+                .getUserById(product.seller_id).then((user) => {
+                    
+                    newProduct.product_id = product.product_id;
+                    newProduct.seller_id = product.seller_id;
+                    newProduct.title = product.title;
+                    newProduct.description = product.description;
+                    newProduct.price = product.price;
+                    newProduct.image = product.image;
+                    newProduct.creator = user.username;
+
+                    console.log(newProduct);
+                    
+                    res.status(200).send(newProduct);
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to get user by id when getting a product"});
+                });
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ error: "Unable to get product from database" });
+        });
 });
 
 app.get('/api/users', (req, res, next) => {
@@ -212,9 +319,9 @@ app.get('/api', (req, res) => {
 
 // Any other GET requests which are not handled will return to React app 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-})
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
-app.listen(WEB_PORT, () => {
-    console.log(`Server listening on ${WEB_PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
 });

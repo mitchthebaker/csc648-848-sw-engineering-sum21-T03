@@ -1,12 +1,13 @@
 import React from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
-import Logo from './../components/Modules/Logo';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {
     setUsername,
     setPassword,
     loginUser
 } from '../redux/actions/loginActions';
+import NavBar from '../components/Modules/NavBar';
+import Footer from '../components/Modules/Footer';
 
 const Login = (props) => {
 
@@ -26,24 +27,26 @@ const Login = (props) => {
     }
     else {
         return (
-            <div className="settings-wrapper">
-                <Logo />
-                <h2 className="Login-Title">Login / Sign up</h2>  
+            <div className="login-wrapper">
+                <NavBar page={"Login"}/>
+                 
                 
                 <div className="container-login">
-                        <label className="label-login">
-                            <p>UserName</p>
-                            <input type="text" placeholder="Username" value={loginUsername} onChange={(e) => dispatch(setUsername(e.target.value))} required/>
-                            <p>Password</p>
-                            <input type="password"  placeholder="Password" value={loginPassword} onChange={(e) => dispatch(setPassword(e.target.value))} required/>
-                            <button onClick={loginHandler}>Log In</button> 
-                        </label>
+                    <h2 className="Login-Title"> Login </h2> 
+                    <label className="label-login">
+                        <p>UserName</p>
+                        <input className="user-login" type="text" placeholder="Username" value={loginUsername} onChange={(e) => dispatch(setUsername(e.target.value))} required/>
+                        <p>Password</p>
+                        <input className="user-password" type="password"  placeholder="Password" value={loginPassword} onChange={(e) => dispatch(setPassword(e.target.value))} required/>
+                    </label>
+                    <button className="submit-login" onClick={loginHandler}>Log In</button> 
                 </div> 
-                <div className="Sign-Up-LoginContainer">
+                <div className="signup-login-container">
                     <p>Don't Have an Account? Sign Up Now!  
-                    <NavLink className="nav-link" to="/register"> <button>  Sign Up </button> </NavLink> 
+                    <NavLink to="/register"> <button className="submit-signup" >  Sign Up </button> </NavLink> 
                    </p>
                 </div>
+                <Footer/>
             </div>
         );
     }

@@ -34,6 +34,7 @@ const Search = (props) => {
 
     const history = useHistory();
     const onSubmit = (e) => {
+        console.log(e);
         history.push(`?s=${props.searchQuery}`);
         e.preventDefault();
     };  
@@ -43,6 +44,17 @@ const Search = (props) => {
 
     const toggleCategories = () => {
       toggleCategoriesMenu(!categoriesMenu)
+    };
+
+    const viewAllProducts = () => {
+      axios.get('/api/products')
+        .then((res) => {
+            dispatch(getProducts(res.data));
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     };
 
     const clickCategory = (text) => () => {
@@ -61,8 +73,8 @@ const Search = (props) => {
     return(
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
-                <div>
-                    <button className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </button>
+                <div className="searchbar-wrapper">
+                    <span className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </span>
                     <input
                         className="search-input"
                         value={props.searchQuery}
@@ -73,17 +85,18 @@ const Search = (props) => {
                         autoComplete="off"
                         name="s" 
                     />
-                    <button className="search-submit" type="submit">Search</button>
+                    <button className="search-submit" type="submit"> Search </button>
                 </div>
                 {categoriesMenu == false ? 
-                    <ul className="categories">
-                        {categoryItems.map((item, index) => (
-                    <li key={index} onClick={clickCategory(item.name)}> 
+                  <ul className="categories">
+                      <li onClick={viewAllProducts}> View all products </li>
+                    {categoryItems.map((item, index) => (
+                      <li key={index} onClick={clickCategory(item.name)}> 
                         { item.name }
-                    </li>
+                      </li>
                     ))}
-                    </ul> 
-                    : null}
+                  </ul> 
+                : null}
             </div>
         </form>
     );

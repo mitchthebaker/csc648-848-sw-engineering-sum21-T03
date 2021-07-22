@@ -2,7 +2,8 @@ const INITIAL_REGISTER_STATE = {
     username: '',
     password: '',
     confirmPassword: '',
-    registered: false
+    registered: false,
+    termsOfServices: false,
 };
 
 const registerReducer = (state = INITIAL_REGISTER_STATE, action) => {
@@ -31,6 +32,12 @@ const registerReducer = (state = INITIAL_REGISTER_STATE, action) => {
                 ...state,
                 registered: action.registered,
             };
+
+        case 'USER_SET_TOS':
+            return {
+                ...state,
+                termsOfServices: action.TOS,
+            }
         
         default:
             return state;

@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import NavBar from '../Modules/NavBar';
+import Footer from '../Modules/Footer';
 
 const Baker = () => {
     return (
         <div className="team-member">
+            <NavBar page={"Baker"}/>
             <section className="navigation">
                 <div className="navigation-links">
                     <NavLink className="nav-link" to="/"> Home </NavLink>
@@ -17,6 +20,7 @@ const Baker = () => {
                 alt="Failed to load."
             />
             <p> Hey! My name's Mitchel. When not programming, I enjoy surfing, climbing, and hiking to experience the outdoors. </p>
+            <Footer/>
         </div>
     );
 };

@@ -27,6 +27,7 @@ export const loginUser = () => {
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
+                    dispatch(setUserId(res.data.user_id));
                     dispatch(redirectUserAfterLogin(true));
                 }
             })
@@ -39,4 +40,9 @@ export const loginUser = () => {
 export const redirectUserAfterLogin = (loggedIn) => ({
     type: "USER_IS_LOGGEDIN",
     loggedIn
+});
+
+export const setUserId = (user_id) => ({
+    type: "USER_SET_ID",
+    user_id
 });

@@ -1,19 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import NavBar from '../components/Modules/NavBar';
-import Grid from '../components/Modules/Grid';
 import Footer from '../components/Modules/Footer'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import GavelIcon from '@material-ui/icons/Gavel';
-import Profile from './Profile';
 import Search from '../components/Modules/Search';
+import LandingPage from '../components/LandingPage/LandingPage';
 import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
@@ -49,106 +42,101 @@ const theme = createMuiTheme({
     wrapper: {
       width: "50%",
       margin: "auto",
-      textAlign: "center"
+      textAlign: "center",
+      marginTop: "50px",
+      marginBottom: "50px"
     },
     bigSpace: {
-      marginTop: "2.0rem"
+      marginTop: "0.0rem"
     },
     littleSpace:{
       marginTop: "2.0rem",
-    },
-    grid:{
-      display: "flex", 
-      justifyContent: "center",
-      alignItems: "center",
-      flexWrap: "wrap", 
     },
   })
 
 
 const Home = (props) => {
 
-    const dispatch = useDispatch(); 
-    const classes = styles();
+  const dispatch = useDispatch(); 
+  const classes = styles();
 
-    useEffect(() => {
-        axios.get('/api/products')
-            .then((res) => {
-                dispatch(getProducts(res.data));
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+  useEffect(() => {
+      axios.get('/api/products')
+          .then((res) => {
+              dispatch(getProducts(res.data));
+              console.log(res);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  }, []);
 
-    const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
-    const [searchQuery, setSearchQuery] = useState(query || '');
-    
-    const filterProducts = (products, query) => {
-      if(!query) {
-        return products;
-      }
+  //search bar
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get('s');
+  const [searchQuery, setSearchQuery] = useState(query || '');
 
-      return products.filter((product) => {
-        const productTitle = product.title.toLowerCase();
-        return productTitle.includes(query);
-      });
-    };
+  //search bar filter
+  const filterProducts = (products, query) => {
+    if(!query) {
+      return products;
+    }
 
-    const filteredProducts = filterProducts(props.products, query);
+    return products.filter((product) => {
+      const productTitle = product.title.toLowerCase();
+      return productTitle.includes(query);
+    });
+  };
 
-    return (
+  const filteredProducts = filterProducts(props.products, query);
 
-      <ThemeProvider theme = {theme}>
-        <NavBar/>
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-        
-        <div className={classes.wrapper}>
-          <Typography variant="h5" className={classes.bigSpace} color="primary">
-             At Jose's Angels, we buy and sell products
-          </Typography>
-          <Typography variant="h7" className={classes.littleSpace} color="primary">
-            New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
-          </Typography>
-        </div>
+  return (
+    <ThemeProvider className="home-wrapper" theme = {theme}>
+      <NavBar page={"Home"}/>
 
-        <div className="searchable-product-list">
-          {filteredProducts.map((product) => (
-            <li className="product-wrapper" key={product.product_id}> 
-              <div className="product-title-price">
-                <h3> { product.title }  </h3>
-                <h5> { product.price } </h5>
-              </div>
-              <div className="product-desc-title">
-                <h5> { product.description } </h5>
-              </div>
+      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+      
+      <div className={classes.wrapper}>
+        <Typography variant="h5" className={classes.bigSpace} color="primary">
+          At Dropsell, we buy and sell products
+        </Typography>
+        <Typography variant="h7" className={classes.littleSpace} color="primary">
+          New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
+        </Typography>
+      </div>
 
-              <img  
+      <div className="mainpage-wrapper">
+        <LandingPage />
+
+        <ul className="searchable-product-list-ul" style={{listStyleType: 'none'}} >
+          <div className="searchable-product-list">
+            {filteredProducts.map((product) => (
+              <li className="product-li" key={product.product_id}> 
+                <Link style={{ textDecoration: 'none' }} className="product-wrapper" to={`/product/${product.product_id}`}>
+                  <img  
                     src={`/uploads/${product.image}`}
                     className="product-image"
                     alt="Failed to load."
-                />
-            </li>
-          ))}
-        </div>
-
-        <div className={`${classes.grid} ${classes.bigSpace}`}>
-          <Grid icon={<AccountCircleIcon style={{fill: "#4360A6", height:"70", width:"70"} }/>} link="/profile" btnTitle="Profile"  />
-          <Grid icon={<AddPhotoAlternateIcon style={{fill: "#449A76", height:"70", width:"70"}}/>} link="/profile" btnTitle="Post for Sell"/>
-          <Grid icon={<ImageSearchIcon style={{fill: "#D05B2D", height:"70", width:"70"}}/>}  link="/profile" btnTitle="Buy"/>
-        </div>
-        <div className={`${classes.grid} ${classes.bigSpace}`}>  
-          <Grid icon={<AccountBalanceIcon style={{fill: "#5EA770", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Payment"/>
-          <Grid icon={<LocalShippingIcon style={{fill: "#E69426", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Shipping"/>
-          <Grid icon={<GavelIcon style={{fill: "#2EA09D", height:"70", width:"70"}}/>} link="/profile"  btnTitle="Policy"/>
-        </div>
-        <div className={classes.bigSpace}>
-          <Footer/>
-        </div>
-      </ThemeProvider>
-    );
+                  />
+                  <div className="product-title-creator">
+                    <h3 className="product-title"> { product.title }  </h3>
+                    <h4 className="product-creator"> Created by <span> {product.creator} </span> </h4>
+                  </div>
+                  <div className="product-price-rating-purchases">
+                    <div className="price-rating-purchases">
+                      <h5 className="product-price"> $ <span> { product.price } </span> </h5>
+                      <h5> Purchases: <span> 5 </span> </h5>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </div>
+        </ul>
+      </div>
+      <Footer/>
+    </ThemeProvider>
+  );
 };
 
 function mapStateToProps(state) {
@@ -156,8 +144,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Home);
-
-/*
-<SearchBar 
-      />
-*/

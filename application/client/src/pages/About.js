@@ -1,20 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../components/Modules/Logo';
+import NavBar from '../components/Modules/NavBar';
+import Footer from '../components/Modules/Footer';
 
 const About = () => {
     return (
-        
         <div className="about-wrapper">
-            <section className="navigation">
-            <Logo />
-                <h1> About Us </h1>
-                {/* <div className="navigation-links">
-                    <NavLink className="nav-link" to="/"> Home </NavLink>
-                    <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                    <NavLink className="nav-link" to="/login"> Login </NavLink>
-                </div> */}
-            </section>
+            <NavBar page={"About"}/>
             
             <h2> Frontend </h2>
             <section className="frontend-links">
@@ -34,6 +26,7 @@ const About = () => {
             <section className="fullstack-links">
                 <NavLink className="about-navlink" to="/mbaker"> Mitchel Baker </NavLink>
             </section>
+            <Footer/>
         </div>
     );
 };
