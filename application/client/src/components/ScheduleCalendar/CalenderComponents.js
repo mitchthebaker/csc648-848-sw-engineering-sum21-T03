@@ -37,7 +37,7 @@ import { GiConsoleController } from 'react-icons/gi';
           }
         ],
 
-        currentDate: '2021-06-14',
+        currentDate: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
       };
       // startDate.split("/"); 12 32 2021
     
@@ -172,8 +172,8 @@ convertDate(dataAsString)
                     onCurrentDateChange={this.currentDateChange}
                     />
                     <WeekView
-                    startDayHour={9}
-                    endDayHour={19}
+                    startDayHour={6}
+                    endDayHour={24}
                     />
                     <Toolbar />
                     <DateNavigator />
