@@ -137,10 +137,17 @@ convertDate(dataAsString)
      // let scheduleData = { title: title, startDate: startDate, endDate: endDate, location: location };
       //let scheduleData = { title: title, location: location };
 
-
+      /*
       this.setState({
         data: [ scheduleData ] 
       });
+      */
+
+      this.setState(prevState => ({
+        data: [ ...prevState.data, scheduleData ] 
+      })); 
+
+
       event.preventDefault();
     }
 
