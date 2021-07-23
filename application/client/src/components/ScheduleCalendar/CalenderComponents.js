@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import { ViewState } from '@devexpress/dx-react-scheduler';
+import { v4 as uuidv4 } from 'uuid';
+
 //import CalendarLists from '../ScheduleCalendar/CalendarListsDisplay'; 
 import NavBar from '../Modules/NavBar';
 
@@ -28,13 +30,6 @@ import { GiConsoleController } from 'react-icons/gi';
   
       this.state = {
         data: [   
-          {
-            title: '',
-            startDate: null,
-            endDate: null,
-            id: 0,
-            location: '',
-          }
         ],
 
         currentDate: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
@@ -123,12 +118,12 @@ convertDate(dataAsString)
     }
 
     handleSubmit(event) {
-      event.id = new Date().getTime(); 
-     const {title, startDate, endDate, location } = this.state;
+    const id =uuidv4();
+    const {title, startDate, endDate, location } = this.state;
 
     const finalStartDate= this.convertDate(startDate);
     const finalEndDate= this.convertDate(endDate);
-     let scheduleData = { title: this.state.title, startDate: finalStartDate, endDate: finalEndDate, location: this.state.location };
+     let scheduleData = { title: this.state.title, startDate: finalStartDate, endDate: finalEndDate, location: this.state.location,id };
 
    //console.log(finalStartDate);
    //console.log(finalEndDate);
@@ -155,6 +150,7 @@ convertDate(dataAsString)
 
 
     deleteHandle(id) {
+      console.log(id);
         const updateData = this.state.data.filter((datas) => { return datas.id !== id})
        
         this.setState({
@@ -207,10 +203,13 @@ convertDate(dataAsString)
               <div className="listsMeetingNotes_container">
                 {/*<CalendarLists handleDelete={this.handleDelete} items={this.state.data}/>*/}
 
-                {this.state.data.map((datas) => <div className="listsMeetingNotes" key={datas.id}>
-                    <div className="itemMeetingNotes">{datas.title} <button className="listsMeetingsNotes_button" onClick={() => this.deleteHandle(datas.id)}>Delete</button></div>
-                    
+                {console.log(this.state.data)}
+                {this.state.data==null?<div></div>:
+          this.state.data.map((datas) => <div className="listsMeetingNotes" >
+                    <li key={datas.id} className="itemMeetingNotes">{datas.title} <button className="listsMeetingsNotes_button" onClick={() => this.deleteHandle(datas.id)}>Delete</button></li>
+                  
                 </div>)}
+    
               </div>
             </div>
         </div>

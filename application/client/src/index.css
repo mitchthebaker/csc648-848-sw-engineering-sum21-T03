@@ -1020,6 +1020,7 @@ main {
 	border-radius: 6px;
 	box-shadow: 0 4px 6px 0 hsl(0deg 0% 0% / 20%);
 	padding: 10px; 
+	margin: 10px; 
 }
 
 
