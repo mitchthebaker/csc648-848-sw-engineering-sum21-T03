@@ -32,7 +32,7 @@ import { GiConsoleController } from 'react-icons/gi';
             title: '',
             startDate: null,
             endDate: null,
-            id: new Date().getTime(),
+            id: 0,
             location: '',
           }
         ],
@@ -123,6 +123,7 @@ convertDate(dataAsString)
     }
 
     handleSubmit(event) {
+      event.id = new Date().getTime(); 
      const {title, startDate, endDate, location } = this.state;
 
     const finalStartDate= this.convertDate(startDate);
@@ -154,10 +155,10 @@ convertDate(dataAsString)
 
 
     deleteHandle(id) {
-        const updateData = [...this.state.data].filter((datas) => datas.id != id)
+        const updateData = this.state.data.filter((datas) => { return datas.id !== id})
        
         this.setState({
-          data: updateData
+          data: updateData 
         });
         
     }
@@ -203,12 +204,12 @@ convertDate(dataAsString)
                 <button className="sellerSettingsButtons" onClick={this.handleSubmit}>Submit</button>
               </div>
               <h3>Meeting Notes</h3>
-              <div>
+              <div className="listsMeetingNotes_container">
                 {/*<CalendarLists handleDelete={this.handleDelete} items={this.state.data}/>*/}
 
-                {this.state.data.map((datas) => <div key={datas.id}>
-                  <div>{datas.title}</div>
-                   <button onClick={() => this.deleteHandle(datas.id)}>Delete</button>
+                {this.state.data.map((datas) => <div className="listsMeetingNotes" key={datas.id}>
+                    <div className="itemMeetingNotes">{datas.title} <button className="listsMeetingsNotes_button" onClick={() => this.deleteHandle(datas.id)}>Delete</button></div>
+                    
                 </div>)}
               </div>
             </div>
