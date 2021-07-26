@@ -69,6 +69,12 @@ class Profile extends Component {
         <div className="buyerProfileSettings-wrapper">
             <h3>Profile</h3>
             <div className="buyerProfileSettings-firstContainer">
+                <div className="containerProfileAvatarSettings">
+                    <img className="ProfileAvatarSettings" src="https://i.redd.it/jgvvyif33u541.jpg"/>
+                    <div className="ProfileAvatarSettingsMiddle">
+                        <a href="url">Link</a>
+                    </div>
+                </div>
                 <input placeholder="Bio Description" className="buyerInput-Settings" type="text"/>
                 <input placeholder="Review" className="buyerInput-Settings" type="text"/>
                 <input placeholder="Social Media" className="buyerInput-Settings" type="text"/>
