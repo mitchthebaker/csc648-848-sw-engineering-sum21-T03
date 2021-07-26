@@ -25,6 +25,15 @@ const Profile = () => {
                 */
             }
 
+            <header className="Profile-header">
+                <div className="firstHeaderContainerProfile">
+
+                </div>
+                <div className="secondHeaderContainerProfile">
+                    <img className="ProfileAvatar" src="https://i.redd.it/jgvvyif33u541.jpg"/>
+                </div>
+            </header>
+
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
                     <p>Firstname Lastname</p>

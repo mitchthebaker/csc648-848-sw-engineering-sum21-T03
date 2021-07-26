@@ -1148,3 +1148,28 @@ main {
   .btn-scale-desc-1:hover {
 	background-color: #DE0000;
   }
+
+
+
+.Profile-header {
+	background-color: grey; 
+	width: 100%; 
+	height: 30%; 
+}
+
+.ProfileAvatar {
+	margin-top: 80px; 
+	width: 250px;
+	height: 250px;
+	margin-left: auto; 
+	margin-right: auto; 
+	border-radius: 50%;
+	border: 5px solid whitesmoke;
+	
+}
+
+.secondHeaderContainerProfile {
+	margin: auto;
+	width: 30%;
+	padding: 10px;
+}
