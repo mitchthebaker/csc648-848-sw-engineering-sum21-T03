@@ -11,7 +11,7 @@ const NavBar = (props) => {
     return (
         <div className="navbar">   
             <Hamburger className="hamburger-react" toggled={open} toggle={setOpen}/>
-            {open && <NavigationIcons page={props.page} />}
+            <NavigationIcons page={props.page} open={open} setOpen={setOpen} />
         </div>
     );
 };

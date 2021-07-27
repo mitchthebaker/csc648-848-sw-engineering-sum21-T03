@@ -7,8 +7,12 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { connect, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {
-  setProduct
+  setProduct,
+  addProductToCart,
 } from '../redux/actions/productActions';
+import {
+  setCartContents
+} from '../redux/actions/shoppingCartActions';
 
 const Product = (props) => {
 
@@ -24,7 +28,20 @@ const Product = (props) => {
             .catch((err) => {
                 console.log(err);
             });
+
+        axios.get(`/api/cart/${props.user_id}`)
+            .then((res) => {
+                dispatch(setCartContents(res.data));
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
+
+    const addProductHandler = () => {
+        dispatch(addProductToCart());
+    };
 
     return (
         <div>
@@ -50,7 +67,7 @@ const Product = (props) => {
                             <h5> Seller: <span> {props.product.creator} </span> </h5>
                             <div className="purchase-product-wrapper">
                               {/* <button className="purchase-product-button"> Purchase </button> */}
-                              <Button variant="contained" color="primary">Purchase &nbsp; <FaShoppingCart /></Button>
+                              <Button variant="contained" color="primary" onClick={addProductHandler}>Purchase &nbsp; <FaShoppingCart /></Button>
                             </div>
                         </div>
                     </div>
@@ -62,7 +79,10 @@ const Product = (props) => {
 };
 
 function mapStateToProps(state) {
-    return { product: state.productReducer.product };
+    return { 
+        product: state.productReducer.product,
+        user_id: state.loginReducer.user_id
+    };
   }
 
 export default connect(mapStateToProps)(Product);

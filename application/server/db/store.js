@@ -57,6 +57,32 @@ async function getProductById(id) {
   return result[0][0];
 }
 
+async function getShoppingCartById(id) {
+  const result = await pool.query(
+    "SELECT shopping_cart_id, buyer_id AS buyer_id, subtotal AS subtotal, products AS products FROM shopping_cart WHERE shopping_cart_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Shopping cart with id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
+async function getShoppingCartByUserId(id) {
+  const result = await pool.query(
+    "SELECT buyer_id, shopping_cart_id AS shopping_cart_id, subtotal AS subtotal, products AS products FROM shopping_cart WHERE buyer_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Shopping cart with buyer id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
 async function createUser(username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
@@ -74,6 +100,22 @@ async function createUser(username, password) {
     );
   }
   return getUserById(result[0].insertId);
+}
+
+async function createUserCart(id) {
+
+  const result = await pool.query(
+    "INSERT INTO shopping_cart SET buyer_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(
+      `Failed to create new shopping cart for user ${id}`
+    );
+  }
+
+  return getShoppingCartById(result[0].insertId);
 }
 
 async function loginUser(username, password) {
@@ -138,15 +180,33 @@ async function updateUser(firstName, lastName, id) {
   return getUserById(id);
 }
 
+async function updateCart(id, subtotal, products) {
+
+  const result = await pool.query(
+    "UPDATE shopping_cart SET subtotal = ?, products = ? WHERE shopping_cart_id = ?",
+    [subtotal, products, id]
+  );
+
+  if(result[0].affectedRows < 1) {
+    throw new Error(`Was not able to update shopping cart with id = ${id}`);
+  }
+
+  return getShoppingCartById(id);
+}
+
 module.exports = {
   getAllUsers,
   getAllProducts,
   getAllProductsWith,
   createUser,
+  createUserCart,
   loginUser,
   uploadProduct,
   getUserById,
   getProductById,
+  getShoppingCartById,
+  getShoppingCartByUserId,
   deleteUserById,
   updateUser,
+  updateCart,
 };

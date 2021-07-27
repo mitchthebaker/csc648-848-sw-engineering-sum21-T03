@@ -97,10 +97,10 @@ const Home = (props) => {
       <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       
       <div className={classes.wrapper}>
-        <Typography variant="h5" className={classes.bigSpace} color="primary">
+        <Typography className={classes.bigSpace} color="primary">
           At Dropsell, we buy and sell products
         </Typography>
-        <Typography variant="h7" className={classes.littleSpace} color="primary">
+        <Typography className={classes.littleSpace} color="primary">
           New kind of Marketplace bring people together for local as well as global sale of their stuff. Our Marketplace is on a mission to become the simplest, most trustworthy and fast buying and selling experience.
         </Typography>
       </div>
