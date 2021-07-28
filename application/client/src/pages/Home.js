@@ -11,6 +11,7 @@ import { connect, useDispatch } from 'react-redux';
 import {
   getProducts
 } from '../redux/actions/productActions';
+import Sider from 'antd/lib/layout/Sider';
 
 
 const theme = createMuiTheme({

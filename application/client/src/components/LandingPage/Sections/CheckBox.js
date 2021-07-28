@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Checkbox, Collapse } from 'antd';
+import Collapsible from 'react-collapsible';
 
 const { Panel } = Collapse
 
@@ -21,7 +22,6 @@ function CheckBox(props) {
 
         setChecked(newChecked)
         props.handleFilters(newChecked)
-        //update this checked information into Parent Component 
 
     }
 
@@ -34,19 +34,23 @@ function CheckBox(props) {
             />
             <span>{value.name}</span> 
             <br></br>
-            {/* &nbsp;&nbsp; */}
         </React.Fragment>
     ))
 
     return (
         <div style={{
-            display: 'block', width: 175, padding: 0
+            display: 'block', width: 175, padding: 0, fontFamily: 'roboto'
           }}>
-            <Collapse defaultActiveKey={['0']} >
-                <Panel header="Location" key="1">
-                    {renderCheckboxLists()}
-                </Panel>
-            </Collapse>
+        <Collapsible trigger = " > Location">
+
+              {renderCheckboxLists()}
+          
+
+        </Collapsible>
+
+
+
+
         </div>
     )
 }

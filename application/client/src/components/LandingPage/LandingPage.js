@@ -27,8 +27,6 @@ function LandingPage() {
             limit: Limit,
         }
 
-        // getProducts(variables)
-
     }, [])
 
     const showFilteredResults = (filters) => {
@@ -39,7 +37,6 @@ function LandingPage() {
             filters: filters
 
         }
-        // getProducts(variables)
         setSkip(0)
 
     }
@@ -77,18 +74,18 @@ function LandingPage() {
         <div className = "landingpage">
         <ul style={{listStyleType: 'none'}}>         
                    <li> <CheckBox list={location}
-                        handleFilters={filters => handleFilters(filters, "location")} /> <br></br> </li>
+                       /> <br></br> </li>
                     <li>  <RadioBox1
                         list={price}
-                        handleFilters={filters => handleFilters(filters, "price")}
+                       
                     /> <br></br> </li>
                   <li><RadioBox2
                         list={shipping}
-                        handleFilters={filters => handleFilters(filters, "shipping")}
+                        
                     /> <br></br> </li>
                <li>  <RadioBox3
                         list={condition}
-                        handleFilters={filters => handleFilters(filters, "condition")}
+                        
                     /> <br></br> </li>
             </ul>
         </div>
