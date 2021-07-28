@@ -769,7 +769,7 @@ input[type="text"]:focus {
 	flex-direction: column;
 	justify-content: baseline;
 	align-items: center;
-	margin: 100px 15px 15px 15px;
+	margin: 100px 15px 150px 15px;
 	background-color: white;
 	border-radius: 10px;
 	border: 1px solid #cecece;
@@ -1039,7 +1039,6 @@ main {
 
 .checkout-experience {
 	position: relative;
-	height: 100vh;
 }
 
 .buyerInput-Settings,
