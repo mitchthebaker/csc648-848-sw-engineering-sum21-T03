@@ -109,4 +109,10 @@ const BuyerSettings = (props) => {
 };
 
 
-export default BuyerSettings;
+function mapStateToProps(state) {
+  return { 
+    displayProducts: state.buyerSettingsReducer.displayProducts
+  };
+}
+
+export default connect(mapStateToProps)(BuyerSettings);

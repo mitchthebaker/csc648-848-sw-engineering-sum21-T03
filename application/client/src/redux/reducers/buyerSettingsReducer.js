@@ -1,5 +1,5 @@
 const INITIAL_BUYER_SETTINGS_STATE = {
-    displayProducts: 'test_buyer',
+    displayProducts: 'test',
     firstName: '',
     lastName: '',
     birthday: '', 
@@ -21,6 +21,8 @@ const INITIAL_BUYER_SETTINGS_STATE = {
  };
  
  const buyerSettingsReducer = (state = INITIAL_BUYER_SETTINGS_STATE, action) => {
+
+    console.log(action); 
  
      switch(action.type) {
 
