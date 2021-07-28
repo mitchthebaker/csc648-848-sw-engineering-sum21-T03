@@ -107,8 +107,8 @@ export const updateAccount = () => {
 
         console.log(buyerData);
 
-        /*
-        axios.put(`/api/users/${getState().loginReducer.user_id}`, sellerData)
+        
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, buyerData)
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
@@ -119,7 +119,7 @@ export const updateAccount = () => {
             .catch((err) => {
                 console.log(err);
             });
-        */
+    
     };
 }
 
@@ -133,6 +133,19 @@ export const updateProfile = () => {
         }; 
         console.log(buyerData2); 
 
+
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, BuyerData2)
+        .then((res) => {
+            console.log(res);
+            if(res.status === 201) {
+                dispatch(redirectUser(true));
+            }
+
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
     };
 
 
@@ -145,6 +158,18 @@ export const updateShipping = () => {
             zipCode: getState().buyerSettingsReducer.zipCode,
         }; 
         console.log(buyerData3); 
+
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, BuyerData3)
+        .then((res) => {
+            console.log(res);
+            if(res.status === 201) {
+                dispatch(redirectUser(true));
+            }
+
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     };
 }
 

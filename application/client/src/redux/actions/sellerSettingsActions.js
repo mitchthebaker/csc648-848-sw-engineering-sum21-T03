@@ -94,9 +94,9 @@ export const updateAccount = () => {
         axios.put(`/api/users/${getState().loginReducer.user_id}`, sellerData)
             .then((res) => {
                 console.log(res);
-                /*if(res.status === 201) {
+                if(res.status === 201) {
                     dispatch(redirectUser(true));
-                }*/
+                }
 
             })
             .catch((err) => {
@@ -113,6 +113,18 @@ export const updateProfile = () => {
             socialMedia: getState().sellerSettingsReducer.socialMedia
         }; 
         console.log(sellerData2); 
+
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, sellerData2)
+            .then((res) => {
+                console.log(res);
+                if(res.status === 201) {
+                    dispatch(redirectUser(true));
+                }
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
     };
 
