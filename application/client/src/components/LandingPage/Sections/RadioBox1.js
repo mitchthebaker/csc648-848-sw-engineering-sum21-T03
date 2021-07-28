@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Collapse, Radio } from 'antd';
+import Collapsible from 'react-collapsible';
 const { Panel } = Collapse;
+
 
 
 function RadioBox1(props) {
@@ -23,17 +25,14 @@ function RadioBox1(props) {
         <div style={{
             display: 'block', width: 175, padding: 0
           }}>
-            <Collapse defaultActiveKey={['0']}>
-                <Panel header="Price" key="1">
+              <Collapsible trigger="> Price">
                     <Radio.Group onChange={handleChange} value={Value}>
                       
                         {renderRadioBox()}
                         
                     </Radio.Group>
-                     
-                </Panel>
-                
-            </Collapse>
+                </Collapsible>        
+
         </div>
     )
 }
