@@ -167,11 +167,13 @@ async function deleteUserById(id) {
   return "";
 }
 
-async function updateUser(firstName, lastName, id) {
+async function updateUser(firstName, lastName, birthday, email, phone, username, password, id) {
+
+  const encPassword = await bcrypt.hash(password, saltRounds);
 
   const result = await pool.query(
-    "UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?",
-    [firstName, lastName, id]
+    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    [firstName, lastName, birthday, email, phone, username, encPassword, id]
   );
 
   if (result[0].affectedRows < 1) {

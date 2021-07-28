@@ -58,6 +58,28 @@ app.use((err, req, res, next) => {
 });
 
 app
+    .put('/api/profile/:id', (req, res) => {
+
+        // const { your data from redux action here } = req.body;
+
+        // condition to determine if these values are valid (ie not null)
+        // if(data1 && data2) {
+        // 
+        //     next();
+        // }
+        // else {
+        //     res.status(400).send({
+        //         error: "Incorrect data sent for updating user profile"
+        //     });
+        // }
+    },
+    (req, res) => {
+        // perform your function call to store here
+        // store
+        //     .updateProfile(req.body.data1, req.body.data2, etc.)
+    });
+
+app
     .get('/api/users/:id', (req, res) => {
         store
             .getUserById(req.params.id)
@@ -71,12 +93,24 @@ app
             .catch(error => res.status(400).send({ error: error.message }));
     })
     .put('/api/users/:id', (req, res, next) => {
-        const { firstName, lastName} = req.body;
+
+        const { 
+            firstName, 
+            lastName,
+            birthday,
+            email,
+            phone,
+            username,
+            password,
+
+        } = req.body;
+
         console.log(req.params.id);
         
         
-        if(firstName && lastName) {
-            console.log('first: ' + firstName + ' last: ' + lastName);
+        if(firstName && lastName && birthday && email && phone && username && password) {
+            console.log('user account data:\n');
+            console.log(firstName + lastName + birthday + email + phone + username + password);
             next();
         }
         else {
@@ -87,7 +121,7 @@ app
     },
     (req, res) => {
         store
-            .updateUser(req.body.firstName, req.body.lastName, req.params.id)
+            .updateUser(req.body.firstName, req.body.lastName, req.body.birthday, req.body.email, req.body.phone, req.body.username, req.body.password, req.params.id)
             .then((updatedUser) => {
                 console.log(updatedUser);
                 res.status(201).send(updatedUser);

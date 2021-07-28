@@ -96,8 +96,8 @@ export const updateAccount = () => {
                 console.log(res);
                 if(res.status === 201) {
                  //   dispatch(redirectUser(true));
+                    console.log(res.data);
                 }
-
             })
             .catch((err) => {
                 console.log(err);
@@ -114,7 +114,7 @@ export const updateProfile = () => {
         }; 
         console.log(sellerData2); 
 
-        axios.put(`/api/users/${getState().loginReducer.user_id}`, sellerData2)
+        axios.put(`/api/profile/${getState().loginReducer.user_id}`, sellerData2)
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
@@ -127,6 +127,4 @@ export const updateProfile = () => {
             });
 
     };
-
-
 }
