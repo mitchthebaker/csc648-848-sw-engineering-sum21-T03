@@ -95,7 +95,7 @@ export const updateAccount = () => {
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
-                    dispatch(redirectUser(true));
+                 //   dispatch(redirectUser(true));
                 }
 
             })
@@ -118,7 +118,7 @@ export const updateProfile = () => {
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
-                    dispatch(redirectUser(true));
+                 //   dispatch(redirectUser(true));
                 }
 
             })

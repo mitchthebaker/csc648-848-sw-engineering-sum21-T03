@@ -112,7 +112,7 @@ export const updateAccount = () => {
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {
-                    dispatch(redirectUser(true));
+                 //   dispatch(redirectUser(true));
                 }
 
             })
@@ -133,20 +133,22 @@ export const updateProfile = () => {
         }; 
         console.log(buyerData2); 
 
-
-        axios.put(`/api/users/${getState().loginReducer.user_id}`, BuyerData2)
+        
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, buyerData2)
         .then((res) => {
             console.log(res);
             if(res.status === 201) {
-                dispatch(redirectUser(true));
+               // dispatch(redirectUser(true));
             }
 
         })
         .catch((err) => {
             console.log(err);
         });
+        
 
     };
+
 
 
 }
@@ -159,17 +161,19 @@ export const updateShipping = () => {
         }; 
         console.log(buyerData3); 
 
-        axios.put(`/api/users/${getState().loginReducer.user_id}`, BuyerData3)
+        
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, buyerData3)
         .then((res) => {
             console.log(res);
             if(res.status === 201) {
-                dispatch(redirectUser(true));
+              //  dispatch(redirectUser(true));
             }
 
         })
         .catch((err) => {
             console.log(err);
         });
+        
     };
 }
 
