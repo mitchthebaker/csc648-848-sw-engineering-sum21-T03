@@ -10,7 +10,6 @@ export const setPassword = (password) => ({
     password
 });
 
-
 export const updateUserFirstName = (first_name) => ({
     type: "USER_UPDATE_FIRSTNAME",
     first_name
@@ -45,7 +44,6 @@ export const loginUser = () => {
             .catch((err) => {
                 console.log(err);
             });
-
     };
 };  
 
@@ -54,11 +52,11 @@ export const getUserProfile = () => {
         axios.get(`/api/users/${getState().loginReducer.user_id}`)
             .then((res) => {
                 console.log(res);
-                
-                if(res.status === 201) {
+                if(res.status === 200) {
+
+                    console.log(res.data);
                     dispatch(updateUserFirstName(res.data.first_name));
                     dispatch(updateUserLastName(res.data.last_name));
-                    console.log(res.data);
                 }
             })
             .catch((err) => {
@@ -66,7 +64,6 @@ export const getUserProfile = () => {
             });
     };
 };
-
 
 export const redirectUserAfterLogin = (loggedIn) => ({
     type: "USER_IS_LOGGEDIN",
