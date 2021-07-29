@@ -182,6 +182,18 @@ async function updateUser(firstName, lastName, birthday, email, phone, username,
   return getUserById(id);
 }
 
+async function updateProfile(bioDescription, location, socialMedia) {
+  const result = await pool.query(
+    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    [bioDescription, location, socialMedia]
+  );
+
+  if (result[0].affectedRows < 1) {
+    throw new Error(`Was not able to update user with bio description: ${bioDescription}, location: ${location}, socialMedia: ${socialMedia}`);
+  }
+  return getUserById(id);
+}
+
 async function updateCart(id, subtotal, products) {
 
   const result = await pool.query(
@@ -211,4 +223,5 @@ module.exports = {
   deleteUserById,
   updateUser,
   updateCart,
+  updateProfile
 };

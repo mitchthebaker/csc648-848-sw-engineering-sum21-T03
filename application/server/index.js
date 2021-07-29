@@ -58,6 +58,72 @@ app.use((err, req, res, next) => {
     res.status(500).send({ error: "Internal server error" });
 });
 
+// Allow user to change profile 
+app
+    .get('/api/users/:id', (req, res) => {
+        store
+            .getUserById(req.params.id)
+            .then(user => res.status(200).send(user))
+            .catch(error => res.status(404).send({ error: error.message }));
+    })
+    .delete('/api/users/:id', (req, res) => {
+        store
+            .deleteUserById(req.params.id)
+            .then(result => res.status(204).send())
+            .catch(error => res.status(400).send({ error: error.message }));
+    })
+    .put('/api/profile/:id', (req, res, next) => {
+
+        // const { your data from redux action here } = req.body;
+
+
+
+        const {
+            bioDescription, 
+            location, 
+            socialMedia, 
+        } = req.body; 
+
+        console.log(req.params.id); 
+
+        // condition to determine if these values are valid (ie not null)
+        // if(data1 && data2) {
+        // 
+        //     next();
+        // }
+        // else {
+        //     res.status(400).send({
+        //         error: "Incorrect data sent for updating user profile"
+        //     });
+        // }
+
+        if (bioDescription && location && socialMedia) {
+            console.log(bioDescription + location + socialMedia); 
+            next(); 
+        }
+        else {
+            res.status(400).send({
+                error: "Incorrect data sent for updating user credentials"
+            })
+        }
+    },
+    (req, res) => {
+        // perform your function call to store here
+        // store
+        //     .updateProfile(req.body.data1, req.body.data2, etc.)
+        store
+            .updateProfile(req.body.bioDescription, req.body.location, req.body.socialMedia) 
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.status(201).send(updatedUser);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to update user credentials" });
+            });
+    });
+
+//allow user to change account information
 app
     .get('/api/users/:id', (req, res) => {
         store
@@ -72,12 +138,24 @@ app
             .catch(error => res.status(400).send({ error: error.message }));
     })
     .put('/api/users/:id', (req, res, next) => {
-        const { firstName, lastName} = req.body;
+
+        const { 
+            firstName, 
+            lastName,
+            birthday,
+            email,
+            phone,
+            username,
+            password,
+
+        } = req.body;
+
         console.log(req.params.id);
         
         
-        if(firstName && lastName) {
-            console.log('first: ' + firstName + ' last: ' + lastName);
+        if(firstName && lastName && birthday && email && phone && username && password) {
+            console.log('user account data:\n');
+            console.log(firstName + lastName + birthday + email + phone + username + password);
             next();
         }
         else {
@@ -88,7 +166,7 @@ app
     },
     (req, res) => {
         store
-            .updateUser(req.body.firstName, req.body.lastName, req.params.id)
+            .updateUser(req.body.firstName, req.body.lastName, req.body.birthday, req.body.email, req.body.phone, req.body.username, req.body.password, req.params.id)
             .then((updatedUser) => {
                 console.log(updatedUser);
                 res.status(201).send(updatedUser);
