@@ -1,10 +1,10 @@
 const INITIAL_CART_STATE = {
-    cart: []
+    cart: [],
+    secret: '',
+    purchase: false,
 };
 
 const shoppingCartReducer = (state = INITIAL_CART_STATE, action) => {
-
-    console.log(action);
 
     switch(action.type) {
         case 'SET_CART_CONTENTS':
@@ -13,6 +13,18 @@ const shoppingCartReducer = (state = INITIAL_CART_STATE, action) => {
                 cart: action.cart,
             };
         
+        case 'SET_CLIENT_SECRET':
+            return {
+                ...state,
+                secret: action.secret,
+            };
+
+        case 'SET_USER_CHECKOUT':
+            return {
+                ...state,
+                checkout: action.checkout,
+            };
+
         default:
             return state;
     }

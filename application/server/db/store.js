@@ -86,7 +86,6 @@ async function getShoppingCartByUserId(id) {
 async function createUser(username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
-  console.log(encPassword);
 
   const date = new Date();
 
@@ -144,12 +143,13 @@ async function loginUser(username, password) {
   }
 }
 
-async function uploadProduct(aProduct) {
+async function uploadProduct(aProduct, id) {
 
   const result = await pool.query(
     "INSERT INTO products SET title = ?, description = ?, price = ?, category = ?, image = ?, seller_id = ?",
-    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, 6] // change 6 to user with current session 
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, id] // change 6 to user with current session 
   );
+  
   if(result[0].length < 1) {
     throw new Error(
       `Failed to create a new product ${aProduct.title}`

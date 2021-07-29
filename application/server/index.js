@@ -12,6 +12,7 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const stripe = require('stripe')('sk_test_51JEVc1CR6vsjOOgopFEdfwRAlhCqCbvnxueRVByAlbhGBtNvSTEZK6UYnoJkAPO9t0SK6O0BG1tvswxjuHVmvs5e0090CpXmbn');
 
 const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
@@ -271,7 +272,7 @@ app.post('/api/upload-product', async (req, res) => {
             console.log(aProduct);
 
             store
-                .uploadProduct(aProduct)
+                .uploadProduct(aProduct, req.session.user_id)
                 .then((createdProduct) => {
                     console.log(createdProduct);
                     res.status(201).send(createdProduct);
@@ -473,6 +474,32 @@ app.post('/api/cart/:id', (req, res, next) => {
         .catch((error) => {
             console.log(error);
             res.status(500).send({ error: `Unable to get shopping cart with buyer_id = ${req.session.user_id}` })
+        });
+});
+
+app.get('/api/secret', async (req, res) => {
+    
+    store
+        .getShoppingCartByUserId(req.session.user_id)
+        .then(async (result) => {
+            
+            let subtotal_typeInt = parseInt(result.subtotal);
+            console.log(subtotal_typeInt);
+
+            subtotal_cents = subtotal_typeInt * 100;
+            console.log(subtotal_cents);
+
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: subtotal_cents,
+                currency: 'usd',
+                metadata: {integration_check: 'accept_a_payment'},
+            });
+
+            res.json({client_secret: paymentIntent.client_secret});
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({error: `Unable to get shopping cart with user_id = ${req.session.user_id}`});
         });
 });
 

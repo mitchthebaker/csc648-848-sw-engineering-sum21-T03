@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 
@@ -11,17 +11,20 @@ const Menu = (props) => {
             </NavLink>
             <div className="shopping-cart-products">
                 <ul className="shopping-cart-products-ul">
-                    {props.cart.products.map((product, index) => (
-                        <li key={index}>
-                            <div className="checkout-product-quantity-title">
-                                <h4> 1 </h4>
-                                <h4> {product.title} </h4>
-                            </div>
-                            <div className="checkout-product-price">
-                                <h4> {product.price} </h4>
-                            </div>
-                        </li>
-                    ))}
+                    {   
+                        (props.cart.products === undefined) ? null 
+                        : props.cart.products.map((product, index) => (
+                            <li key={index}>
+                                <div className="checkout-product-quantity-title">
+                                    <h4> 1 </h4>
+                                    <h4> {product.title} </h4>
+                                </div>
+                                <div className="checkout-product-price">
+                                    <h4> {product.price} </h4>
+                                </div>
+                            </li>
+                        )) 
+                    }
                 </ul>
             </div>
         </div>
