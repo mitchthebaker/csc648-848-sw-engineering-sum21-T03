@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer';
+import StripeWrapper from './Stripe/StripeWrapper';
 
 const Checkout = (props) => {
 
@@ -14,10 +15,7 @@ const Checkout = (props) => {
                         <div className="checkout-details">
                             <h4> Payment Details </h4>
                         </div>
-                        <div className="cancel-continue-buttons">
-                            <NavLink className="nav-link" to="/summary"> <span className="modify-order"> Back </span> </NavLink>
-                            <NavLink className="nav-link" to="/final-invoice"> <span className="continue-order"> Checkout </span> </NavLink>
-                        </div>
+                        <StripeWrapper />
                     </div>
                 </div>
             </div>

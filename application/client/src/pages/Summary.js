@@ -6,8 +6,6 @@ import { connect, useDispatch } from 'react-redux';
 
 const Summary = (props) => {
 
-    console.log(props.cart.products);
-
     return (
         <div className="checkout-experience">
             <NavBar page={"Summary"}/>
@@ -21,26 +19,29 @@ const Summary = (props) => {
                             <span className="product-detail-span"> Price </span>
                         </div>
                         <ul className="shopping-cart-products-summary">
-                            {props.cart.products.map((product, index) => (
-                                <li key={index}>
-                                    <div>
-                                        <h3> 1 </h3>
-                                    </div>
-                                    <div>
-                                        <img  
-                                          src={`/uploads/${product.image}`}
-                                          className="product-image-summary"
-                                          alt="Failed to load."
-                                        />
-                                    </div>
-                                    <div>
-                                        <h3> {product.title} </h3>
-                                    </div>
-                                    <div>
-                                        <h3> {product.price} </h3>
-                                    </div>
-                                </li>
-                            ))}
+                            {
+                                (props.cart.products === undefined) ? null
+                                : props.cart.products.map((product, index) => (
+                                    <li key={index}>
+                                        <div>
+                                            <h3> 1 </h3>
+                                        </div>
+                                        <div>
+                                            <img  
+                                              src={`/uploads/${product.image}`}
+                                              className="product-image-summary"
+                                              alt="Failed to load."
+                                            />
+                                        </div>
+                                        <div>
+                                            <h3> {product.title} </h3>
+                                        </div>
+                                        <div>
+                                            <h3> {product.price} </h3>
+                                        </div>
+                                    </li>
+                                ))
+                            }
                         </ul>
                         <div className="cancel-continue-buttons">
                             <NavLink className="nav-link" to="/receipt-info"> <span className="modify-order"> Back </span> </NavLink>
