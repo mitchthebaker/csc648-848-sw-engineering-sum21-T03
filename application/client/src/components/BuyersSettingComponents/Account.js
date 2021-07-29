@@ -20,7 +20,7 @@ const Account = () => {
 
      // dispatch state data back to redux
      const dispatch = useDispatch();
-   
+     
      const updateFirstName = useSelector((state) => state.buyerSettingsReducer.firstName);
      const updateLastName = useSelector((state) => state.buyerSettingsReducer.lastName);
      const updateBirthday = useSelector((state) => state.buyerSettingsReducer.birthday); 

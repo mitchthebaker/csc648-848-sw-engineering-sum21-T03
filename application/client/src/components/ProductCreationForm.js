@@ -9,6 +9,7 @@ import {
     setImage,
     createProduct
 } from '../redux/actions/productActions';
+import AuctionSellerSetUp from './SellersSettingComponents/AuctionSetUp'
 
 const ProductCreationForm = (props) => {
 
@@ -59,6 +60,10 @@ const ProductCreationForm = (props) => {
         {props.filePreview !== null ?
         <img className="preview-img" src={props.filePreview} alt="UploadImage"/>
         : null}
+        <h3>Auction Set Up</h3>
+        <div className="AuctionContainer">
+            <AuctionSellerSetUp/>
+        </div>
     </div>
    );
 };

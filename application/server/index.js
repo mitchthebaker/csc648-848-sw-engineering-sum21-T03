@@ -12,6 +12,7 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const stripe = require('stripe')('sk_test_51JEVc1CR6vsjOOgopFEdfwRAlhCqCbvnxueRVByAlbhGBtNvSTEZK6UYnoJkAPO9t0SK6O0BG1tvswxjuHVmvs5e0090CpXmbn');
 
 const PORT = process.env.WEB_PORT || 3001;
 const store = require('./db/store');
@@ -57,6 +58,72 @@ app.use((err, req, res, next) => {
     res.status(500).send({ error: "Internal server error" });
 });
 
+// Allow user to change profile 
+app
+    .get('/api/users/:id', (req, res) => {
+        store
+            .getUserById(req.params.id)
+            .then(user => res.status(200).send(user))
+            .catch(error => res.status(404).send({ error: error.message }));
+    })
+    .delete('/api/users/:id', (req, res) => {
+        store
+            .deleteUserById(req.params.id)
+            .then(result => res.status(204).send())
+            .catch(error => res.status(400).send({ error: error.message }));
+    })
+    .put('/api/profile/:id', (req, res, next) => {
+
+        // const { your data from redux action here } = req.body;
+
+
+
+        const {
+            bioDescription, 
+            location, 
+            socialMedia, 
+        } = req.body; 
+
+        console.log(req.params.id); 
+
+        // condition to determine if these values are valid (ie not null)
+        // if(data1 && data2) {
+        // 
+        //     next();
+        // }
+        // else {
+        //     res.status(400).send({
+        //         error: "Incorrect data sent for updating user profile"
+        //     });
+        // }
+
+        if (bioDescription && location && socialMedia) {
+            console.log(bioDescription + location + socialMedia); 
+            next(); 
+        }
+        else {
+            res.status(400).send({
+                error: "Incorrect data sent for updating user credentials"
+            })
+        }
+    },
+    (req, res) => {
+        // perform your function call to store here
+        // store
+        //     .updateProfile(req.body.data1, req.body.data2, etc.)
+        store
+            .updateProfile(req.body.bioDescription, req.body.location, req.body.socialMedia) 
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.status(201).send(updatedUser);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unable to update user credentials" });
+            });
+    });
+
+//allow user to change account information
 app
     .get('/api/users/:id', (req, res) => {
         store
@@ -71,12 +138,24 @@ app
             .catch(error => res.status(400).send({ error: error.message }));
     })
     .put('/api/users/:id', (req, res, next) => {
-        const { firstName, lastName} = req.body;
+
+        const { 
+            firstName, 
+            lastName,
+            birthday,
+            email,
+            phone,
+            username,
+            password,
+
+        } = req.body;
+
         console.log(req.params.id);
         
         
-        if(firstName && lastName) {
-            console.log('first: ' + firstName + ' last: ' + lastName);
+        if(firstName && lastName && birthday && email && phone && username && password) {
+            console.log('user account data:\n');
+            console.log(firstName + lastName + birthday + email + phone + username + password);
             next();
         }
         else {
@@ -87,7 +166,7 @@ app
     },
     (req, res) => {
         store
-            .updateUser(req.body.firstName, req.body.lastName, req.params.id)
+            .updateUser(req.body.firstName, req.body.lastName, req.body.birthday, req.body.email, req.body.phone, req.body.username, req.body.password, req.params.id)
             .then((updatedUser) => {
                 console.log(updatedUser);
                 res.status(201).send(updatedUser);
@@ -116,6 +195,16 @@ app.post('/api/register', (req, res, next) => {
         .createUser(req.body.username, req.body.password)
         .then((createdUser) => {
             console.log(createdUser);
+
+            store.createUserCart(createdUser.user_id)
+            .then((userCart) => {
+                console.log(userCart);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send({ error: "Unabe to create user shopping cart" });
+            });
+
             res.status(201).send(createdUser);
         })
         .catch(error => {
@@ -183,7 +272,7 @@ app.post('/api/upload-product', async (req, res) => {
             console.log(aProduct);
 
             store
-                .uploadProduct(aProduct)
+                .uploadProduct(aProduct, req.session.user_id)
                 .then((createdProduct) => {
                     console.log(createdProduct);
                     res.status(201).send(createdProduct);
@@ -228,7 +317,6 @@ app.get('/api/products', (req, res, next) => {
     let count = 0;
 
     store.getAllProducts().then((products) => {
-        console.log(products.length);
         products.forEach((product) => {
 
             store.getUserById(product.seller_id).then((user) => {
@@ -242,7 +330,6 @@ app.get('/api/products', (req, res, next) => {
                 newProduct.creator = user.username;
                 expandedProducts.push(newProduct);
                 count++;
-                console.log(count);
 
                 if(count === products.length)
                     res.status(200).send(expandedProducts);
@@ -304,6 +391,115 @@ app.get('/api/products/:id', (req, res, next) => {
         .catch(error => {
             console.log(error);
             res.status(500).send({ error: "Unable to get product from database" });
+        });
+});
+
+app.get('/api/cart/:id', (req, res, next) => {
+
+    console.log("user_id: " + req.params.id);
+
+    if(req.params.id) {
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "No shopping cart found"
+        });
+    }
+},
+(req, res) => {
+    store.getShoppingCartByUserId(req.params.id)
+        .then((result) => {
+            console.log(result);
+            res.status(200).send(result);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ error: `Unable to get shopping cart with user id ${req.params.id}` });
+        });
+});
+
+app.post('/api/cart/:id', (req, res, next) => {
+
+    console.log(req.params.id);
+
+    if(req.body && req.params.id) {
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "No product passed into route"
+        });
+    }
+},
+(req, res) => {
+
+    const product = req.body;
+    console.log(product);
+
+    let products = [];
+
+    // Access the shopping cart for the current user's session 
+    store
+        .getShoppingCartByUserId(req.session.user_id)
+        .then((result) => {
+
+            // Get current shopping cart subtotal
+            // If subtotal is set to null, then initialize subtotal to 0. 
+            // Else, set newSubtotal equal to current subtotal price
+            let newSubtotal = (result.subtotal === null) ? 0 : parseInt(result.subtotal);
+
+            // Convert product price from string into integer
+            let productPrice = parseInt(product.price);
+
+            newSubtotal += productPrice;
+            console.log("subtotal: " + newSubtotal);
+
+            let newProducts = (result.products === null) ? products : result.products;
+
+            newProducts.push(product);
+
+            store
+                .updateCart(result.shopping_cart_id, newSubtotal, JSON.stringify(newProducts))
+                .then((cart) => {
+                    console.log("Updated shopping cart:\n");
+                    console.log(cart);
+                    res.status(201).send(cart);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    res.status(500).send({ error: "Unable to update shopping cart products" });
+                });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ error: `Unable to get shopping cart with buyer_id = ${req.session.user_id}` })
+        });
+});
+
+app.get('/api/secret', async (req, res) => {
+    
+    store
+        .getShoppingCartByUserId(req.session.user_id)
+        .then(async (result) => {
+            
+            let subtotal_typeInt = parseInt(result.subtotal);
+            console.log(subtotal_typeInt);
+
+            subtotal_cents = subtotal_typeInt * 100;
+            console.log(subtotal_cents);
+
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: subtotal_cents,
+                currency: 'usd',
+                metadata: {integration_check: 'accept_a_payment'},
+            });
+
+            res.json({client_secret: paymentIntent.client_secret});
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({error: `Unable to get shopping cart with user_id = ${req.session.user_id}`});
         });
 });
 

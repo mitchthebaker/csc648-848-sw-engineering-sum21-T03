@@ -14,8 +14,6 @@ const INITIAL_PRODUCT_STATE = {
 
 const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
 
-    console.log(action);
-
     switch(action.type) {
         case 'PRODUCT_SET_TITLE':
             return {

@@ -37,7 +37,7 @@ async function getAllProductsWith(category) {
 
 async function getUserById(id) {
   const result = await pool.query(
-    "SELECT user_id, username AS username FROM users WHERE user_id = ?",
+    "SELECT user_id, username AS username, first_name AS first_name, last_name AS last_name FROM users WHERE user_id = ?",
     [id]
   );
   if (result[0].length < 1) {
@@ -57,10 +57,35 @@ async function getProductById(id) {
   return result[0][0];
 }
 
+async function getShoppingCartById(id) {
+  const result = await pool.query(
+    "SELECT shopping_cart_id, buyer_id AS buyer_id, subtotal AS subtotal, products AS products FROM shopping_cart WHERE shopping_cart_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Shopping cart with id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
+async function getShoppingCartByUserId(id) {
+  const result = await pool.query(
+    "SELECT buyer_id, shopping_cart_id AS shopping_cart_id, subtotal AS subtotal, products AS products FROM shopping_cart WHERE buyer_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Shopping cart with buyer id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
 async function createUser(username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
-  console.log(encPassword);
 
   const date = new Date();
 
@@ -74,6 +99,22 @@ async function createUser(username, password) {
     );
   }
   return getUserById(result[0].insertId);
+}
+
+async function createUserCart(id) {
+
+  const result = await pool.query(
+    "INSERT INTO shopping_cart SET buyer_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(
+      `Failed to create new shopping cart for user ${id}`
+    );
+  }
+
+  return getShoppingCartById(result[0].insertId);
 }
 
 async function loginUser(username, password) {
@@ -102,12 +143,13 @@ async function loginUser(username, password) {
   }
 }
 
-async function uploadProduct(aProduct) {
+async function uploadProduct(aProduct, id) {
 
   const result = await pool.query(
     "INSERT INTO products SET title = ?, description = ?, price = ?, category = ?, image = ?, seller_id = ?",
-    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, 6] // change 6 to user with current session 
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, id] // change 6 to user with current session 
   );
+  
   if(result[0].length < 1) {
     throw new Error(
       `Failed to create a new product ${aProduct.title}`
@@ -125,11 +167,13 @@ async function deleteUserById(id) {
   return "";
 }
 
-async function updateUser(firstName, lastName, id) {
+async function updateUser(firstName, lastName, birthday, email, phone, username, password, id) {
+
+  const encPassword = await bcrypt.hash(password, saltRounds);
 
   const result = await pool.query(
-    "UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?",
-    [firstName, lastName, id]
+    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    [firstName, lastName, birthday, email, phone, username, encPassword, id]
   );
 
   if (result[0].affectedRows < 1) {
@@ -138,15 +182,46 @@ async function updateUser(firstName, lastName, id) {
   return getUserById(id);
 }
 
+async function updateProfile(bioDescription, location, socialMedia) {
+  const result = await pool.query(
+    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    [bioDescription, location, socialMedia]
+  );
+
+  if (result[0].affectedRows < 1) {
+    throw new Error(`Was not able to update user with bio description: ${bioDescription}, location: ${location}, socialMedia: ${socialMedia}`);
+  }
+  return getUserById(id);
+}
+
+async function updateCart(id, subtotal, products) {
+
+  const result = await pool.query(
+    "UPDATE shopping_cart SET subtotal = ?, products = ? WHERE shopping_cart_id = ?",
+    [subtotal, products, id]
+  );
+
+  if(result[0].affectedRows < 1) {
+    throw new Error(`Was not able to update shopping cart with id = ${id}`);
+  }
+
+  return getShoppingCartById(id);
+}
+
 module.exports = {
   getAllUsers,
   getAllProducts,
   getAllProductsWith,
   createUser,
+  createUserCart,
   loginUser,
   uploadProduct,
   getUserById,
   getProductById,
+  getShoppingCartById,
+  getShoppingCartByUserId,
   deleteUserById,
   updateUser,
+  updateCart,
+  updateProfile
 };
