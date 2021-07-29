@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {
+    setCartContents
+} from './shoppingCartActions';
 
 export const setTitle = (title) => ({
     type: 'PRODUCT_SET_TITLE',
@@ -57,11 +60,29 @@ export const createProduct = () => {
         axios.post('/api/upload-product', formData, {
             headers: { "Content-Type": "multipart/form-data"}
         })
-        .then(res => {
+        .then((res) => {
             console.warn(res);
             if(res.status === 201) {
                 dispatch(setSuccess("Product uploaded successfully"));
             }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+};
+
+export const addProductToCart = () => {
+    return(dispatch, getState) => {
+
+        console.log(getState().loginReducer.user_id);
+
+        axios.post(`/api/cart/${getState().loginReducer.user_id}`, getState().productReducer.product, {
+            "headers": { "content-type":"application/json" }
+        })
+        .then((res) => {
+            console.log(res);
+            dispatch(setCartContents(res.data));
         })
         .catch((err) => {
             console.log(err);
