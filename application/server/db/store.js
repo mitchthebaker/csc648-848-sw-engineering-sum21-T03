@@ -37,7 +37,7 @@ async function getAllProductsWith(category) {
 
 async function getUserById(id) {
   const result = await pool.query(
-    "SELECT user_id, username AS username FROM users WHERE user_id = ?",
+    "SELECT user_id, username AS username, first_name AS first_name, last_name AS last_name FROM users WHERE user_id = ?",
     [id]
   );
   if (result[0].length < 1) {
