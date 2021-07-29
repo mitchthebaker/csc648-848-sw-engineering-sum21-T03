@@ -194,7 +194,7 @@ app.post('/api/upload-product', async (req, res) => {
             console.log(aProduct);
 
             store
-                .uploadProduct(aProduct)
+                .uploadProduct(aProduct, req.session.user_id)
                 .then((createdProduct) => {
                     console.log(createdProduct);
                     res.status(201).send(createdProduct);

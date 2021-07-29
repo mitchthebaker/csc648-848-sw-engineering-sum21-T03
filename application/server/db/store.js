@@ -37,7 +37,7 @@ async function getAllProductsWith(category) {
 
 async function getUserById(id) {
   const result = await pool.query(
-    "SELECT user_id, username AS username FROM users WHERE user_id = ?",
+    "SELECT user_id, username AS username, first_name AS first_name, last_name AS last_name FROM users WHERE user_id = ?",
     [id]
   );
   if (result[0].length < 1) {
@@ -86,7 +86,6 @@ async function getShoppingCartByUserId(id) {
 async function createUser(username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
-  console.log(encPassword);
 
   const date = new Date();
 
@@ -144,12 +143,13 @@ async function loginUser(username, password) {
   }
 }
 
-async function uploadProduct(aProduct) {
+async function uploadProduct(aProduct, id) {
 
   const result = await pool.query(
     "INSERT INTO products SET title = ?, description = ?, price = ?, category = ?, image = ?, seller_id = ?",
-    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, 6] // change 6 to user with current session 
+    [aProduct.title, aProduct.description, aProduct.price, aProduct.category, aProduct.image, id] // change 6 to user with current session 
   );
+  
   if(result[0].length < 1) {
     throw new Error(
       `Failed to create a new product ${aProduct.title}`
@@ -167,11 +167,13 @@ async function deleteUserById(id) {
   return "";
 }
 
-async function updateUser(firstName, lastName, id) {
+async function updateUser(firstName, lastName, birthday, email, phone, username, password, id) {
+
+  const encPassword = await bcrypt.hash(password, saltRounds);
 
   const result = await pool.query(
-    "UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?",
-    [firstName, lastName, id]
+    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    [firstName, lastName, birthday, email, phone, username, encPassword, id]
   );
 
   if (result[0].affectedRows < 1) {
