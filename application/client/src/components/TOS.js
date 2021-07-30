@@ -1,8 +1,12 @@
+import NavBar from './Modules/NavBar';
+import Footer from './Modules/Footer';
+
 const TOS = () => {
     //const classes = styles();
     /* <img src={logo} className={classes.logo} alt="Dropsell Logo"/> */
     return (
         <div className="TOS">   
+            <NavBar page={"TOS"}/>
             <p>Last updated: 2021-07-15</p>
             <p>1. <b>Introduction</b></p>
             <p>Welcome to <b>Jose's Angels</b> (“Company”, “we”, “our”, “us”)!</p>
@@ -92,6 +96,7 @@ const TOS = () => {
             <p>27. <b>Contact Us</b></p>
             <p>Please send your feedback, comments, requests for technical support by email: <b>mbaker3@mail.sfsu.edu</b>.</p>
             <p className="bottom-tos">These <a href="https://policymaker.io/terms-and-conditions/">Terms of Service</a> were created for <b>dropsell.gq</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2021-07-15.</p>
+            <Footer/>
         </div>
     );
 };

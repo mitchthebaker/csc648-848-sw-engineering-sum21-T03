@@ -2,6 +2,8 @@ const INITIAL_LOGIN_STATE = {
     username: '',
     password: '',
     user_id: '',
+    first_name: '',
+    last_name: '',
     loggedIn: false
 };
 
@@ -30,6 +32,18 @@ const loginReducer = (state = INITIAL_LOGIN_STATE, action) => {
             return {
                 ...state,
                 user_id: action.user_id,
+            };
+            
+        case 'USER_UPDATE_FIRSTNAME':
+            return {
+                ...state,
+                first_name: action.first_name,
+            };
+
+        case 'USER_UPDATE_LASTNAME':
+            return {
+                ...state,
+                last_name: action.last_name,
             };
         
         default:

@@ -1,9 +1,26 @@
-import React from 'react';
+import React , {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../components/Modules/NavBar';
 import Footer from '../components/Modules/Footer'
+import { connect, useDispatch} from 'react-redux';
 
-const Profile = () => {
+
+import axios from "axios"; 
+import {
+    getUserProfile, 
+} from '../redux/actions/loginActions';
+
+const Profile = (props) => {
+
+
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(getUserProfile());
+      }, []);
+
 
     return (
         <div className="profile-wrapper">
@@ -25,9 +42,17 @@ const Profile = () => {
                 */
             }
 
+            <header className="Profile-header">
+                <div className="firstHeaderContainerProfile">
+
+                </div>
+                <div className="secondHeaderContainerProfile">
+                    <img className="ProfileAvatar" src="https://i.redd.it/jgvvyif33u541.jpg"/>
+                </div>
+            </header>
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>Firstname Lastname</p>
+                    <p>{props.first_name}</p>
                 </div>
                 <div className="Information-ProfilePage">
                     <p>Information</p>
@@ -47,4 +72,11 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+function mapStateToProps(state) {
+    return { 
+        first_name: state.loginReducer.first_name,
+        last_name: state.loginReducer.last_name
+    };
+}
+
+export default connect(mapStateToProps)(Profile);

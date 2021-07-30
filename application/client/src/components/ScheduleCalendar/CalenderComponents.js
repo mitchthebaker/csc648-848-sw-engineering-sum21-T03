@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import { ViewState } from '@devexpress/dx-react-scheduler';
-//import DataCalendar from '../ScheduleCalendar/DataCalendar'; 
+import { v4 as uuidv4 } from 'uuid';
+
+//import CalendarLists from '../ScheduleCalendar/CalendarListsDisplay'; 
 import NavBar from '../Modules/NavBar';
+import Footer from '../Modules/Footer';
 
 import {
     Scheduler,
@@ -28,16 +31,9 @@ import { GiConsoleController } from 'react-icons/gi';
   
       this.state = {
         data: [   
-          {
-            title: '',
-            startDate: null,
-            endDate: null,
-            id: 0,
-            location: '',
-          }
         ],
 
-        currentDate: '2021-06-14',
+        currentDate: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
       };
       // startDate.split("/"); 12 32 2021
     
@@ -123,11 +119,12 @@ convertDate(dataAsString)
     }
 
     handleSubmit(event) {
-     const {title, startDate, endDate, location} = this.state;
+    const id =uuidv4();
+    const {title, startDate, endDate, location } = this.state;
 
     const finalStartDate= this.convertDate(startDate);
     const finalEndDate= this.convertDate(endDate);
-     let scheduleData = { title: this.state.title, startDate: finalStartDate, endDate: finalEndDate, location: this.state.location };
+     let scheduleData = { title: this.state.title, startDate: finalStartDate, endDate: finalEndDate, location: this.state.location,id };
 
    //console.log(finalStartDate);
    //console.log(finalEndDate);
@@ -137,11 +134,30 @@ convertDate(dataAsString)
      // let scheduleData = { title: title, startDate: startDate, endDate: endDate, location: location };
       //let scheduleData = { title: title, location: location };
 
-
+      /*
       this.setState({
         data: [ scheduleData ] 
       });
+      */
+
+      this.setState(prevState => ({
+        data: [ ...prevState.data, scheduleData ] 
+      })); 
+
+
       event.preventDefault();
+    }
+
+
+
+    deleteHandle(id) {
+      console.log(id);
+        const updateData = this.state.data.filter((datas) => { return datas.id !== id})
+       
+        this.setState({
+          data: updateData 
+        });
+        
     }
 
   
@@ -152,7 +168,7 @@ convertDate(dataAsString)
   
       return (
         <div className="setUp-Schedule-wrapper">
-            <NavBar/>
+            <NavBar page={"workSchedule"}/>
             <h1>Set Up Schedule</h1>
             <div className="setUp_Schedule-containerOne">
                 <Paper>
@@ -165,8 +181,8 @@ convertDate(dataAsString)
                     onCurrentDateChange={this.currentDateChange}
                     />
                     <WeekView
-                    startDayHour={9}
-                    endDayHour={19}
+                    startDayHour={6}
+                    endDayHour={24}
                     />
                     <Toolbar />
                     <DateNavigator />
@@ -175,13 +191,27 @@ convertDate(dataAsString)
                 </Scheduler>
                 </Paper>
             </div>
-            <div className="setUp_Schedule-containerTwo">
-              <h3>Todo Form</h3>
-              <input placeholder="Title" className="buyerInput-Settings" name="title" value={this.state.title} onChange={this.handleChange} type="text"/>
-              <input placeholder="Start Date" className="buyerInput-Settings" name="startDate" value={this.state.startDate} onChange={this.handleChange} type="datetime-local"/>
-              <input placeholder="End Date" className="buyerInput-Settings" name="endDate" value={this.state.endDate} onChange={this.handleChange} type="datetime-local"/>
-              <input placeholder="Location" className="buyerInput-Settings" name="location" value={this.state.location} onChange={this.handleChange} type="text"/>
-              <button className="sellerSettingsButtons" onClick={this.handleSubmit}>Submit</button>
+            <div className="setUp_Schedule_containerTwo">
+              <h3>Set Up</h3>
+              <div>
+                <input placeholder="Title" className="buyerInput-Settings" name="title" value={this.state.title} onChange={this.handleChange} type="text"/>
+                <input placeholder="Start Date" className="buyerInput-Settings" name="startDate" value={this.state.startDate} onChange={this.handleChange} type="datetime-local"/>
+                <input placeholder="End Date" className="buyerInput-Settings" name="endDate" value={this.state.endDate} onChange={this.handleChange} type="datetime-local"/>
+                <input placeholder="Location" className="buyerInput-Settings" name="location" value={this.state.location} onChange={this.handleChange} type="text"/>
+                <button className="sellerSettingsButtons" onClick={this.handleSubmit}>Submit</button>
+              </div>
+              <h3>Meeting Notes</h3>
+              <div className="listsMeetingNotes_container">
+                {/*<CalendarLists handleDelete={this.handleDelete} items={this.state.data}/>*/}
+
+                {console.log(this.state.data)}
+                {this.state.data==null?<div></div>:
+          this.state.data.map((datas) => <div className="listsMeetingNotes" >
+                    <li key={datas.id} className="itemMeetingNotes">{datas.title} <button className="listsMeetingsNotes_button" onClick={() => this.deleteHandle(datas.id)}>Delete</button></li>
+                  
+                </div>)}
+    
+              </div>
             </div>
         </div>
       );

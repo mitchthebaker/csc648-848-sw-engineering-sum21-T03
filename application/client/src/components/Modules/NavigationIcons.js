@@ -4,20 +4,22 @@ import Menu from './Menu';
 
 const NavigationIcons = (props) => {
 
-    const [visibility, setVisibility] = useState([false]);
+    //const [visibility, setVisibility] = useState([false]);
 
     const handleMouseClick = () => {
-        console.log(visibility);
-        setVisibility(!visibility);
-        console.log(visibility);
+        //console.log(visibility);
+        //setVisibility(!visibility);
+        //console.log(visibility);
+        props.setOpen(!props.open);
     };
 
-    if(props.page === 'Home' || props.page === 'Login' || props.page === 'Register' || props.page === 'About' || props.page === 'Contact') {
+    if(props.page === 'Home' || props.page === 'Login' || props.page === 'Register' || props.page === 'About' || props.page === 'Contact' || props.page === 'TOS') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -28,6 +30,7 @@ const NavigationIcons = (props) => {
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/about"> About </NavLink>
                 <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -39,6 +42,19 @@ const NavigationIcons = (props) => {
                 {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
+            </div>
+        );
+    }
+
+    if(props.page === 'workSchedule') {
+        return (
+            <div className="navigation-icons">
+                <NavLink className="nav-link" to="/"> Home </NavLink>
+                {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
+                <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
+                <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -50,6 +66,7 @@ const NavigationIcons = (props) => {
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -61,6 +78,7 @@ const NavigationIcons = (props) => {
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -70,6 +88,7 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
     }
@@ -80,7 +99,7 @@ const NavigationIcons = (props) => {
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
                 <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
-                <Menu handleMouseClick={handleMouseClick} visibility={visibility}/>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />} 
             </div>
         );
     }
