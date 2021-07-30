@@ -47,6 +47,18 @@ const NavigationIcons = (props) => {
         );
     }
 
+    if(props.page === 'workSchedule') {
+        return (
+            <div className="navigation-icons">
+                <NavLink className="nav-link" to="/"> Home </NavLink>
+                {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
+                <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
+                <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
+                {props.open && <Menu handleMouseClick={handleMouseClick} />}
+            </div>
+        );
+    }
+
     if(props.page === 'sellerSettings') {
         return (
             <div className="navigation-icons">

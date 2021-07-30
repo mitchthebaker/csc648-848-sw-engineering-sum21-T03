@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 //import CalendarLists from '../ScheduleCalendar/CalendarListsDisplay'; 
 import NavBar from '../Modules/NavBar';
+import Footer from '../Modules/Footer';
 
 import {
     Scheduler,
@@ -167,7 +168,7 @@ convertDate(dataAsString)
   
       return (
         <div className="setUp-Schedule-wrapper">
-            <NavBar/>
+            <NavBar page={"workSchedule"}/>
             <h1>Set Up Schedule</h1>
             <div className="setUp_Schedule-containerOne">
                 <Paper>
@@ -190,7 +191,7 @@ convertDate(dataAsString)
                 </Scheduler>
                 </Paper>
             </div>
-            <div className="setUp_Schedule-containerTwo">
+            <div className="setUp_Schedule_containerTwo">
               <h3>Set Up</h3>
               <div>
                 <input placeholder="Title" className="buyerInput-Settings" name="title" value={this.state.title} onChange={this.handleChange} type="text"/>

@@ -590,7 +590,6 @@ input[type="text"]:focus {
 	align-items: center;
 	background: white;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-	height: 800px;
 }
 
 .seller-selections,
@@ -602,7 +601,8 @@ input[type="text"]:focus {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid black;
+	padding: 0;
+	border-right: 1px solid grey;
 }
 
 .seller-selections li,
@@ -627,7 +627,6 @@ input[type="text"]:focus {
 .buyers-selection-area {
 	width: 70%;
 	height: 800px;
-	border: 1px solid black;
 	grid-template-rows: minmax(150px, auto);
 }
 
@@ -1289,4 +1288,12 @@ main {
   
 .containerProfileAvatarSettings:hover .ProfileAvatarSettingsMiddle {
 	opacity: 1;
+}
+
+.setUp-Schedule-wrapper {
+	position: relative;
+}
+
+.setUp_Schedule_containerTwo {
+	margin: 10px 5px 50px 5px;
 }

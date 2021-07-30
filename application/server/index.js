@@ -60,17 +60,17 @@ app.use((err, req, res, next) => {
 
 // Allow user to change profile 
 app
-    .get('/api/users/:id', (req, res) => {
-        store
+    .get('/api/profile/:id', (req, res) => {
+        /*store
             .getUserById(req.params.id)
             .then(user => res.status(200).send(user))
-            .catch(error => res.status(404).send({ error: error.message }));
+            .catch(error => res.status(404).send({ error: error.message }));*/
     })
-    .delete('/api/users/:id', (req, res) => {
-        store
+    .delete('/api/profile/:id', (req, res) => {
+        /*store
             .deleteUserById(req.params.id)
             .then(result => res.status(204).send())
-            .catch(error => res.status(400).send({ error: error.message }));
+            .catch(error => res.status(400).send({ error: error.message }));*/
     })
     .put('/api/profile/:id', (req, res, next) => {
 
