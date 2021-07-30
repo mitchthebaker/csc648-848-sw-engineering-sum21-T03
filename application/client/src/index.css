@@ -511,6 +511,13 @@ input {
 	margin: 100px 25px 150px 25px;
 }
 
+.price-matching-algorithm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .individual-product-details {
 	display: flex;
 	flex-direction: row;
@@ -643,16 +650,20 @@ input[type="text"]:focus {
 
 .TOS {
 	background: white;
-	border: 2px solid black;
-	border-radius: 5px;
-	overflow: auto;
-	height: 400px;
-	width: 90%;
+    border-radius: 5px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    padding: 25px;
 }
 
 .bottom-tos {
 	margin-top: 5em;
 	font-size: 0.7em;
+	margin-bottom: 75px;
 }
 
 .profile-wrapper {

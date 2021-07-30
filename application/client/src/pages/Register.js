@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect, NavLink} from 'react-router-dom';
-import TOS from '../components/TOS';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {
     setFirstname,
@@ -101,11 +100,8 @@ const Register = (props) => {
                         </div>
                     </label>
 
-                    <p> <b>Terms of Services and Privacy Agreement</b></p>
-                    <TOS/>
-
                     <div className="tos-checkbox">
-                        <span className="tos-checkbox-text"> By checking the box, you agree to Dropsell's Terms of Services and Privacy Agreement. </span> <input type="checkbox" id="Terms of Services" value={termsOfServices} onChange={(e) => dispatch(setTOS(e.target.value))} required />
+                        <span className="tos-checkbox-text"> By checking the box, you agree to Dropsell's <NavLink to="/TOS"> Terms of Services and Privacy Agreement. </NavLink> </span> <input type="checkbox" id="Terms of Services" value={termsOfServices} onChange={(e) => dispatch(setTOS(e.target.value))} required />
                     </div>
                    
                     <button className="submit-signup" onClick={submitHandler}> Register </button>

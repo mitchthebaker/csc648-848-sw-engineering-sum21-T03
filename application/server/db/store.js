@@ -83,15 +83,15 @@ async function getShoppingCartByUserId(id) {
   return result[0][0];
 }
 
-async function createUser(username, password) {
+async function createUser(firstname, lastname, email, username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
 
   const date = new Date();
 
   const result = await pool.query(
-    "INSERT INTO users SET username = ?, password = ?, created_at = ?, is_active = ?, is_buyer = ?, is_seller = ?",
-    [username, encPassword, date, 1, 1, 0]
+    "INSERT INTO users SET first_name = ?, last_name = ?, email = ?, username = ?, password = ?, created_at = ?, is_active = ?, is_buyer = ?, is_seller = ?",
+    [firstname, lastname, email, username, encPassword, date, 1, 1, 0]
   );
   if (result[0].length < 1) {
     throw new Error(

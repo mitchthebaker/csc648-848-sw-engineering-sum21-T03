@@ -96,6 +96,7 @@ const AuctionSetUp = () => {
       
           <input placeholder="Start Date" className="buyerInput-Settings" name="startDate"  onChange={getStartTime} type="datetime-local"/>
           <input placeholder="End Date" className="buyerInput-Settings" name="endDate"  onChange={getEndTime} type="datetime-local"/>
+          <input placeholder="Starting bid" className="starting-bid" type="text"/>
           <button onClick={calculate} className="sellerSettingsButtons">Set Up Auction Duration</button>
     
         </div>

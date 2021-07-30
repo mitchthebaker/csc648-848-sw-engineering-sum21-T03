@@ -13,7 +13,7 @@ const NavigationIcons = (props) => {
         props.setOpen(!props.open);
     };
 
-    if(props.page === 'Home' || props.page === 'Login' || props.page === 'Register' || props.page === 'About' || props.page === 'Contact') {
+    if(props.page === 'Home' || props.page === 'Login' || props.page === 'Register' || props.page === 'About' || props.page === 'Contact' || props.page === 'TOS') {
         return (
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>

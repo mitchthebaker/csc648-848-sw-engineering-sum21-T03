@@ -5,6 +5,7 @@ import Profile from './pages/Profile';
 import SellerSettings from './pages/SellerSettings';
 import BuyerSettings from './pages/BuyersSettings'; 
 import SetWorkSchedule from './components/ScheduleCalendar/CalenderComponents'; 
+import TOS from './components/TOS';
 import Feed from './pages/Feed'; 
 import Login from './pages/Login'; 
 import Register from './pages/Register'; 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/seller-settings" component={SellerSettings} />
         <Route path="/buyer-settings" component={BuyerSettings} />
         <Route path="/set-workSchedule" component={SetWorkSchedule} />
+        <Route path="/TOS" component={TOS}/>
         <Route path="/feed" component={Feed} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

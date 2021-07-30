@@ -24,6 +24,14 @@ const Product = (props) => {
             .then((res) => {
                 console.log(res);
                 dispatch(setProduct(res.data));
+
+                //axios.get(`/api/price-matching/${res.data.title}`)
+                //    .then((res) => {
+                //        console.log(res);
+                //    })
+                //    .catch((err) => {
+                //        console.log(err);
+                //    });
             })
             .catch((err) => {
                 console.log(err);
@@ -68,10 +76,13 @@ const Product = (props) => {
                             <h5> Seller: <span> {props.product.creator} </span> </h5>
                             <div className="purchase-product-wrapper">
                               {/* <button className="purchase-product-button"> Purchase </button> */}
-                              <Button variant="contained" color="primary" onClick={addProductHandler}>Purchase &nbsp; <FaShoppingCart /></Button>
+                              <Button variant="contained" color="primary" onClick={addProductHandler}>Add to Cart &nbsp; <FaShoppingCart /></Button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="price-matching-algorithm">
+
                 </div>
             </div>
             <Footer/>
