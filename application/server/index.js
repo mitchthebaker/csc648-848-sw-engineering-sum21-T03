@@ -59,13 +59,13 @@ app.use((err, req, res, next) => {
 
 // Allow user to change profile 
 app
-    .get('/api/users/:id', (req, res) => {
+    .get('/api/profile/:id', (req, res) => {
         store
             .getUserById(req.params.id)
             .then(user => res.status(200).send(user))
             .catch(error => res.status(404).send({ error: error.message }));
     })
-    .delete('/api/users/:id', (req, res) => {
+    .delete('/api/profile/:id', (req, res) => {
         store
             .deleteUserById(req.params.id)
             .then(result => res.status(204).send())
@@ -474,6 +474,12 @@ app.post('/api/cart/:id', (req, res, next) => {
             console.log(error);
             res.status(500).send({ error: `Unable to get shopping cart with buyer_id = ${req.session.user_id}` })
         });
+});
+
+
+
+app.get('/api/profile', (req, res, next) => {
+    store.getAllUsers().then(users => res.status(200).send(users));
 });
 
 app.get('/api/users', (req, res, next) => {

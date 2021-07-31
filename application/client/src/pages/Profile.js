@@ -52,7 +52,7 @@ const Profile = (props) => {
             </header>
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>{props.first_name}</p>
+                    <p>{props.first_name + " " + props.last_name}</p>
                 </div>
                 <div className="Information-ProfilePage">
                     <p>Information</p>

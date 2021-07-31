@@ -184,7 +184,7 @@ async function updateUser(firstName, lastName, birthday, email, phone, username,
 
 async function updateProfile(bioDescription, location, socialMedia) {
   const result = await pool.query(
-    "UPDATE users SET first_name = ?, last_name = ?, birthdate = ?, email = ?, phone = ?, username = ?, password = ? WHERE user_id = ?",
+    "UPDATE users SET bioDescription = ?, location = ?, socialMedia = ? WHERE user_id = ?",
     [bioDescription, location, socialMedia]
   );
 
