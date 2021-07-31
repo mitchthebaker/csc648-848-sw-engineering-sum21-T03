@@ -32,6 +32,7 @@ const Product = (props) => {
         axios.get(`/api/cart/${props.user_id}`)
             .then((res) => {
                 dispatch(setCartContents(res.data));
+                console.log('cart contents:\n');
                 console.log(res);
             })
             .catch((err) => {

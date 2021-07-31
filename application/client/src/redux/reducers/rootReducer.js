@@ -10,7 +10,7 @@ export default combineReducers({
   registerReducer,
   loginReducer,
   productReducer,
-  sellerSettingsReducer,
   shoppingCartReducer,
-  buyerSettingsReducer 
+  sellerSettingsReducer, 
+  buyerSettingsReducer,
 });
