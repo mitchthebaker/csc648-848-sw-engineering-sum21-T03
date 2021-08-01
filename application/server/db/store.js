@@ -182,10 +182,10 @@ async function updateUser(firstName, lastName, birthday, email, phone, username,
   return getUserById(id);
 }
 
-async function updateProfile(bioDescription, location, socialMedia) {
+async function updateProfile(bioDescription, location, socialMedia, id) {
   const result = await pool.query(
-    "UPDATE users SET bioDescription = ?, location = ?, socialMedia = ? WHERE user_id = ?",
-    [bioDescription, location, socialMedia]
+    "UPDATE users SET biography = ?, location = ?, social_media = ? WHERE user_id = ?",
+    [bioDescription, location, socialMedia, id]
   );
 
   if (result[0].affectedRows < 1) {

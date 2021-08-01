@@ -20,6 +20,21 @@ export const updateUserLastName = (last_name) => ({
     last_name
 });
 
+export const updateUserBioDescription = (bioDescription) => ({
+    type: "USER_UPDATE_BIODESCRIPTION", 
+    bioDescription
+}); 
+
+export const updateUserLocation = (location) => ({
+    type: "USER_UPDATE_LOCATION", 
+    location
+}); 
+
+export const updateUserSocialMedia = (socialMedia) => ({
+    type: "USER_UPDATE_SOCIALMEDIA", 
+    socialMedia
+}); 
+
 export const loginUser = () => {
     return (dispatch, getState) => {
         const userData = {
@@ -57,6 +72,9 @@ export const getUserProfile = () => {
                     console.log(res.data);
                     dispatch(updateUserFirstName(res.data.first_name));
                     dispatch(updateUserLastName(res.data.last_name));
+                    dispatch(updateUserBioDescription(res.data.bioDescription)); 
+                    dispatch(updateUserLocation(res.data.location)); 
+                    dispatch(updateUserSocialMedia(res.data.socialMedia)); 
                 }
             })
             .catch((err) => {

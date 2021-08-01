@@ -114,7 +114,7 @@ export const updateProfile = () => {
         }; 
         console.log(sellerData2); 
 
-        axios.put(`/api/profile/${getState().loginReducer.user_id}`, sellerData2)
+        axios.put(`/api/users/${getState().loginReducer.user_id}`, sellerData2)
             .then((res) => {
                 console.log(res);
                 if(res.status === 201) {

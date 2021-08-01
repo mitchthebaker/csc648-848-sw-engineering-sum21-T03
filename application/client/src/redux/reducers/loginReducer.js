@@ -4,6 +4,9 @@ const INITIAL_LOGIN_STATE = {
     user_id: '',
     first_name: '',
     last_name: '',
+    bioDescription: '', 
+    location: '', 
+    socialMedia: '', 
     loggedIn: false
 };
 
@@ -45,6 +48,26 @@ const loginReducer = (state = INITIAL_LOGIN_STATE, action) => {
                 ...state,
                 last_name: action.last_name,
             };
+
+        case 'USER_UPDATE_BIODESCRIPTION':
+            return {
+                ...state,
+                bioDescription: action.bioDescription,
+            };
+        
+        case 'USER_UPDATE_LOCATION':
+            return {
+                ...state,
+                location: action.location,
+            };
+
+        case 'USER_UPDATE_SOCIALMEDIA':
+            return {
+                ...state,
+                socialMedia: action.socialMedia,
+            };
+            
+
         
         default:
             return state;

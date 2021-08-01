@@ -52,19 +52,22 @@ const Profile = (props) => {
             </header>
             <div className="content-ProfilePage">
                 <div className="FirstLastName-ProfilePage">
-                    <p>{props.first_name + " " + props.last_name}</p>
+                    <h3>{props.first_name + " " + props.last_name}</h3>
                 </div>
                 <div className="Information-ProfilePage">
                     <p>Information</p>
+                    <h3>{props.bioDescription}</h3>
                 </div>
                 <div className="Section-ProfilePage">
-                    <p>Section</p>
+                    <p>Location</p>
+                    <h3>{props.location}</h3>
                 </div>
                 <div className="Activities-ProfilePage">
                     <p>Activities</p>
                 </div>
                 <div className="TopRecommendations-ProfilePage">
-                    <p>Top Recommendations</p>
+                    <p>Social Media</p>
+                    <h3>{props.socialMedia}</h3>
                 </div>
             </div>
             <Footer />
@@ -75,7 +78,10 @@ const Profile = (props) => {
 function mapStateToProps(state) {
     return { 
         first_name: state.loginReducer.first_name,
-        last_name: state.loginReducer.last_name
+        last_name: state.loginReducer.last_name,
+        bioDescription: state.loginReducer.bioDescription, 
+        location: state.loginReducer.location, 
+        socialMedia: state.loginReducer.socialMedia
     };
 }
 
