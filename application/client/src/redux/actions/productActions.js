@@ -90,6 +90,11 @@ export const addProductToCart = () => {
     };
 };
 
+export const setPriceMatchingProducts = (priceMatchingProducts) => ({
+    type: 'SET_PRICE_MATCHING_PRODUCTS',
+    priceMatchingProducts
+});
+
 export const setProduct = (product) => ({
     type: 'SET_PRODUCT',
     product

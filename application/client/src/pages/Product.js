@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import {
   setProduct,
   addProductToCart,
+  setPriceMatchingProducts,
 } from '../redux/actions/productActions';
 import {
   setCartContents
@@ -25,13 +26,25 @@ const Product = (props) => {
                 console.log(res);
                 dispatch(setProduct(res.data));
 
-                //axios.get(`/api/price-matching/${res.data.title}`)
-                //    .then((res) => {
-                //        console.log(res);
-                //    })
-                //    .catch((err) => {
-                //        console.log(err);
-                //    });
+                axios.get(`/api/price-matching/${res.data.title}`)
+                    .then((res) => {
+                        console.log(res);
+
+                        axios.post(`/api/price-matching/${params.id}`, res.data)
+                            .then((res) => {
+                                console.log(res);
+
+                                // perform dispatch here for populating 'setPriceMatchingProducts',
+                                // that way we are loading redux state from data stored in our DB
+                                dispatch(setPriceMatchingProducts(res.data.pm_products));
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             })
             .catch((err) => {
                 console.log(err);
@@ -82,7 +95,22 @@ const Product = (props) => {
                     </div>
                 </div>
                 <div className="price-matching-algorithm">
-
+                    <ul className="price-matching-algorithm-ul">
+                        {props.priceMatchingProducts.map((pm_product, index) => (
+                            <li className="pm-product-li" key={index}>
+                                <img  
+                                    src={pm_product.productImage}
+                                    className="pm-product-image"
+                                    alt="Failed to load."
+                                />
+                                <div className="pm-product-details">
+                                    <span className="pm-product-creator"> Creator: {pm_product.productSeller} </span>
+                                    <span className="pm-product-title"> { pm_product.productTitle }  </span>
+                                    <span className="pm-product-price"> { pm_product.productPrice } </span> 
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
             <Footer/>
@@ -91,10 +119,11 @@ const Product = (props) => {
 };
 
 function mapStateToProps(state) {
-    return { 
-        product: state.productReducer.product,
-        user_id: state.loginReducer.user_id
-    };
-  }
+  return { 
+      product: state.productReducer.product,
+      user_id: state.loginReducer.user_id,
+      priceMatchingProducts: state.productReducer.priceMatchingProducts
+  };
+}
 
 export default connect(mapStateToProps)(Product);

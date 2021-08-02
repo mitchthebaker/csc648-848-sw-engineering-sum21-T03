@@ -470,94 +470,24 @@ app.get('/api/price-matching/:title', async (req, res, next) => {
         await page.waitForSelector('div.s-desktop-width-max');
 
         returnedResponse = await page.evaluate(() => {
-            let elementArray = [];
             let dataArray = [];
 
-            //console.log(document.querySelectorAll('div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div.sg-col-inner > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div').length);
-            console.log(document.querySelectorAll('div.s-main-slot.s-result-list.s-search-results.sg-row > div').length);
             let productElements = document.querySelectorAll('div.s-main-slot.s-result-list.s-search-results.sg-row > div');
-            //let productArray = Array.from(productElements);
-            //let newProductArray = productArray.map(product => product.innerHTML);
 
-            /*productElements.forEach((product) => {
-                console.log(product.innerHTML);
-                let image = product.querySelector('img.s-image');
-                console.log(image);
-                let title = product.querySelector('span.a-size-base-plus.a-color-base.a-text-normal').textContent;
-                console.log(title);
-            });*/
-
-            for(let i = 3; i < productElements.length - 10; i++) {
-                //console.log(productElements[i].innerHTML);
-
-                let image = productElements[i].querySelector('img.s-image').getAttribute('src');
-                console.log(image);
-            }
-
-            //return productArray.map(product => product.innerHTML);
-
-            //[...document.querySelectorAll('div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div.sg-col-inner > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div')].map(x => console.log(x.innerHTML));
-            
-            /*if(document.querySelectorAll('div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div.sg-col-inner > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div').length > 0) {
-
-                let xyz = document.querySelectorAll('div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div.sg-col-inner > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div').length;
-
-                for(let div = 3; div < xyz.length - 4; div++) {
-
-                    elementArray.push(xyz[div]);
-                    console.log(elementArray);
-                }
-                [...document.querySelectorAll('div.s-desktop-width-max.s-desktop-content.s-opposite-dir.sg-row > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div.sg-col-inner > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div')].map(x => console.log(x.innerHTML));
-
-                let promise = new Promise((resolve, reject) => {
-
-                    setTimeout(() => {
-                        for(let text = 0; text < elementArray.length; text++) {
-
-                            dataArray.push({
-                                "productName": elementArray[text].querySelector('div > span > div > div > div  h2 > a > span').innerText,
-                                "productURL": elementArray[text].querySelector('div > span > div > div > div  h2 > a ').href,
-                                "productImage" : elementArray[text].querySelector('div > span > div > div  span > a > div > img ').src,
-                                "productPrice": elementArray[text].querySelector('div > span > div > div span.a-price-whole')?elementArray[text].querySelector('div > span > div > div span.a-price-whole').innerText.trim().replace(/\,/,""):'0',
-                            });
-                        }
-
-                        resolve(dataArray);
-                    }, 4000);
-                });
-
-                return promise;
-            }*/
-            /*else if(document.querySelectorAll('#search > div.s-desktop-width-max.s-opposite-dir > div > div.sg-col-20-of-24.s-matching-dir.sg-col-28-of-32.sg-col-16-of-20.sg-col.sg-col-32-of-36.sg-col-8-of-12.sg-col-12-of-16.sg-col-24-of-28 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div').length > 0) {
-
-                let xyz = document.querySelectorAll('#search > div.s-desktop-width-max.s-opposite-dir > div > div.sg-col-20-of-24.s-matching-dir.sg-col-28-of-32.sg-col-16-of-20.sg-col.sg-col-32-of-36.sg-col-8-of-12.sg-col-12-of-16.sg-col-24-of-28 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div');
-
-                for(let div = 2; div < xyz.length - 4; div++) {
-                    elementArray.push(xyz[div]);
-                    console.log(elementArray);
+            let promise = new Promise((resolve, reject) => {
+                for(let i = 3; i < productElements.length - 10; i++) {
+                    dataArray.push({
+                        "productTitle": productElements[i].querySelector('span.a-size-base-plus.a-color-base.a-text-normal').textContent,
+                        "productImage": productElements[i].querySelector('img.s-image').getAttribute('src'),
+                        "productPrice": productElements[i].querySelector('span.a-offscreen').textContent,
+                        "productSeller": productElements[i].querySelector('span.a-size-base-plus.a-color-base').textContent,
+                    });
                 }
 
-                let promise = new Promise((resolve, reject) => {
+                resolve(dataArray);
+            }); 
 
-                    setTimeout(() => {
-                        
-                        for(let text = 0; text < elementArray.length; text++) {
-                            
-                            dataArray.push({
-                                "productName": elementArray[text].querySelector('div > span > div > div > div  h2 > a > span').innerText,
-                                "productURL": elementArray[text].querySelector('div > span > div > div > div  h2 > a ').href,
-                                "productImage" : elementArray[text].querySelector('div > span > div > div  span > a > div > img ').src,
-                                "price": elementArray[text].querySelector('div > span > div > div span.a-price-whole')?elementArray[text].querySelector('div > span > div > div span.a-price-whole').innerText.trim().replace(/\,/,""):'0',
-                                "productRating": elementArray[text].querySelector('div > span > div > div a > i ')?elementArray[text].querySelector('div > span > div > div a > i').innerText:"",
-                            });
-
-                            resolve(dataArray);
-                        }
-                    }, 4000);
-                });
-
-                return promise;
-            }*/
+            return promise;
         });
 
         console.log(returnedResponse);
@@ -572,6 +502,31 @@ app.get('/api/price-matching/:title', async (req, res, next) => {
         console.log('Amazon scrape error -> ', err);
         await browser.close();
     }
+});
+
+app.post('/api/price-matching/:product_id', (req, res, next) => {
+
+    if(req.body.product.length > 0) {
+        console.log('price matching product data valid');
+
+        next();
+    }
+    else {
+        res.status(400).send({
+            error: "Price matching product data sent to this route is invalid."
+        });
+    }
+},
+(req, res) => {
+    store.createPriceMatchingProducts(req.params.product_id, JSON.stringify(req.body.product))
+        .then((result) => {
+            console.log(result);
+            res.status(201).send(result);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ error: `Unable to create price matching products with product id ${req.params.product_id}` });
+        });
 });
 
 app.get('/api/cart/:id', (req, res, next) => {

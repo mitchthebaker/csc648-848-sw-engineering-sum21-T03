@@ -8,6 +8,7 @@ const INITIAL_PRODUCT_STATE = {
     isSuccess: null,
     product: [],
     products: [],
+    priceMatchingProducts: [],
     categories: false,
     dropdownText: "Categories"
 };
@@ -63,6 +64,12 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
                 ...state,
                 dropdownText: action.text
             };
+
+        case 'SET_PRICE_MATCHING_PRODUCTS':
+            return {
+                ...state,
+                priceMatchingProducts: action.priceMatchingProducts
+            }
 
         case 'SET_PRODUCT':
             return {
