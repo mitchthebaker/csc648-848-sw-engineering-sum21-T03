@@ -67,7 +67,6 @@ const Profile = (props) => {
                     <p>Top Recommendations</p>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };

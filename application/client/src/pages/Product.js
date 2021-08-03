@@ -28,8 +28,9 @@ const Product = (props) => {
             .then((res) => {
                 console.log(res);
                 dispatch(setProduct(res.data));
-
-                axios.get(`/api/price-matching/${res.data.title}`)
+                
+                // Add this when a new product is created. Perform the web scraping once instead of everytime on page load...
+                /*axios.get(`/api/price-matching/${res.data.title}`)
                     .then((res) => {
                         console.log(res);
                         dispatch(setAveragePrice(res.data.averagePrice));
@@ -47,6 +48,21 @@ const Product = (props) => {
                             .catch((err) => {
                                 console.log(err);
                             });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });*/
+                
+                axios.get(`/api/price-matching/products/${params.id}`)
+                    .then((res) => {
+                        console.log(res);
+                        dispatch(setAveragePrice(res.data.avgPrice));
+                        dispatch(setMinPrice(res.data.minPrice));
+                        dispatch(setMaxPrice(res.data.maxPrice));
+
+                        // perform dispatch here for populating 'setPriceMatchingProducts',
+                        // that way we are loading redux state from data stored in our DB
+                        dispatch(setPriceMatchingProducts(res.data.pm_products));
                     })
                     .catch((err) => {
                         console.log(err);
@@ -100,9 +116,9 @@ const Product = (props) => {
                 <div className="price-matching-algorithm">
                     <h2> Price Matching </h2>
                     <div className="price-comparisons">
-                        <span> The average price of products from Amazon are: $ {props.avgPrice} </span>
-                        <span> The minimum price available is: $ {props.minPrice} </span>
-                        <span> The maximum price available is: $ {props.maxPrice} </span>
+                        <span> The average price of products from Amazon are: {(props.avgPrice === '') ? "loading..." : `$ ${props.avgPrice}`} </span>
+                        <span> The minimum price available is: {(props.minPrice === '') ? "loading..." : `$ ${props.minPrice}`} </span>
+                        <span> The maximum price available is: $ {(props.maxPrice === '') ? "loading..." : `$ ${props.maxPrice}`} </span>
                     </div>
                     <ul className="price-matching-algorithm-ul">
                         {

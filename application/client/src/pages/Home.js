@@ -131,7 +131,6 @@ const Home = (props) => {
                   <div className="product-price-rating-purchases">
                     <div className="price-rating-purchases">
                       <h5 className="product-price"> $ <span> { product.price } </span> </h5>
-                      <h5> Purchases: <span> 5 </span> </h5>
                     </div>
                   </div>
                 </Link>

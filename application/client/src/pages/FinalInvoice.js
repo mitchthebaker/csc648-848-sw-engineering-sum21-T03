@@ -16,7 +16,7 @@ const FinalInvoice = (props) => {
     }, []);
 
     return (
-        <div className="checkout-experience">
+        <div className="receiptinfo-experience">
             <NavBar page={"finalInvoice"}/>
             <div className="final-invoice-wrapper">
                 <div className="final-invoice-content">
@@ -25,12 +25,11 @@ const FinalInvoice = (props) => {
                             <div className="confirmation-details">
                                 <h4> Your purchase has been confirmed! </h4>
                                 <h5> Date </h5>
-                                <h5> Confirmation number: <span> 12345 </span> </h5>
+                                <h5> Confirmation number: <span> 678e068c-74b1-4ae0-b4bb-dfb959eeb42f </span> </h5>
                                 <h5> A confirmation has been sent to your email at: <span> email@mail.com </span> </h5>
                             </div>
                             <div className="final-invoice-product-list">
                                 <div className="product-details">
-                                    <span className="product-detail-span"> Quantity </span>
                                     <span className="product-detail-span"> Product </span>
                                     <span className="product-detail-span"> Name </span>
                                     <span className="product-detail-span"> Price </span>
@@ -43,19 +42,14 @@ const FinalInvoice = (props) => {
                                 : props.cart.products.map((product, index) => (
                                     <li key={index}>
                                         <div>
-                                            <h3> 1 </h3>
-                                        </div>
-                                        <div>
                                             <img  
                                               src={`/uploads/${product.image}`}
                                               className="product-image-summary"
                                               alt="Failed to load."
                                             />
                                         </div>
-                                        <div>
+                                        <div className="product-title-price-summary">
                                             <h3> {product.title} </h3>
-                                        </div>
-                                        <div>
                                             <h3> {product.price} </h3>
                                         </div>
                                     </li>

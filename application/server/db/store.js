@@ -98,7 +98,7 @@ async function getPriceMatchingProductsById(id) {
 
 async function getPriceMatchingProductsByProductId(id) {
   const result = await pool.query(
-    "SELECT product_id, pm_product_id AS pm_product_id, pm_products AS pm_products FROM puppeteer_data WHERE product_id = ?",
+    "SELECT product_id, pm_product_id AS pm_product_id, pm_products AS pm_products, avgPrice AS avgPrice, minPrice AS minPrice, maxPrice AS maxPrice FROM puppeteer_data WHERE product_id = ?",
     [id]
   );
 
@@ -143,11 +143,11 @@ async function createUserCart(id) {
   return getShoppingCartById(result[0].insertId);
 }
 
-async function createPriceMatchingProducts(product_id, priceMatchingProducts) {
+async function createPriceMatchingProducts(product_id, priceMatchingProducts, avgPrice, minPrice, maxPrice) {
 
   const result = await pool.query(
-    "INSERT INTO puppeteer_data SET product_id = ?, pm_products = ?",
-    [product_id, priceMatchingProducts]
+    "INSERT INTO puppeteer_data SET product_id = ?, pm_products = ?, avgPrice = ?, minPrice = ?, maxPrice = ?",
+    [product_id, priceMatchingProducts, avgPrice, minPrice, maxPrice]
   );
 
   if(result[0].length < 1) {

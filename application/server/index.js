@@ -547,6 +547,8 @@ app.get('/api/price-matching/:title', async (req, res, next) => {
 
 app.post('/api/price-matching/:product_id', (req, res, next) => {
 
+    console.log(req.body);
+
     if(req.body.product.length > 0) {
         console.log('price matching product data valid');
 
@@ -559,7 +561,7 @@ app.post('/api/price-matching/:product_id', (req, res, next) => {
     }
 },
 (req, res) => {
-    store.createPriceMatchingProducts(req.params.product_id, JSON.stringify(req.body.product))
+    store.createPriceMatchingProducts(req.params.product_id, JSON.stringify(req.body.product), req.body.averagePrice, req.body.minPrice, req.body.maxPrice)
         .then((result) => {
             console.log(result);
             res.status(201).send(result);
@@ -567,6 +569,19 @@ app.post('/api/price-matching/:product_id', (req, res, next) => {
         .catch((error) => {
             console.log(error);
             res.status(500).send({ error: `Unable to create price matching products with product id ${req.params.product_id}` });
+        });
+});
+
+app.get('/api/price-matching/products/:product_id', (req, res) => {
+
+    store.getPriceMatchingProductsByProductId(req.params.product_id)
+        .then((result) => {
+            console.log(result);
+            res.status(201).send(result);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ error: 'Unable to get pm_product by id' });
         });
 });
 

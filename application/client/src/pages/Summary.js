@@ -7,13 +7,12 @@ import { connect, useDispatch } from 'react-redux';
 const Summary = (props) => {
 
     return (
-        <div className="checkout-experience">
+        <div className="receiptinfo-experience">
             <NavBar page={"Summary"}/>
             <div className="summary-wrapper">
                 <div className="summary-content">
                     <div className="user-summary">
                         <div className="product-details">
-                            <span className="product-detail-span"> Quantity </span>
                             <span className="product-detail-span"> Product </span>
                             <span className="product-detail-span"> Title </span>
                             <span className="product-detail-span"> Price </span>
@@ -24,19 +23,14 @@ const Summary = (props) => {
                                 : props.cart.products.map((product, index) => (
                                     <li key={index}>
                                         <div>
-                                            <h3> 1 </h3>
-                                        </div>
-                                        <div>
                                             <img  
                                               src={`/uploads/${product.image}`}
                                               className="product-image-summary"
                                               alt="Failed to load."
                                             />
                                         </div>
-                                        <div>
+                                        <div className="product-title-price-summary">
                                             <h3> {product.title} </h3>
-                                        </div>
-                                        <div>
                                             <h3> {product.price} </h3>
                                         </div>
                                     </li>
