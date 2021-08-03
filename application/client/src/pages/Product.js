@@ -10,6 +10,9 @@ import {
   setProduct,
   addProductToCart,
   setPriceMatchingProducts,
+  setAveragePrice,
+  setMinPrice,
+  setMaxPrice,
 } from '../redux/actions/productActions';
 import {
   setCartContents
@@ -29,6 +32,9 @@ const Product = (props) => {
                 axios.get(`/api/price-matching/${res.data.title}`)
                     .then((res) => {
                         console.log(res);
+                        dispatch(setAveragePrice(res.data.averagePrice));
+                        dispatch(setMinPrice(res.data.minPrice));
+                        dispatch(setMaxPrice(res.data.maxPrice));
 
                         axios.post(`/api/price-matching/${params.id}`, res.data)
                             .then((res) => {
@@ -70,12 +76,6 @@ const Product = (props) => {
             <NavBar page={"Product"}/>
             <div className="individual-product-wrapper">
                 <div className="individual-product-content">
-                    <h4 className="individual-product-title">
-                        {props.product.title}
-                    </h4>
-                    <h5 className="individual-product-description">
-                        {props.product.description}
-                    </h5>
                     <div className="individual-product-details">
                         <img 
                             src={`/uploads/${props.product.image}`}
@@ -83,20 +83,32 @@ const Product = (props) => {
                             alt="Failed to load."
                         />
                         <div className="individual-product-additional-details">
-                            <h5> Condition: <span> New </span> </h5>
-                            <h5> Quantity: <span> 5 </span> </h5>
+                            <h4 className="individual-product-title">
+                                {props.product.title}
+                            </h4>
+                            <h5 className="individual-product-description">
+                                {props.product.description}
+                            </h5>
                             <h5> Price: $<span> {props.product.price} </span> </h5>
                             <h5> Seller: <span> {props.product.creator} </span> </h5>
                             <div className="purchase-product-wrapper">
-                              {/* <button className="purchase-product-button"> Purchase </button> */}
                               <Button variant="contained" color="primary" onClick={addProductHandler}>Add to Cart &nbsp; <FaShoppingCart /></Button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="price-matching-algorithm">
+                    <h2> Price Matching </h2>
+                    <div className="price-comparisons">
+                        <span> The average price of products from Amazon are: $ {props.avgPrice} </span>
+                        <span> The minimum price available is: $ {props.minPrice} </span>
+                        <span> The maximum price available is: $ {props.maxPrice} </span>
+                    </div>
                     <ul className="price-matching-algorithm-ul">
-                        {props.priceMatchingProducts.map((pm_product, index) => (
+                        {
+                        (props.priceMatchingProducts === undefined) ? 
+                        <span> Loading price matching products... </span> : 
+                        props.priceMatchingProducts.map((pm_product, index) => (
                             <li className="pm-product-li" key={index}>
                                 <img  
                                     src={pm_product.productImage}
@@ -109,7 +121,8 @@ const Product = (props) => {
                                     <span className="pm-product-price"> { pm_product.productPrice } </span> 
                                 </div>
                             </li>
-                        ))}
+                        ))
+                        }
                     </ul>
                 </div>
             </div>
@@ -122,7 +135,10 @@ function mapStateToProps(state) {
   return { 
       product: state.productReducer.product,
       user_id: state.loginReducer.user_id,
-      priceMatchingProducts: state.productReducer.priceMatchingProducts
+      priceMatchingProducts: state.productReducer.priceMatchingProducts,
+      avgPrice: state.productReducer.avgPrice,
+      minPrice: state.productReducer.minPrice,
+      maxPrice: state.productReducer.maxPrice,
   };
 }
 

@@ -9,6 +9,9 @@ const INITIAL_PRODUCT_STATE = {
     product: [],
     products: [],
     priceMatchingProducts: [],
+    avgPrice: '',
+    minPrice: '',
+    maxPrice: '',
     categories: false,
     dropdownText: "Categories"
 };
@@ -69,7 +72,25 @@ const productReducer = (state = INITIAL_PRODUCT_STATE, action) => {
             return {
                 ...state,
                 priceMatchingProducts: action.priceMatchingProducts
-            }
+            };
+
+        case 'SET_AVERAGE_PRICE':
+            return {
+                ...state,
+                avgPrice: action.avgPrice
+            };
+
+        case 'SET_MIN_PRICE':
+            return {
+                ...state,
+                minPrice: action.minPrice
+            };
+
+        case 'SET_MAX_PRICE':
+            return {
+                ...state,
+                maxPrice: action.maxPrice
+            };
 
         case 'SET_PRODUCT':
             return {

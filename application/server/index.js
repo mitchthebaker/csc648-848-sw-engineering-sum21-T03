@@ -476,9 +476,15 @@ app.get('/api/price-matching/:title', async (req, res, next) => {
 
             let promise = new Promise((resolve, reject) => {
                 for(let i = 3; i < productElements.length - 10; i++) {
+
+                    /*if(productElements[i].querySelector('img.s-image').src === null) {
+                        console.log("null img at i = " + i);
+                        continue;
+                    }*/
+
                     dataArray.push({
                         "productTitle": productElements[i].querySelector('span.a-size-base-plus.a-color-base.a-text-normal').textContent,
-                        "productImage": productElements[i].querySelector('img.s-image').getAttribute('src'),
+                        "productImage": productElements[i].querySelector('img.s-image').src, // .getAttribute('src')
                         "productPrice": productElements[i].querySelector('span.a-offscreen').textContent,
                         "productSeller": productElements[i].querySelector('span.a-size-base-plus.a-color-base').textContent,
                     });
@@ -494,9 +500,44 @@ app.get('/api/price-matching/:title', async (req, res, next) => {
 
         resultObj.product = returnedResponse;
 
+        // Get average price of all products
+        let totalPrice = 0;
+        let averagePrice = 0;
+        let minPrice = 0;
+        let maxPrice = 0;
+
+        for(let i = 0; i < returnedResponse.length; i++) {
+            let slicedPrice = returnedResponse[i].productPrice.slice(1);
+            totalPrice += parseFloat(slicedPrice);
+
+            if(minPrice === 0) {
+                minPrice = parseFloat(returnedResponse[i].productPrice.slice(1));
+            }
+            else {
+                minPrice = (parseFloat(returnedResponse[i].productPrice.slice(1)) < minPrice) ? parseFloat(returnedResponse[i].productPrice.slice(1)) : minPrice;
+            }
+
+            if(maxPrice === 0) {
+                maxPrice = parseFloat(returnedResponse[i].productPrice.slice(1));
+            }
+            else {
+                maxPrice = (parseFloat(returnedResponse[i].productPrice.slice(1)) > maxPrice) ? parseFloat(returnedResponse[i].productPrice.slice(1)) : maxPrice;
+            }
+        }
+
+        averagePrice = Math.ceil(totalPrice / returnedResponse.length);
+        console.log(averagePrice);
+        console.log(minPrice);
+        console.log(maxPrice);
+
         await browser.close();
 
-        res.send({product: resultObj.product});
+        res.send({
+            product: resultObj.product,
+            averagePrice: averagePrice.toString(),
+            minPrice: minPrice.toString(),
+            maxPrice: maxPrice.toString()
+        });
     }
     catch(err) {
         console.log('Amazon scrape error -> ', err);

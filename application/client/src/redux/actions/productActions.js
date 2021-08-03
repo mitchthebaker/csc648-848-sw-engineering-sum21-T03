@@ -95,6 +95,21 @@ export const setPriceMatchingProducts = (priceMatchingProducts) => ({
     priceMatchingProducts
 });
 
+export const setAveragePrice = (avgPrice) => ({
+    type: 'SET_AVERAGE_PRICE',
+    avgPrice
+});
+
+export const setMinPrice = (minPrice) => ({
+    type: 'SET_MIN_PRICE',
+    minPrice
+});
+
+export const setMaxPrice = (maxPrice) => ({
+    type: 'SET_MAX_PRICE',
+    maxPrice
+});
+
 export const setProduct = (product) => ({
     type: 'SET_PRODUCT',
     product

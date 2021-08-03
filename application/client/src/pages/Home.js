@@ -71,6 +71,12 @@ const Home = (props) => {
           });
   }, []);
 
+  /*
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, []);
+  */
+
   //search bar
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
