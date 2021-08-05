@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import Menu from './Menu';
+import { connect, useDispatch } from 'react-redux';
 
 const NavigationIcons = (props) => {
 
@@ -18,7 +19,11 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                {
+                    (props.loggedIn) ? 
+                    <NavLink className="nav-link" id="logout-link" to="/login"> Logout </NavLink> 
+                    : <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                }
                 {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
@@ -29,7 +34,11 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/about"> About </NavLink>
-                <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                {
+                    (props.loggedIn) ? 
+                    <NavLink className="nav-link" id="logout-link" to="/login"> Logout </NavLink> 
+                    : <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                }
                 {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
@@ -42,6 +51,11 @@ const NavigationIcons = (props) => {
                 {/*<NavLink className="nav-link" to="/userFeed"> User Feed </NavLink>*/}
                 <NavLink className="nav-link" to="/seller-settings"> Seller Settings </NavLink>
                 <NavLink className="nav-link" to="/buyer-settings"> Buyer Settings </NavLink>
+                {
+                    (props.loggedIn) ? 
+                    <NavLink className="nav-link" id="logout-link" to="/login"> Logout </NavLink> 
+                    : <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                }
                 {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
@@ -88,6 +102,11 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
+                {
+                    (props.loggedIn) ? 
+                    <NavLink className="nav-link" id="logout-link" to="/login"> Logout </NavLink> 
+                    : <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                }
                 {props.open && <Menu handleMouseClick={handleMouseClick} />}
             </div>
         );
@@ -98,11 +117,19 @@ const NavigationIcons = (props) => {
             <div className="navigation-icons">
                 <NavLink className="nav-link" to="/"> Home </NavLink>
                 <NavLink className="nav-link" to="/profile"> Profile </NavLink>
-                <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                {
+                    (props.loggedIn) ? 
+                    <NavLink className="nav-link" id="logout-link" to="/login"> Logout </NavLink> 
+                    : <NavLink className="nav-link" id="login-link" to="/login"> Login </NavLink> 
+                }
                 {props.open && <Menu handleMouseClick={handleMouseClick} />} 
             </div>
         );
     }
 };
 
-export default NavigationIcons;
+function mapStateToProps(state) {
+    return { loggedIn: state.loginReducer.loggedIn };
+  }
+
+export default connect(mapStateToProps)(NavigationIcons);

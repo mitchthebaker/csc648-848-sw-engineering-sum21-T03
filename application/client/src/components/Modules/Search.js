@@ -74,7 +74,7 @@ const Search = (props) => {
         <form action="/" method="get" className="filtered-search" onSubmit={onSubmit}>
             <div className="input-button-search">
                 <div className="searchbar-wrapper">
-                    <span className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </span>
+                    <span className="dropdown-text" onClick={() => toggleCategories()}> { props.dropdownText } </span> {/*onClick={() => toggleCategories()}*/} 
                     <input
                         className="search-input"
                         value={props.searchQuery}
@@ -88,7 +88,7 @@ const Search = (props) => {
                     <button className="search-submit" type="submit"> Search </button>
                 </div>
                 {categoriesMenu == false ? 
-                  <ul className="categories">
+                  <ul className="categories" > {/*onMouseLeave={() => toggleCategories()}*/} 
                       <li onClick={viewAllProducts}> View all products </li>
                     {categoryItems.map((item, index) => (
                       <li key={index} onClick={clickCategory(item.name)}> 

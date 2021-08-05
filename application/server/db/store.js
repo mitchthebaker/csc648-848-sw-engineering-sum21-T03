@@ -83,6 +83,32 @@ async function getShoppingCartByUserId(id) {
   return result[0][0];
 }
 
+async function getPriceMatchingProductsById(id) {
+  const result = await pool.query(
+    "SELECT pm_product_id, product_id AS product_id, pm_products AS pm_products FROM puppeteer_data WHERE pm_product_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Price matching products with id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
+async function getPriceMatchingProductsByProductId(id) {
+  const result = await pool.query(
+    "SELECT product_id, pm_product_id AS pm_product_id, pm_products AS pm_products, avgPrice AS avgPrice, minPrice AS minPrice, maxPrice AS maxPrice FROM puppeteer_data WHERE product_id = ?",
+    [id]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(`Price matching products with product id = ${id} not found`);
+  }
+
+  return result[0][0];
+}
+
 async function createUser(firstname, lastname, email, username, password) {
 
   const encPassword = await bcrypt.hash(password, saltRounds);
@@ -115,6 +141,22 @@ async function createUserCart(id) {
   }
 
   return getShoppingCartById(result[0].insertId);
+}
+
+async function createPriceMatchingProducts(product_id, priceMatchingProducts, avgPrice, minPrice, maxPrice) {
+
+  const result = await pool.query(
+    "INSERT INTO puppeteer_data SET product_id = ?, pm_products = ?, avgPrice = ?, minPrice = ?, maxPrice = ?",
+    [product_id, priceMatchingProducts, avgPrice, minPrice, maxPrice]
+  );
+
+  if(result[0].length < 1) {
+    throw new Error(
+      `Failed to add price matching products into puppeteer_data table with product id of: ${product_id}`
+    );
+  }
+
+  return getPriceMatchingProductsById(result[0].insertId);
 }
 
 async function loginUser(username, password) {
@@ -214,12 +256,15 @@ module.exports = {
   getAllProductsWith,
   createUser,
   createUserCart,
+  createPriceMatchingProducts,
   loginUser,
   uploadProduct,
   getUserById,
   getProductById,
   getShoppingCartById,
   getShoppingCartByUserId,
+  getPriceMatchingProductsById,
+  getPriceMatchingProductsByProductId,
   deleteUserById,
   updateUser,
   updateCart,
