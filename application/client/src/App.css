@@ -1,5 +1,6 @@
 .App {
 	text-align: center;
+	background-color: darkcyan;
 }
 
 .App-logo {
@@ -34,7 +35,12 @@
 }
 
 .App-link {
-	color: #3707bd;
+	color: #414141;
+
+}
+
+.navbar{
+	background-color: #414141;
 }
 
 @keyframes App-logo-spin {
@@ -219,7 +225,7 @@
     appearance: none;
     padding: 8px 15px 8px 15px;
     border: 1px solid #cecece;
-    background-color: #4f25f7;
+    background-color: #414141;
     border-radius: 5px;
     box-shadow: 0 4px 6px 0 hsl(0deg 0% 0% / 20%);
     cursor: pointer;
@@ -288,12 +294,23 @@
 /*Profile Page */
 
 .content-ProfilePage {
+	padding: 25px 50px;
+	text-align: center;
+	align-self: center;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	grid-auto-rows: minmax(100px, auto);
+	grid-auto-rows: minmax(50px, auto);
 	grid-gap: 10px;
 	max-width: 90%;
 	margin: 100px auto 10px auto;
+
+}
+
+.ProfileAvatar{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
 
 .FirstLastName-ProfilePage {
@@ -304,6 +321,7 @@
 }
 
 .Information-ProfilePage {
+	padding: 10px;
 	grid-column: 6 / 13;
 	grid-row: 2 / 4;
 	background-color: #fff;
@@ -324,6 +342,7 @@
 	background-color: #fff;
 	border-radius: 15px;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+	
 }
 
 .TopRecommendations-ProfilePage {

@@ -55,16 +55,16 @@ const Profile = (props) => {
                     <p>{props.first_name}</p>
                 </div>
                 <div className="Information-ProfilePage">
-                    <p>Information</p>
+                    <p> Information</p>
                 </div>
                 <div className="Section-ProfilePage">
-                    <p>Section</p>
+                    <p> Section</p>
                 </div>
                 <div className="Activities-ProfilePage">
-                    <p>Activities</p>
+                    <p> Activities</p>
                 </div>
                 <div className="TopRecommendations-ProfilePage">
-                    <p>Top Recommendations</p>
+                    <p> Top Recommendations</p>
                 </div>
             </div>
         </div>

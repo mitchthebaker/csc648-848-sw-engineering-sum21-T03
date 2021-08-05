@@ -20,8 +20,8 @@
 
 |    Item                  | Credentials                                                           |
 |          :---:           |           :---:                                                       |
-|    Server URL and IP     | dropsell.gq, 54.153.92.139                                            |
-|    SSH URL               | ec2-54-153-93-139.us-west-1.compute.amazonaws.com                     |
+|    Server URL and IP     | dropsell.gq, 18.144.88.133                                            |
+|    SSH URL               | ec2-18-144-88-133.us-west-1.compute.amazonaws.com                     |
 |    SSH username          | ubuntu                                                                |
 |    SSH key               | /credentials/csc648.cer                                               |
 |    Database URL and port | rds-mysql-joses-angels.cgt4l91wscet.us-west-1.rds.amazonaws.com, 3306 |
@@ -34,7 +34,7 @@ Connecting to AWS EC2 instance:
 1. Before starting any of the following steps, make sure to first clone the git repository. 
 2. Next, if you'd like to connect to the AWS EC2 instance, `cd` into the freshly cloned git repository, then `cd` again into the credentials folder. 
 3. In /credentials is csc648.cer, the RSA key used to connect to the remote EC2 instance. It is recommended to use `pwd` to get the path to the current working directory since this will be needed when using SSH.
-4. To connect to the remote EC2 instance, use the following command: `sudo ssh -i /your/path/to/the/git/repo/csc648-848-sw-engineering-sum21-T03/credentials/csc648.cer ubuntu@ec2-54-153-93-139.us-west-1.compute.amazonaws.com`.
+4. To connect to the remote EC2 instance, use the following command: `sudo ssh -i /your/path/to/the/git/repo/csc648-848-sw-engineering-sum21-T03/credentials/csc648.cer ec2-18-144-88-133.us-west-1.compute.amazonaws.com`.
 5. If prompted to enter a password, enter your password. 
 6. After, you will be redirected to the remote EC2 instance. 
 
