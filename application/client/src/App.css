@@ -35,7 +35,12 @@
 }
 
 .App-link {
-	color: #3707bd;
+	color: #414141;
+
+}
+
+.navbar{
+	background-color: #414141;
 }
 
 @keyframes App-logo-spin {
@@ -220,7 +225,7 @@
     appearance: none;
     padding: 8px 15px 8px 15px;
     border: 1px solid #cecece;
-    background-color: #4f25f7;
+    background-color: #414141;
     border-radius: 5px;
     box-shadow: 0 4px 6px 0 hsl(0deg 0% 0% / 20%);
     cursor: pointer;
