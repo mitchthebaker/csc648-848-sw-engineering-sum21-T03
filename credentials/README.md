@@ -21,13 +21,13 @@
 |    Item                  | Credentials                                                           |
 |          :---:           |           :---:                                                       |
 |    Server URL and IP     | dropsell.gq, 18.144.88.133                                            |
-|    SSH URL               | ec2-18-144-88-133.us-west-1.compute.amazonaws.com                     |
-|    SSH username          | ubuntu                                                                |
-|    SSH key               | /credentials/csc648.cer                                               |
-|    Database URL and port | rds-mysql-joses-angels.cgt4l91wscet.us-west-1.rds.amazonaws.com, 3306 |
-|    Database username     | admin                                                                 |
-|    Database password     | oM9QuhdFhNMVUyMFU4ha                                                  | 
-|    Database name         | mysql_ja                                                              | 
+|    SSH URL               |                      |
+|    SSH username          |                                                                 |
+|    SSH key               |                                                |
+|    Database URL and port | |
+|    Database username     |                                                                 |
+|    Database password     |                                                   | 
+|    Database name         |                                                               | 
 
 Connecting to AWS EC2 instance: 
 
